@@ -1,0 +1,7 @@
+--cpu Cortex-M3 ".\build\startup_stm32f10x_md.o" ".\build\system_stm32f10x.o" ".\build\ledsmanager.o" ".\build\buttonsmanager.o" ".\build\main.o" ".\build\json.o" ".\build\jsonparser.o" ".\build\sprinkler.o" ".\build\logger.o" ".\build\irrigation.o" ".\build\alarm.o" ".\build\sensor.o" ".\build\sensorfactory.o" ".\build\watersensor.o" ".\build\mocksensor.o" ".\build\batterysensor.o" ".\build\valf.o" ".\build\stringbuffer.o" ".\build\testjson.o" ".\build\testtimelistenerdata.o" ".\build\testsmartpointer.o" ".\build\timemanager.o" ".\build\timelistenerslist.o" ".\build\communication.o" 
+
+--feedback ".\build\TestPP.fed" --feedback_image=none 
+--strict --scatter ".\build\TestPP.sct" 
+--summary_stderr --info summarysizes --map --xref --callgraph --symbols 
+--info sizes --info totals --info unused --info veneers 
+ --list ".\build\TestPP.map" -o .\build\TestPP.axf

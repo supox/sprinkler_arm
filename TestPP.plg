@@ -1,0 +1,329 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Project:</h2>
+C:\Users\Porat\Documents\Arm\Keil\TestPP\TestPP.uvproj
+Project File Date:  12/22/2012
+
+<h2>Output:</h2>
+Build target 'Target 1'
+assembling startup_stm32f10x_md.s...
+compiling LedsManager.cpp...
+compiling main.cpp...
+main.cpp(3): warning:  #951-D: return type of function "main" must be "int"
+linking...
+TestPP.axf: Error: L6218E: Undefined symbol SystemInit (referred from startup_stm32f10x_md.o).
+Target not created
+Build target 'Target 1'
+compiling main.cpp...
+main.cpp(10): warning:  #111-D: statement is unreachable
+linking...
+TestPP.axf: Error: L6218E: Undefined symbol SystemInit (referred from startup_stm32f10x_md.o).
+Target not created
+Build target 'Target 1'
+compiling main.cpp...
+linking...
+TestPP.axf: Error: L6218E: Undefined symbol SystemInit (referred from startup_stm32f10x_md.o).
+Target not created
+Build target 'Target 1'
+compiling system_stm32f10x.c...
+C:\Keil\ARM\Inc\ST\STM32F10x\stm32f10x.h(96): error:  #35: #error directive: "Please select first the target STM32F10x device used in your application (in stm32f10x.h file)"
+Target not created
+Build target 'Target 1'
+compiling system_stm32f10x.c...
+compiling LedsManager.cpp...
+compiling main.cpp...
+linking...
+Program Size: Code=932 RO-data=284 RW-data=20 ZI-data=1636  
+"TestPP.axf" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+compiling LedsManager.cpp...
+compiling main.cpp...
+linking...
+Program Size: Code=1044 RO-data=284 RW-data=20 ZI-data=1636  
+"TestPP.axf" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+compiling LedsManager.cpp...
+LedsManager.h(10): error:  #20: identifier "size_t" is undefined
+error type>(11): error:  #20: identifier "size_t" is undefined
+error type>(14): error:  #20: identifier "size_t" is undefined
+error type>(15): error:  #20: identifier "size_t" is undefined
+LedsManager.cpp(3): error:  #292: "m_vLedsOn" is not a nonstatic data member or base class of class "LedsManager"
+LedsManager.cpp(11): error:  #20: identifier "size_t" is undefined
+error type>(17): error:  #20: identifier "GPIOB" is undefined
+LedsManager.cpp(19): error:  #20: identifier "GPIOB" is undefined
+LedsManager.cpp(23): error:  #20: identifier "size_t" is undefined
+error type>(27): error:  #20: identifier "GPIOB" is undefined
+LedsManager.cpp(29): warning:  #940-D: missing return statement at end of non-void function "LedsManager::GetLed"
+LedsManager.cpp(31): error:  #20: identifier "size_t" is undefined
+compiling main.cpp...
+LedsManager.h(10): error:  #20: identifier "size_t" is undefined
+error type>(11): error:  #20: identifier "size_t" is undefined
+error type>(14): error:  #20: identifier "size_t" is undefined
+error type>(15): error:  #20: identifier "size_t" is undefined
+Target not created
+Build target 'Target 1'
+compiling LedsManager.cpp...
+LedsManager.h(3): error:  #11-D: unrecognized preprocessing directive
+LedsManager.h(10): error:  #20: identifier "size_t" is undefined
+error type>(11): error:  #20: identifier "size_t" is undefined
+error type>(14): error:  #20: identifier "size_t" is undefined
+error type>(15): error:  #20: identifier "size_t" is undefined
+LedsManager.cpp(3): error:  #292: "m_vLedsOn" is not a nonstatic data member or base class of class "LedsManager"
+LedsManager.cpp(11): error:  #20: identifier "size_t" is undefined
+error type>(17): error:  #20: identifier "GPIOB" is undefined
+LedsManager.cpp(19): error:  #20: identifier "GPIOB" is undefined
+LedsManager.cpp(23): error:  #20: identifier "size_t" is undefined
+error type>(27): error:  #20: identifier "GPIOB" is undefined
+LedsManager.cpp(29): warning:  #940-D: missing return statement at end of non-void function "LedsManager::GetLed"
+LedsManager.cpp(31): error:  #20: identifier "size_t" is undefined
+compiling main.cpp...
+LedsManager.h(3): error:  #11-D: unrecognized preprocessing directive
+LedsManager.h(10): error:  #20: identifier "size_t" is undefined
+error type>(11): error:  #20: identifier "size_t" is undefined
+error type>(14): error:  #20: identifier "size_t" is undefined
+error type>(15): error:  #20: identifier "size_t" is undefined
+Target not created
+Build target 'Target 1'
+compiling LedsManager.cpp...
+LedsManager.h(3): error:  #5: cannot open source input file "stddef": No such file or directory
+compiling main.cpp...
+LedsManager.h(3): error:  #5: cannot open source input file "stddef": No such file or directory
+Target not created
+Build target 'Target 1'
+compiling LedsManager.cpp...
+LedsManager.h(10): error:  #20: identifier "size_t" is undefined
+error type>(11): error:  #20: identifier "size_t" is undefined
+error type>(14): error:  #20: identifier "size_t" is undefined
+error type>(15): error:  #20: identifier "size_t" is undefined
+LedsManager.cpp(3): error:  #292: "m_vLedsOn" is not a nonstatic data member or base class of class "LedsManager"
+LedsManager.cpp(11): error:  #20: identifier "size_t" is undefined
+error type>(17): error:  #20: identifier "GPIOB" is undefined
+LedsManager.cpp(19): error:  #20: identifier "GPIOB" is undefined
+LedsManager.cpp(23): error:  #20: identifier "size_t" is undefined
+error type>(27): error:  #20: identifier "GPIOB" is undefined
+LedsManager.cpp(29): warning:  #940-D: missing return statement at end of non-void function "LedsManager::GetLed"
+LedsManager.cpp(31): error:  #20: identifier "size_t" is undefined
+compiling main.cpp...
+LedsManager.h(10): error:  #20: identifier "size_t" is undefined
+error type>(11): error:  #20: identifier "size_t" is undefined
+error type>(14): error:  #20: identifier "size_t" is undefined
+error type>(15): error:  #20: identifier "size_t" is undefined
+Target not created
+Build target 'Target 1'
+compiling LedsManager.cpp...
+LedsManager.cpp(3): error:  #292: "m_vLedsOn" is not a nonstatic data member or base class of class "LedsManager"
+LedsManager.cpp(17): error:  #20: identifier "GPIOB" is undefined
+LedsManager.cpp(19): error:  #20: identifier "GPIOB" is undefined
+LedsManager.cpp(27): error:  #20: identifier "GPIOB" is undefined
+LedsManager.cpp(29): warning:  #940-D: missing return statement at end of non-void function "LedsManager::GetLed"
+compiling main.cpp...
+Target not created
+Build target 'Target 1'
+compiling LedsManager.cpp...
+LedsManager.cpp(30): warning:  #940-D: missing return statement at end of non-void function "LedsManager::GetLed"
+linking...
+Program Size: Code=1060 RO-data=284 RW-data=20 ZI-data=1636  
+"TestPP.axf" - 0 Error(s), 1 Warning(s).
+Build target 'Target 1'
+compiling LedsManager.cpp...
+linking...
+Program Size: Code=1060 RO-data=284 RW-data=20 ZI-data=1636  
+"TestPP.axf" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+linking...
+Program Size: Code=1060 RO-data=284 RW-data=20 ZI-data=1636  
+"TestPP.axf" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+compiling LedsManager.cpp...
+compiling main.cpp...
+main.cpp(14): error:  #20: identifier "clock_1s" is undefined
+main.cpp(27): error:  #20: identifier "clock_1s" is undefined
+Target not created
+Build target 'Target 1'
+compiling main.cpp...
+linking...
+Program Size: Code=1260 RO-data=284 RW-data=24 ZI-data=1632  
+"TestPP.axf" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+linking...
+Program Size: Code=1260 RO-data=284 RW-data=24 ZI-data=1632  
+"TestPP.axf" - 0 Error(s), 0 Warning(s).
+Load "C:\\Users\\Porat\\Documents\\Arm\\Keil\\TestPP\\TestPP.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling main.cpp...
+linking...
+Program Size: Code=1260 RO-data=284 RW-data=24 ZI-data=1632  
+"TestPP.axf" - 0 Error(s), 0 Warning(s).
+Load "C:\\Users\\Porat\\Documents\\Arm\\Keil\\TestPP\\TestPP.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Load "C:\\Users\\Porat\\Documents\\Arm\\Keil\\TestPP\\TestPP.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling main.cpp...
+linking...
+Program Size: Code=1260 RO-data=284 RW-data=24 ZI-data=1632  
+"TestPP.axf" - 0 Error(s), 0 Warning(s).
+Load "C:\\Users\\Porat\\Documents\\Arm\\Keil\\TestPP\\TestPP.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+linking...
+Program Size: Code=1260 RO-data=284 RW-data=24 ZI-data=1632  
+"TestPP.axf" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+compiling LedsManager.cpp...
+compiling main.cpp...
+linking...
+Program Size: Code=1284 RO-data=284 RW-data=24 ZI-data=1632  
+"TestPP.axf" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+compiling main.cpp...
+linking...
+Program Size: Code=1284 RO-data=284 RW-data=24 ZI-data=1632  
+"TestPP.axf" - 0 Error(s), 0 Warning(s).
+Load "C:\\Users\\Porat\\Documents\\Arm\\Keil\\TestPP\\TestPP.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+linking...
+Program Size: Code=1284 RO-data=284 RW-data=24 ZI-data=1632  
+"TestPP.axf" - 0 Error(s), 0 Warning(s).
+Load "C:\\Users\\Porat\\Documents\\Arm\\Keil\\TestPP\\TestPP.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling jsmn.c...
+jsmn.h(5): error:  #5: cannot open source input file "token_vector.h": No such file or directory
+Target not created
+Build target 'Target 1'
+compiling jsmn.c...
+token_vector.h(21): warning:  #1295-D: Deprecated declaration token_vector_new - give arg types
+compiling token_vector.c...
+token_vector.h(21): warning:  #1295-D: Deprecated declaration token_vector_new - give arg types
+token_vector.c(40): warning:  #940-D: missing return statement at end of non-void function "token_vector_get"
+token_vector.c(47): warning:  #940-D: missing return statement at end of non-void function "token_vector_get_pointer"
+token_vector.c(61): warning:  #1-D: last line of file ends without a newline
+linking...
+Program Size: Code=1280 RO-data=284 RW-data=24 ZI-data=1632  
+"TestPP.axf" - 0 Error(s), 5 Warning(s).
+Clean started: Project: 'TestPP'
+   deleting intermediate output files for target 'Target 1'
+Build target 'Target 1'
+assembling startup_stm32f10x_md.s...
+compiling system_stm32f10x.c...
+compiling LedsManager.cpp...
+compiling main.cpp...
+linking...
+Program Size: Code=1284 RO-data=284 RW-data=24 ZI-data=1632  
+".\build\TestPP.axf" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+compiling jsmn.cpp...
+jsmn.h(24): error:  #276: name followed by "::" must be a class or namespace name
+jsmn.h(24): error:  #18: expected a ")"
+jsmn.h(27): error:  #276: name followed by "::" must be a class or namespace name
+jsmn.h(27): error:  #18: expected a ")"
+jsmn.h(27): error:  #260-D: explicit type is missing ("int" assumed)
+jsmn.h(28): error:  #276: name followed by "::" must be a class or namespace name
+jsmn.h(28): error:  #18: expected a ")"
+jsmn.h(31): error:  #276: name followed by "::" must be a class or namespace name
+jsmn.h(31): error:  #18: expected a ")"
+jsmn.cpp(15): error:  #135: namespace "std" has no member "vector"
+jsmn.cpp(15): error:  #18: expected a ")"
+jsmn.cpp(28): error:  #20: identifier "tokens" is undefined
+jsmn.cpp(62): error:  #513: a value of type "int" cannot be assigned to an entity of type "JSON::jsmnerr_t"
+jsmn.cpp(73): error:  #20: identifier "parser" is undefined
+jsmn.cpp(73): error:  #140: too many arguments in function call
+jsmn.cpp(76): error:  #20: identifier "token_vector_get_pointer" is undefined
+jsmn.cpp(84): error:  #20: identifier "tokens" is undefined
+jsmn.cpp(84): error:  #20: identifier "token_vector_get_pointer" is undefined
+jsmn.cpp(94): error:  #135: namespace "std" has no member "vector"
+jsmn.cpp(94): error:  #18: expected a ")"
+jsmn.cpp(99): error:  #20: identifier "tokens" is undefined
+jsmn.cpp(104): error:  #135: namespace "std" has no member "vector"
+jsmn.cpp(104): error:  #18: expected a ")"
+jsmn.cpp(104): error:  #147: declaration is incompatible with "int JSON::jsmn_parser::jsmn_parse_string(const char *, <error-type>)" (declared at line 27 of "jsmn.h")
+jsmn.cpp(116): error:  #20: identifier "tokens" is undefined
+jsmn.cpp(156): error:  #135: namespace "std" has no member "vector"
+jsmn.cpp(156): error:  #18: expected a ")"
+jsmn.cpp(179): error:  #20: identifier "tokens" is undefined
+jsmn.cpp(188): warning:  #1-D: last line of file ends without a newline
+Target not created
+Build target 'Target 1'
+compiling jsmn.cpp...
+jsmn.h(27): error:  #260-D: explicit type is missing ("int" assumed)
+jsmn.cpp(62): error:  #513: a value of type "int" cannot be assigned to an entity of type "JSON::jsmnerr_t"
+jsmn.cpp(73): error:  #20: identifier "parser" is undefined
+jsmn.cpp(73): error:  #434: a reference of type "std::vector<JSON::jsmntok_t, std::allocator<JSON::jsmntok_t>> &" (not const-qualified) cannot be initialized with a value of type "const char *"
+jsmn.cpp(73): error:  #140: too many arguments in function call
+jsmn.cpp(76): error:  #20: identifier "token_vector_get_pointer" is undefined
+jsmn.cpp(84): error:  #20: identifier "token_vector_get_pointer" is undefined
+jsmn.cpp(101): error:  #135: class "std::vector<JSON::jsmntok_t, std::allocator<JSON::jsmntok_t>>" has no member "length"
+jsmn.cpp(104): error:  #147: declaration is incompatible with "int JSON::jsmn_parser::jsmn_parse_string(const char *, std::vector<JSON::jsmntok_t, std::allocator<JSON::jsmntok_t>> &)" (declared at line 27 of "jsmn.h")
+jsmn.cpp(188): warning:  #1-D: last line of file ends without a newline
+Target not created
+Build target 'Target 1'
+compiling jsmn.cpp...
+jsmn.cpp(73): error:  #20: identifier "parser" is undefined
+jsmn.cpp(73): error:  #434: a reference of type "std::vector<JSON::jsmntok_t, std::allocator<JSON::jsmntok_t>> &" (not const-qualified) cannot be initialized with a value of type "const char *"
+jsmn.cpp(73): error:  #140: too many arguments in function call
+jsmn.cpp(76): error:  #20: identifier "token_vector_get_pointer" is undefined
+jsmn.cpp(84): error:  #20: identifier "token_vector_get_pointer" is undefined
+jsmn.cpp(101): error:  #135: class "std::vector<JSON::jsmntok_t, std::allocator<JSON::jsmntok_t>>" has no member "length"
+jsmn.cpp(188): warning:  #1-D: last line of file ends without a newline
+Target not created
+Build target 'Target 1'
+compiling jsmn.cpp...
+jsmn.cpp(76): error:  #20: identifier "token_vector_get_pointer" is undefined
+jsmn.cpp(84): error:  #20: identifier "token_vector_get_pointer" is undefined
+jsmn.cpp(101): error:  #135: class "std::vector<JSON::jsmntok_t, std::allocator<JSON::jsmntok_t>>" has no member "length"
+jsmn.cpp(188): warning:  #1-D: last line of file ends without a newline
+Target not created
+Build target 'Target 1'
+compiling jsmn.cpp...
+jsmn.cpp(101): error:  #135: class "std::vector<JSON::jsmntok_t, std::allocator<JSON::jsmntok_t>>" has no member "length"
+jsmn.cpp(188): warning:  #1-D: last line of file ends without a newline
+Target not created
+Build target 'Target 1'
+compiling jsmn.cpp...
+jsmn.cpp(188): warning:  #1-D: last line of file ends without a newline
+linking...
+Program Size: Code=1280 RO-data=284 RW-data=24 ZI-data=1632  
+".\build\TestPP.axf" - 0 Error(s), 1 Warning(s).
+Build target 'Target 1'
+compiling jsmn.cpp...
+linking...
+Program Size: Code=1280 RO-data=284 RW-data=24 ZI-data=1632  
+".\build\TestPP.axf" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+compiling main.cpp...
+main.cpp(33): error:  #276: name followed by "::" must be a class or namespace name
+main.cpp(33): error:  #65: expected a ";"
+main.cpp(34): error:  #135: namespace "std" has no member "vector"
+main.cpp(34): error:  #20: identifier "jsmntok_t" is undefined
+main.cpp(34): error:  #20: identifier "tokens" is undefined
+main.cpp(35): error:  #20: identifier "jsmnerr_t" is undefined
+main.cpp(35): error:  #20: identifier "parser" is undefined
+Target not created
+Build target 'Target 1'
+compiling main.cpp...
+main.cpp(35): error:  #20: identifier "jsmntok_t" is undefined
+error type>(36): error:  #20: identifier "jsmnerr_t" is undefined
+main.cpp(36): error:  #65: expected a ";"
+Target not created
+Build target 'Target 1'
+compiling main.cpp...
+linking...
+Program Size: Code=25540 RO-data=2264 RW-data=124 ZI-data=1972  
+".\build\TestPP.axf" - 0 Error(s), 0 Warning(s).

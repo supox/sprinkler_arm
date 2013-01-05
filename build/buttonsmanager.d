@@ -1,0 +1,12 @@
+.\build\buttonsmanager.o: ButtonsManager.cpp
+.\build\buttonsmanager.o: ButtonsManager.h
+.\build\buttonsmanager.o: Config.h
+.\build\buttonsmanager.o: IButtonListener.h
+.\build\buttonsmanager.o: Vector.h
+.\build\buttonsmanager.o: C:\Keil\ARM\ARMCC\bin\..\include\stdlib.h
+.\build\buttonsmanager.o: C:\Keil\ARM\Inc\ST\STM32F10x\STM32F10x.h
+.\build\buttonsmanager.o: C:\Keil\ARM\CMSIS\Include\core_cm3.h
+.\build\buttonsmanager.o: C:\Keil\ARM\ARMCC\bin\..\include\stdint.h
+.\build\buttonsmanager.o: C:\Keil\ARM\CMSIS\Include\core_cmInstr.h
+.\build\buttonsmanager.o: C:\Keil\ARM\CMSIS\Include\core_cmFunc.h
+.\build\buttonsmanager.o: C:\Keil\ARM\Inc\ST\STM32F10x\system_stm32f10x.h

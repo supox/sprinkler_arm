@@ -1,0 +1,10 @@
+.\build\mocksensor.o: MockSensor.cpp
+.\build\mocksensor.o: MockSensor.h
+.\build\mocksensor.o: Sensor.h
+.\build\mocksensor.o: Alarm.h
+.\build\mocksensor.o: SmartPointer.h
+.\build\mocksensor.o: C:\Keil\ARM\ARMCC\bin\..\include\stddef.h
+.\build\mocksensor.o: Vector.h
+.\build\mocksensor.o: C:\Keil\ARM\ARMCC\bin\..\include\stdlib.h
+.\build\mocksensor.o: SensorType.h
+.\build\mocksensor.o: ReadingData.h

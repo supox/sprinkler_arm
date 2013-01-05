@@ -1,0 +1,53 @@
+Dependencies for Project 'TestPP', Target 'Target 1': (DO NOT MODIFY !)
+F (.\startup_stm32f10x_md.s)(0x4F588A1C)(--cpu Cortex-M3 -g --apcs=interwork -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\ST\STM32F10x --list ".\build\startup_stm32f10x_md.lst" --xref -o ".\build\startup_stm32f10x_md.o" --depend ".\build\startup_stm32f10x_md.d")
+F (.\system_stm32f10x.c)(0x503DBAF0)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_MD -o ".\build\system_stm32f10x.o" --omf_browse ".\build\system_stm32f10x.crf" --depend ".\build\system_stm32f10x.d")
+I (C:\Keil\ARM\Inc\ST\STM32F10x\stm32f10x.h)(0x4F588B5C)
+I (C:\Keil\ARM\CMSIS\Include\core_cm3.h)(0x50066FD2)
+I (C:\Keil\ARM\ARMCC\bin\..\include\stdint.h)(0x4EB126E4)
+I (C:\Keil\ARM\CMSIS\Include\core_cmInstr.h)(0x5059A2DC)
+I (C:\Keil\ARM\CMSIS\Include\core_cmFunc.h)(0x4FDADAAC)
+I (C:\Keil\ARM\Inc\ST\STM32F10x\system_stm32f10x.h)(0x4F588B5C)
+F (.\LedsManager.h)(0x50D58F4B)()
+F (.\LedsManager.cpp)(0x50D5A54C)(--cpp -c --cpu Cortex-M3 -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_MD -o ".\build\ledsmanager.o" --omf_browse ".\build\ledsmanager.crf" --depend ".\build\ledsmanager.d")
+I (LedsManager.h)(0x50D58F4B)
+I (C:\Keil\ARM\ARMCC\bin\..\include\cstddef)(0x4EB126E8)
+I (C:\Keil\ARM\ARMCC\bin\..\include\stddef.h)(0x4EB126DE)
+I (C:\Keil\ARM\Inc\ST\STM32F10x\STM32F10x.h)(0x4F588B5C)
+I (C:\Keil\ARM\CMSIS\Include\core_cm3.h)(0x50066FD2)
+I (C:\Keil\ARM\ARMCC\bin\..\include\stdint.h)(0x4EB126E4)
+I (C:\Keil\ARM\CMSIS\Include\core_cmInstr.h)(0x5059A2DC)
+I (C:\Keil\ARM\CMSIS\Include\core_cmFunc.h)(0x4FDADAAC)
+I (C:\Keil\ARM\Inc\ST\STM32F10x\system_stm32f10x.h)(0x4F588B5C)
+F (.\main.cpp)(0x50D5C419)(--cpp -c --cpu Cortex-M3 -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_MD -o ".\build\main.o" --omf_browse ".\build\main.crf" --depend ".\build\main.d")
+I (C:\Keil\ARM\Inc\ST\STM32F10x\STM32F10x.h)(0x4F588B5C)
+I (C:\Keil\ARM\CMSIS\Include\core_cm3.h)(0x50066FD2)
+I (C:\Keil\ARM\ARMCC\bin\..\include\stdint.h)(0x4EB126E4)
+I (C:\Keil\ARM\CMSIS\Include\core_cmInstr.h)(0x5059A2DC)
+I (C:\Keil\ARM\CMSIS\Include\core_cmFunc.h)(0x4FDADAAC)
+I (C:\Keil\ARM\Inc\ST\STM32F10x\system_stm32f10x.h)(0x4F588B5C)
+I (LedsManager.h)(0x50D58F4B)
+I (C:\Keil\ARM\ARMCC\bin\..\include\cstddef)(0x4EB126E8)
+I (C:\Keil\ARM\ARMCC\bin\..\include\stddef.h)(0x4EB126DE)
+F (.\jsmn.h)(0x50D5C301)()
+F (.\jsmntok_t.h)(0x507D6326)()
+F (.\TestJson.cpp)(0x50D60DBC)(--cpp -c --cpu Cortex-M3 -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_MD -o ".\build\testjson.o" --omf_browse ".\build\testjson.crf" --depend ".\build\testjson.d")
+I (jsmn.h)(0x50D5C301)
+I (jsmntok_t.h)(0x507D6326)
+I (token_vector.h)(0x50D60D80)
+I (C:\Keil\ARM\ARMCC\bin\..\include\stdbool.h)(0x4EB126E8)
+I (C:\Keil\ARM\ARMCC\bin\..\include\stdlib.h)(0x4EB126E4)
+I (C:\Keil\ARM\ARMCC\bin\..\include\stdio.h)(0x4EB126E6)
+I (Vector.h)(0x50D60E6B)
+F (.\token_vector.c)(0x50D5D476)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_MD -o ".\build\token_vector.o" --omf_browse ".\build\token_vector.crf" --depend ".\build\token_vector.d")
+I (token_vector.h)(0x50D60D80)
+I (jsmntok_t.h)(0x507D6326)
+I (C:\Keil\ARM\ARMCC\bin\..\include\stdbool.h)(0x4EB126E8)
+I (C:\Keil\ARM\ARMCC\bin\..\include\stdlib.h)(0x4EB126E4)
+I (C:\Keil\ARM\ARMCC\bin\..\include\assert.h)(0x4EB126E0)
+F (.\token_vector.h)(0x50D60D80)()
+F (.\jsmn.c)(0x507D6326)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_MD -o ".\build\jsmn.o" --omf_browse ".\build\jsmn.crf" --depend ".\build\jsmn.d")
+I (C:\Keil\ARM\ARMCC\bin\..\include\stdlib.h)(0x4EB126E4)
+I (jsmn.h)(0x50D5C301)
+I (jsmntok_t.h)(0x507D6326)
+I (token_vector.h)(0x50D60D80)
+I (C:\Keil\ARM\ARMCC\bin\..\include\stdbool.h)(0x4EB126E8)

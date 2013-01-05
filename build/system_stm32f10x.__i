@@ -1,0 +1,5 @@
+-c --cpu Cortex-M3 -g -O0 --apcs=interwork 
+-I C:\Keil\ARM\RV31\INC 
+-I C:\Keil\ARM\CMSIS\Include 
+-I C:\Keil\ARM\Inc\ST\STM32F10x 
+-DSTM32F10X_MD -D_SIMULATOR -o ".\build\system_stm32f10x.o" --omf_browse ".\build\system_stm32f10x.crf" --depend ".\build\system_stm32f10x.d" "system_stm32f10x.c"

@@ -1,0 +1,10 @@
+.\build\watersensor.o: WaterSensor.cpp
+.\build\watersensor.o: WaterSensor.h
+.\build\watersensor.o: Sensor.h
+.\build\watersensor.o: Alarm.h
+.\build\watersensor.o: SmartPointer.h
+.\build\watersensor.o: C:\Keil\ARM\ARMCC\bin\..\include\stddef.h
+.\build\watersensor.o: Vector.h
+.\build\watersensor.o: C:\Keil\ARM\ARMCC\bin\..\include\stdlib.h
+.\build\watersensor.o: SensorType.h
+.\build\watersensor.o: ReadingData.h

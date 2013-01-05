@@ -1,0 +1,12 @@
+.\build\valf.o: Valf.cpp
+.\build\valf.o: Valf.h
+.\build\valf.o: Vector.h
+.\build\valf.o: C:\Keil\ARM\ARMCC\bin\..\include\stdlib.h
+.\build\valf.o: Irrigation.h
+.\build\valf.o: SmartPointer.h
+.\build\valf.o: C:\Keil\ARM\ARMCC\bin\..\include\stddef.h
+.\build\valf.o: Logger.h
+.\build\valf.o: TimeManager.h
+.\build\valf.o: ITimeListener.h
+.\build\valf.o: TimeListenersList.h
+.\build\valf.o: C:\Keil\ARM\ARMCC\bin\..\include\stdio.h
