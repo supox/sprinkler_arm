@@ -1,3 +1,5 @@
-build/
-*.o
-
+build/*
+*.lst
+*.map
+*.bak
+*.uvgui*
