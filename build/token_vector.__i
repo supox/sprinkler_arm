@@ -1,5 +1,0 @@
--c --cpu Cortex-M3 -g -O0 --apcs=interwork 
--I C:\Keil\ARM\RV31\INC 
--I C:\Keil\ARM\CMSIS\Include 
--I C:\Keil\ARM\Inc\ST\STM32F10x 
--DSTM32F10X_MD -o ".\build\token_vector.o" --omf_browse ".\build\token_vector.crf" --depend ".\build\token_vector.d" "token_vector.c"
