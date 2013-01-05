@@ -466,6 +466,11 @@
               <FileType>5</FileType>
               <FilePath>.\JsonParser.h</FilePath>
             </File>
+            <File>
+              <FileName>JsonParser.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\JsonParser.cpp</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -497,11 +502,6 @@
               <FilePath>.\Config.h</FilePath>
             </File>
             <File>
-              <FileName>Time.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\Time.h</FilePath>
-            </File>
-            <File>
               <FileName>Logger.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\Logger.h</FilePath>
@@ -512,9 +512,9 @@
               <FilePath>.\Logger.cpp</FilePath>
             </File>
             <File>
-              <FileName>Time.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\Time.cpp</FilePath>
+              <FileName>fputc_redirect.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\fputc_redirect.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -650,6 +650,61 @@
               <FileName>TestJson.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\TestJson.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>TestSmartPointer.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\TestSmartPointer.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>TestTimeListenerData.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\TestTimeListenerData.cpp</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Time</GroupName>
+          <Files>
+            <File>
+              <FileName>TimeListenersList.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\TimeListenersList.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>TimeListenersList.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\TimeListenersList.h</FilePath>
+            </File>
+            <File>
+              <FileName>TimeManager.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\TimeManager.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>TimeManager.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\TimeManager.h</FilePath>
+            </File>
+            <File>
+              <FileName>ITimeListener.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\ITimeListener.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Communication</GroupName>
+          <Files>
+            <File>
+              <FileName>Communication.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\Communication.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Communication.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Communication.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -1115,6 +1170,11 @@
               <FileType>5</FileType>
               <FilePath>.\JsonParser.h</FilePath>
             </File>
+            <File>
+              <FileName>JsonParser.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\JsonParser.cpp</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -1146,11 +1206,6 @@
               <FilePath>.\Config.h</FilePath>
             </File>
             <File>
-              <FileName>Time.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\Time.h</FilePath>
-            </File>
-            <File>
               <FileName>Logger.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\Logger.h</FilePath>
@@ -1161,9 +1216,9 @@
               <FilePath>.\Logger.cpp</FilePath>
             </File>
             <File>
-              <FileName>Time.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\Time.cpp</FilePath>
+              <FileName>fputc_redirect.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\fputc_redirect.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1299,6 +1354,61 @@
               <FileName>TestJson.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\TestJson.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>TestSmartPointer.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\TestSmartPointer.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>TestTimeListenerData.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\TestTimeListenerData.cpp</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Time</GroupName>
+          <Files>
+            <File>
+              <FileName>TimeListenersList.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\TimeListenersList.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>TimeListenersList.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\TimeListenersList.h</FilePath>
+            </File>
+            <File>
+              <FileName>TimeManager.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\TimeManager.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>TimeManager.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\TimeManager.h</FilePath>
+            </File>
+            <File>
+              <FileName>ITimeListener.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\ITimeListener.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Communication</GroupName>
+          <Files>
+            <File>
+              <FileName>Communication.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\Communication.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Communication.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Communication.h</FilePath>
             </File>
           </Files>
         </Group>

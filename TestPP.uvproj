@@ -1052,7 +1052,7 @@
             <uSurpInc>0</uSurpInc>
             <VariousControls>
               <MiscControls></MiscControls>
-              <Define>STM32F10X_MD</Define>
+              <Define>STM32F10X_MD _SIMULATOR</Define>
               <Undefine></Undefine>
               <IncludePath></IncludePath>
             </VariousControls>
