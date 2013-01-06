@@ -12,7 +12,7 @@ Valf::Valf(const int _id, const int _port_index) :
 	if(port_index > 0) // Close the valf
 	{
 		is_open = true;
-		set_state(false);
+		SetState(false);
 	}
 }
 
@@ -20,7 +20,7 @@ Valf::~Valf()
 {
 }
 
-bool Valf::set_state(const bool open)
+bool Valf::SetState(const bool open)
 {
     if(this->is_open != open) {
         // Mock placeholder
@@ -29,16 +29,15 @@ bool Valf::set_state(const bool open)
         // log
         {
 					char log_line[64];
-					sprintf(log_line, "Setting state of valf %d (port %d) to %d", id, port_index, is_open);
+					snprintf(log_line, 64, "Setting state of valf %d (port %d) to %d", id, port_index, is_open);
 					Logger::AddLine(log_line, Logger::NORMAL);
         }
-        
     }
     return true;
 	
 }
 
-bool Valf::get_state(bool &open)
+bool Valf::GetState(bool &open)
 {
     // Mock placeholder
     open = this->is_open;
@@ -73,9 +72,7 @@ bool Valf::do_instructions(Vector<ValfPtr> &valves, Vector<Irrigation> &irrigati
 					}
 			}
 		}
-		v.set_state(is_open);
+		v.SetState(is_open);
 	}
 	return true;
 }
-
-

@@ -4,24 +4,28 @@
 #include "SensorType.h"
 #include "ReadingData.h"
 #include "SmartPointer.h"
+#include "ITimeListener.h"
+#include "ISensorListener.h"
 
-class Sensor
+class Sensor : public ITimeListener
 {
 public:
-	Sensor();
+	Sensor(ISensorListener* listener = NULL);
 	virtual ~Sensor();
 	
-	bool read_sensor(double &value, bool& will_alarm);
-	virtual SensorType get_type() = 0;
+	virtual SensorType GetType() = 0;
 	bool ReportReadings();
+	virtual void TimeNotification();
+	void SetListener(ISensorListener* listener){m_listener = listener;}
 
 	int id;
 	int port_index;
 	Vector<AlarmPtr> alarms;
 
 protected:
-	virtual bool read_sensor(double &value) = 0;
-	bool add_reading_if_needed(const bool will_alarm);
+	bool ReadSensor();
+	virtual bool ReadSensorFromHardware(double &value) = 0;
+	bool AddReadingIfNeeded(const bool will_alarm);
 	bool ReportReadingData(const char *url, ReadingData& data);
 
 	double last_reading_value;
@@ -29,6 +33,7 @@ protected:
 	int last_saved_reading_time;
 	int report_reading_time_delta;
 	Vector<ReadingData> readings_to_report;
+	ISensorListener* m_listener;
 
 };
 

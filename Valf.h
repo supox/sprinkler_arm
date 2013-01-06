@@ -13,8 +13,8 @@ public:
 	Valf(const int id, const int port_index);	
 	~Valf();
 
-	bool set_state(const bool is_open);
-	bool get_state(bool &is_open);	
+	bool SetState(const bool is_open);
+	bool GetState(bool &is_open);	
 
 	static bool do_instructions(Vector<ValfPtr> &valves, Vector<Irrigation> &irrigations);
 

@@ -1,6 +1,6 @@
 #include "WaterSensor.h"
 
-WaterSensor::WaterSensor() : Sensor()
+WaterSensor::WaterSensor(ISensorListener* listener) : Sensor(listener)
 {
 }
 
@@ -8,12 +8,12 @@ WaterSensor::~WaterSensor()
 {
 }
 
-SensorType WaterSensor::get_type()
+SensorType WaterSensor::GetType()
 {
 	return WATER_READER;
 }
 
-bool WaterSensor::read_sensor(double &value)
+bool WaterSensor::ReadSensorFromHardware(double &value)
 {
 	// TODO!
 	double current_reading = 1.5;

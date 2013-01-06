@@ -1,6 +1,6 @@
 #include "BatterySensor.h"
 
-BatterySensor::BatterySensor() : Sensor()
+BatterySensor::BatterySensor(ISensorListener* listener) : Sensor(listener)
 {
 }
 
@@ -8,12 +8,12 @@ BatterySensor::~BatterySensor()
 {
 }
 
-SensorType BatterySensor::get_type()
+SensorType BatterySensor::GetType()
 {
-	return WATER_READER;
+	return BATTERY;
 }
 
-bool BatterySensor::read_sensor(double &value)
+bool BatterySensor::ReadSensorFromHardware(double &value)
 {
 	// TODO!
 	value = 0;

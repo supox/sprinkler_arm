@@ -57,6 +57,11 @@ void TimeManager::NotifyAt(ITimeListener* listener, const int Time)
 	m_Listeners.Add(Time, listener);
 }
 
+void TimeManager::RemoveNotifications(ITimeListener* listener)
+{
+	m_Listeners.Remove(listener);
+}
+
 void TimeManager::NotifyListeners()
 {
 	m_CurrentTime++;

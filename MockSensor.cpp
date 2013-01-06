@@ -1,7 +1,7 @@
 #include "MockSensor.h"
 #include <stdlib.h>
 
-MockSensor::MockSensor() : Sensor()
+MockSensor::MockSensor(ISensorListener* listener) : Sensor(listener)
 {
 }
 
@@ -9,12 +9,12 @@ MockSensor::~MockSensor()
 {
 }
 
-SensorType MockSensor::get_type()
+SensorType MockSensor::GetType()
 {
-	return WATER_READER;
+	return MOCK;
 }
 
-bool MockSensor::read_sensor(double &value)
+bool MockSensor::ReadSensorFromHardware(double &value)
 {
 	// TODO!
   value = (double)(rand() % 10 + 1);

@@ -6,17 +6,14 @@
 #include "ITimeListener.h"
 
 
-class Sprinkler : public ITimeListener
+class Sprinkler : public ITimeListener, public ISensorListener
 {
 public:
 	Sprinkler();
 	virtual ~Sprinkler();
 	
-	int get_next_task_time();
-	bool needs_to_do_tasks();
-	bool do_tasks();
-
 	virtual void TimeNotification();
+	virtual void OnAlarm(Sensor*);
 
 	int id;
 	unsigned int refresh_rate;
@@ -26,9 +23,11 @@ public:
 	int last_irrigation_load_time;
 
 private:
+	int get_next_task_time();
+	bool needs_to_do_tasks();
+	void do_tasks();
 	bool needs_to_report_reading();
 	bool needs_to_load_irrigations();
-	bool read_sensors();
 	bool load_irrigations_instructions();
 	bool load_sprinkler_config();
 	bool load_sensors_config();

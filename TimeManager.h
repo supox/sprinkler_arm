@@ -12,6 +12,7 @@ public:
 	static int GetSystemTime();
 
 	static void NotifyAt(ITimeListener* listener, const int Time);
+	static void RemoveNotifications(ITimeListener* listener);
 	static void NotifyListeners();
 
 private:

@@ -8,7 +8,7 @@
 #include <stdio.h> // for sprintf
 #include <string.h> // for strcmp
 
-Sensor::Sensor() :
+Sensor::Sensor(ISensorListener* listener /* = NULL */) :
 	id(0),
 	port_index(0),
 	alarms(),
@@ -16,37 +16,50 @@ Sensor::Sensor() :
 	last_reading_time(0),
 	last_saved_reading_time(0),
 	report_reading_time_delta(DEFAULT_SENSOR_READING_TIME_DELTA_SECONDS),
-	readings_to_report()
+	readings_to_report(),
+	m_listener(listener)
 {
+	// Register as a listener to TimeManager to schedule time readings
+	TimeManager::NotifyAt(this, TimeManager::GetSystemTime() + report_reading_time_delta);
 }
 
 Sensor::~Sensor()
 {
 }
 
-bool Sensor::read_sensor(double &value, bool& will_alarm)
+bool Sensor::ReadSensor()
 {
-	bool ret = read_sensor(value);
+	double value = 0;
+	bool ret = ReadSensorFromHardware(value);
 	if (ret)
 	{
 		last_reading_value = value;
 		last_reading_time = TimeManager::GetSystemTime();
-		ret = add_reading_if_needed(will_alarm);
-		
-		will_alarm = false;
+		bool has_alarmed = false;		
 		const unsigned int number_of_alarms = alarms.size();
 		for(int index = 0; index < number_of_alarms ; index++)
 		{
 			if(alarms[index]->will_alarm(last_reading_value)) {
-				will_alarm = true;
+				has_alarmed = true;
 				break;
 			}
 		}
+		ret = AddReadingIfNeeded(has_alarmed);
+		if(has_alarmed && m_listener != NULL)
+			m_listener->OnAlarm(this);
 	}
 	return ret;	
 }
 
-bool Sensor::add_reading_if_needed(const bool will_alarm)
+void Sensor::TimeNotification()
+{
+	ReadSensor();
+	
+	// Roll
+	TimeManager::NotifyAt(this, TimeManager::GetSystemTime() + report_reading_time_delta);
+}
+
+bool Sensor::AddReadingIfNeeded(const bool will_alarm)
 {
 	if(will_alarm || last_reading_time > last_saved_reading_time + report_reading_time_delta)
 	{

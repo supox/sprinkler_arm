@@ -3,5 +3,5 @@
 
 namespace SensorFactory
 {
-	Sensor* CreateSensor(const SensorType type);
+	Sensor* CreateSensor(const SensorType type, ISensorListener* listener = NULL);
 }

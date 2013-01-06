@@ -4,11 +4,11 @@
 class WaterSensor : public Sensor
 {
 public:
-	WaterSensor();
+	WaterSensor(ISensorListener* listener = NULL);
 	virtual ~WaterSensor();
-	virtual SensorType get_type();
+	virtual SensorType GetType();
 
 protected:
-	virtual bool read_sensor(double &value);
+	virtual bool ReadSensorFromHardware(double &value);
 
 };

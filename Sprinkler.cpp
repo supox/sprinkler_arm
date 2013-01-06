@@ -28,11 +28,15 @@ Sprinkler::~Sprinkler()
 {
 }
 
+void Sprinkler::OnAlarm(Sensor* s)
+{
+	has_alarmed = true;
+}
+
 int Sprinkler::get_next_task_time()
 {
-	// DEBUG - DELME
-	// if( last_report_time <= 0 || last_irrigation_load_time <= 0)
-	//    return TimeManager::GetSystemTime();
+	if( last_report_time <= 0 || last_irrigation_load_time <= 0) // Try every minute until success
+		return TimeManager::GetSystemTime() + 60;
     
 	return std::max(last_report_time, last_irrigation_load_time) + refresh_rate;
 }
@@ -41,48 +45,29 @@ bool Sprinkler::needs_to_do_tasks()
 {
     bool ret;
     ret =
-        needs_to_report_reading() ||
-        needs_to_load_irrigations();
+			needs_to_report_reading() ||
+			needs_to_load_irrigations();
     
     return ret;
 }
 
-bool Sprinkler::do_tasks()
+void Sprinkler::do_tasks()
 {
-    bool ret = true;
-    
     // Read sensor state, report if needed.
-    ret &= read_sensors();
-    if(ret && needs_to_report_reading()) {
-        ret &= report_reading();
+    if(needs_to_report_reading()) {
+        report_reading();
     }
     
     // load irrigation instruction if needed.
+		bool ret = true;
     if(needs_to_load_irrigations()) {
-        ret &= load_irrigations_instructions();
+        ret = load_irrigations_instructions();
     }
     
     // Update valves mode:
     if(ret)
-			ret &= Valf::do_instructions(valves, irrigations);
-    
-    return ret;
-
+			ret &= Valf::do_instructions(valves, irrigations);    
 }
-
-bool Sprinkler::read_sensors() {
-	bool ret = true;
-	const unsigned int number_of_sensors = sensors.size();
-	for(int sensor_index = 0 ; sensor_index < number_of_sensors ; sensor_index++)
-	{
-		bool will_alarm = false;
-		double value = 0;
-		ret &= sensors[sensor_index]->read_sensor(value, will_alarm);
-		has_alarmed |= will_alarm;
-	}
-	return ret;
-}
-
 
 bool Sprinkler::needs_to_report_reading() {
     if (has_alarmed)
@@ -96,7 +81,6 @@ bool Sprinkler::needs_to_load_irrigations() {
     int current_time = TimeManager::GetSystemTime();
     return (current_time >= last_irrigation_load_time + DEFAULT_IRRIGATIONS_REFRESH_TIME);
 }
-
 
 bool Sprinkler::load_irrigations_instructions() {
 	// load irrigation definitions
@@ -122,7 +106,7 @@ bool Sprinkler::load_sprinkler_config()
 	StringBuffer sb;
 	bool ret = Communication::GetWebPage(SPRINKLER_CONFIGURATION_URL, sb);
 	if (ret)
-		ret = JSON::parse_sprinkler_configuration(sb.GetBuffer(), *this); // I'll go to hell due to this circular dependency.
+		ret = JSON::parse_sprinkler_configuration(sb.GetBuffer(), *this); // I'll go to hell bcz if this circular dependency.
 
 	return ret;
 }
@@ -134,7 +118,13 @@ bool Sprinkler::load_sensors_config() {
 	bool ret = Communication::GetWebPage(SENSORS_CONFIGURATION_URL, sb);
 	if (ret)
 			ret = JSON::parse_sensors(sb.GetBuffer(), sensors);
-
+	if(ret)
+	{
+		unsigned int number_of_sensors = sensors.size();
+		for(unsigned int sensor_index = 0; sensor_index < number_of_sensors ; sensor_index++)
+			sensors[sensor_index]->SetListener(this);
+	}
+	
 	return ret;
 }
 
@@ -162,7 +152,7 @@ bool Sprinkler::load_config() {
 bool Sprinkler::report_reading() {
 	bool ret = true;
 
-	Logger::AddLine("sprinkler_report_reading : Reporting readings.", Logger::DUMP);
+	Logger::AddLine("Sprinkler::report_reading - Reporting readings.", Logger::DUMP);
 
 	const unsigned int number_of_sensors = sensors.size();
 	for (unsigned int sensor_index = 0 ; sensor_index < number_of_sensors ; sensor_index++ )
@@ -173,7 +163,7 @@ bool Sprinkler::report_reading() {
 
 	if (ret) {
 			last_report_time = TimeManager::GetSystemTime();
-			has_alarmed = false; // reported about the alarm, turn to false.
+			has_alarmed = false; // reported about the alarm, set to false.
 	}
 
 	return ret;

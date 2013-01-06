@@ -65,6 +65,30 @@ bool TimeListenersList::Remove(int Time, ITimeListener* listener)
 	return false;
 }
 
+bool TimeListenersList::Remove(ITimeListener* listener)
+{
+	bool ret = false;
+	// search the node
+	TimeListenerData* current ;
+	for(
+		current = root;
+		current->Next != NULL;
+		current = current->Next)
+	{
+		if(current->Next->listener == listener)
+		{
+			// Found
+			TimeListenerData *node = current->Next;
+			current->Next = node->Next;
+			delete(node);
+			ret = true;
+		}
+	}
+	
+	return ret;
+}
+
+
 TimeListenerData* TimeListenersList::GetFirst()
 {
 	return root->Next;

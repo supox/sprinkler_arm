@@ -23,6 +23,7 @@ public:
 	
 	void Add(int Time, ITimeListener* listener);
 	bool Remove(int Time, ITimeListener* listener);
+	bool Remove(ITimeListener* listener);
 	void Clear();
 
 	TimeListenerData* GetFirst();

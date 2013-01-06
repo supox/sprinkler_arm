@@ -4,11 +4,11 @@
 class BatterySensor : public Sensor
 {
 public:
-	BatterySensor();
+	BatterySensor(ISensorListener* listener = NULL);
 	virtual ~BatterySensor();
-	virtual SensorType get_type();
+	virtual SensorType GetType();
 
 protected:
-	virtual bool read_sensor(double &value);
+	virtual bool ReadSensorFromHardware(double &value);
 
 };

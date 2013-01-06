@@ -4,11 +4,11 @@
 class MockSensor : public Sensor
 {
 public:
-	MockSensor();
+	MockSensor(ISensorListener* listener = NULL);
 	virtual ~MockSensor();
-	virtual SensorType get_type();
+	virtual SensorType GetType();
 
 protected:
-	virtual bool read_sensor(double &value);
+	virtual bool ReadSensorFromHardware(double &value);
 
 };
