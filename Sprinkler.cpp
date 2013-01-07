@@ -16,7 +16,8 @@ Sprinkler::Sprinkler():
     has_alarmed(false),
 		sensors(),
 		valves(),
-		irrigations()
+		irrigations(),
+		m_valves_manager()
 {
 	load_config();
 	
@@ -66,7 +67,7 @@ void Sprinkler::do_tasks()
     
     // Update valves mode:
     if(ret)
-			ret &= Valf::do_instructions(valves, irrigations);    
+			m_valves_manager.Update(valves, irrigations);
 }
 
 bool Sprinkler::needs_to_report_reading() {

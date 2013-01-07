@@ -1,4 +1,6 @@
 #ifdef _TESTS
+#include "TestHelpers.h"
+using namespace TestHelpers;
 
 #include "SmartPointer.h"
 
@@ -16,12 +18,6 @@ public:
 };
 int MockClass::DeleteCounts=0;
 typedef SmartPointer<MockClass> MockClassPtr;
-
-void assert(bool b)
-{
-	if(!b)
-		while(true);
-}
 
 void TestSmartPointer()
 {

@@ -82,6 +82,8 @@ bool TimeListenersList::Remove(ITimeListener* listener)
 			current->Next = node->Next;
 			delete(node);
 			ret = true;
+			if(current->Next == NULL)
+				break;
 		}
 	}
 	

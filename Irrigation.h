@@ -10,6 +10,8 @@ public:
 	};
 
 	Irrigation();
+	Irrigation(	const int start_time, const int valf_id, const IrrigationModes mode, const size_t amount);
+
 	~Irrigation();
 	Irrigation& operator = (const Irrigation& other);
 

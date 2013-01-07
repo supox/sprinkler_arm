@@ -6,6 +6,11 @@ Irrigation::Irrigation() :
 
 }
 
+Irrigation::Irrigation(	const int _start_time, const int _valf_id, const IrrigationModes _mode, const size_t _amount) :
+	 start_time(_start_time), valf_id(_valf_id) ,mode(_mode), amount(_amount)
+{
+}
+
 Irrigation::~Irrigation()
 {
 }

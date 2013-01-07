@@ -78,7 +78,7 @@ bool Sensor::ReportReadings()
 
 	// Build URL
 	char url[128]; // asprintf would be alot easier... sigh
-	int number_of_elements = sprintf(url, SENSOR_URL_FORMAT, id);
+	int number_of_elements = snprintf(url, 128, SENSOR_URL_FORMAT, id);
 	if (number_of_elements < 0) // sprintf failed.
 		return false;
 	

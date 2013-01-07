@@ -4,7 +4,7 @@
 #include "Valf.h"
 #include "Irrigation.h"
 #include "ITimeListener.h"
-
+#include "ValvesManager.h"
 
 class Sprinkler : public ITimeListener, public ISensorListener
 {
@@ -40,4 +40,5 @@ private:
 	Vector<SensorPtr> sensors;
 	Vector<ValfPtr> valves;
 	Vector<Irrigation> irrigations;
+	ValvesManager m_valves_manager;
 };

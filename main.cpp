@@ -7,14 +7,17 @@
 
 // #pragma import(__use_no_semihosting)
 
+extern void TestValvesManager();
+
 int main(void)
 {
 	// Disable Watchdog during debug.
 	DBGMCU->CR = DBGMCU_CR_DBG_TIM2_STOP | DBGMCU_CR_DBG_IWDG_STOP | DBGMCU_CR_DBG_SLEEP | DBGMCU_CR_DBG_STOP | DBGMCU_CR_DBG_STANDBY;
 
 	Logger::AddLine("Starting.", Logger::DUMP);
-
-	Sprinkler s;
+	
+	TestValvesManager();
+	// Sprinkler s;
 	LedsManager ledsManager;
 	ButtonsManager buttonsManager;
 	LedButtonListener listener1(&ledsManager,0);
