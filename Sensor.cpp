@@ -16,6 +16,7 @@ Sensor::Sensor(ISensorListener* listener /* = NULL */) :
 	last_reading_time(0),
 	last_saved_reading_time(0),
 	report_reading_time_delta(DEFAULT_SENSOR_READING_TIME_DELTA_SECONDS),
+	m_has_alarmed(false),
 	readings_to_report(),
 	m_listener(listener)
 {
@@ -33,22 +34,35 @@ bool Sensor::ReadSensor()
 	bool ret = ReadSensorFromHardware(value);
 	if (ret)
 	{
-		last_reading_value = value;
-		last_reading_time = TimeManager::GetSystemTime();
-		bool has_alarmed = false;		
-		const unsigned int number_of_alarms = alarms.size();
-		for(int index = 0; index < number_of_alarms ; index++)
-		{
-			if(alarms[index]->will_alarm(last_reading_value)) {
-				has_alarmed = true;
-				break;
-			}
-		}
-		ret = AddReadingIfNeeded(has_alarmed);
-		if(has_alarmed && m_listener != NULL)
-			m_listener->OnAlarm(this);
+		ret = OnRead(value);
 	}
 	return ret;	
+}
+
+bool Sensor::OnRead(const double value)
+{
+	bool ret = true;
+	
+	last_reading_value = value;
+	last_reading_time = TimeManager::GetSystemTime();
+	bool has_alarmed = false;		
+	const unsigned int number_of_alarms = alarms.size();
+	for(int index = 0; index < number_of_alarms ; index++)
+	{
+		if(alarms[index]->will_alarm(last_reading_value)) {
+			has_alarmed = true;
+			break;
+		}
+	}
+	
+	ret = AddReadingIfNeeded(has_alarmed);
+	if(has_alarmed && m_listener != NULL)
+		m_listener->OnAlarm(this);
+
+	// set alarm signal
+	m_has_alarmed = has_alarmed;
+	
+	return ret;
 }
 
 void Sensor::TimeNotification()
@@ -59,9 +73,9 @@ void Sensor::TimeNotification()
 	TimeManager::NotifyAt(this, TimeManager::GetSystemTime() + report_reading_time_delta);
 }
 
-bool Sensor::AddReadingIfNeeded(const bool will_alarm)
+bool Sensor::AddReadingIfNeeded(const bool has_alarm)
 {
-	if(will_alarm || last_reading_time > last_saved_reading_time + report_reading_time_delta)
+	if(has_alarm && !m_has_alarmed || last_reading_time > last_saved_reading_time + report_reading_time_delta)
 	{
 		// Save reading to queue:
 		ReadingData data;
@@ -74,8 +88,7 @@ bool Sensor::AddReadingIfNeeded(const bool will_alarm)
 }
 
 bool Sensor::ReportReadings()
-{
-
+{	
 	// Build URL
 	char url[128]; // asprintf would be alot easier... sigh
 	int number_of_elements = snprintf(url, 128, SENSOR_URL_FORMAT, id);

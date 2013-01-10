@@ -11,6 +11,7 @@ public:
 	size_t Read(char* s, const size_t size);
 
 	const char* GetBuffer() const {return memory;}
+	size_t GetBufferSize() const {return write_pos;}
 	
 private:
 	bool ReallocateBuffer(const size_t new_number_of_elements);

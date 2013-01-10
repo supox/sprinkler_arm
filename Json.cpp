@@ -8,6 +8,7 @@
 #define SENSORS_TAG             "sensors"
 #define ID_TAG                  "id"
 #define ALARM_TAG               "alarms"
+#define TIME_TAG               	"time"
 #define PORT_INDEX_TAG          "port_index"
 #define ALARM_VALUE_TAG         "alarm_value"
 #define CONDITION_TYPE_TAG      "condition_type"
@@ -23,6 +24,15 @@
 
 #define IRRIGATION_MODE_VOLUME  "volume"
 #define IRRIGATION_MODE_TIME    "time"
+
+#define SENSOR_TYPE_TAG					"type"
+#define SENSOR_TYPE_WATER				"water_meter"
+#define SENSOR_TYPE_BATTERY			"battery"
+#define SENSOR_TYPE_TEMPERATURE	"temperature"
+#define SENSOR_TYPE_PRESSURE		"pressure"
+#define SENSOR_TYPE_HUMIDITY		"humidity"
+#define SENSOR_TYPE_FERT				"fert_meter"
+#define SENSOR_TYPE_DIFFERENTIAL_PRESSURE				"differential_pressure"
 
 // Useful macro to compare between the string of the tag (t) and a string (s).
 #define TOKEN_STRING(js, t, s) \
@@ -61,6 +71,12 @@ namespace JSON
 			if (token->type != JSMN_PRIMITIVE)
 					return false;
 
+			if(strncmp(&json_buffer[token->start], "null",4) == 0)
+			{
+				value=0;
+				return true;
+			}
+			
 			return (sscanf(&json_buffer[token->start], "%zu", &value) == 1);
 			
 	}
@@ -107,7 +123,7 @@ namespace JSON
     bool ret = true;
 
     // Parse json string
-    if (!parser.Parse(json_buffer, tokens)) {
+    if (parser.Parse(json_buffer, tokens) != JSON::JSMN_SUCCESS) {
         Logger::AddLine("json_parse_sprinkler_configuration: Could not parse json.", Logger::ERROR);
         return false;
     }
@@ -152,7 +168,7 @@ namespace JSON
 			Vector<jsmntok_t> tokens;
 			Parser parser;
 			// Parse json string
-			if (parser.Parse(json_buffer, tokens)) {
+			if (parser.Parse(json_buffer, tokens) == JSON::JSMN_SUCCESS) {
 					if (!parse_sensors_internal(tokens, json_buffer, sensors)) {
 							Logger::AddLine("json_parse_sensors: Could not find sensors data.", Logger::ERROR);
 							ret = false;
@@ -179,7 +195,7 @@ namespace JSON
 			Parser parser;
 
 			// Parse json string
-			if (!parser.Parse(json_buffer, tokens)) {
+			if (parser.Parse(json_buffer, tokens) != JSON::JSMN_SUCCESS) {
 					Logger::AddLine("json_parse_valves: Could not parse json.", Logger::ERROR);
 					return false;
 			}
@@ -255,7 +271,7 @@ namespace JSON
 		Parser parser;
 
 			// Parse json string
-			if (!parser.Parse(json_buffer, tokens)) {
+			if (parser.Parse(json_buffer, tokens) != JSON::JSMN_SUCCESS) {
 					Logger::AddLine("json_parse_irrigations: Could not parse json.", Logger::ERROR);
 					return false;
 			}
@@ -368,9 +384,10 @@ namespace JSON
 			// iterate of all tokens, try to build sensors
 			for (sensor_index = 0 ; sensor_index < tokens[sensors_array_token_index].size; sensor_index++) {
 					int id = -1, port_index = -1, value;
+					SensorType mode = MOCK;
 					const unsigned int next_sensor_token_index = current_token_index + tokens[current_token_index].size + 1;
 
-					// We're expecting something like - {"id":4,"port_index":6}
+					// We're expecting something like - {"id":4,"port_index":6, "type":"water_meter"}
 					if (tokens[current_token_index].type != JSMN_OBJECT || tokens[current_token_index].size < 4) {
 							current_token_index = next_sensor_token_index;
 							continue;
@@ -387,28 +404,36 @@ namespace JSON
 									continue;
 							}
 
-							if (tokens[current_token_index + 1].type != JSMN_PRIMITIVE) { // Must be an error...
-									current_token_index = next_object_token_index;
-									continue;
+							if (tokens[current_token_index + 1].type == JSMN_STRING) { // probably type
+									if (TOKEN_STRING(json_buffer, tokens[current_token_index], SENSOR_TYPE_TAG)) {
+											if (TOKEN_STRING(json_buffer, tokens[current_token_index + 1], SENSOR_TYPE_WATER)) {
+													mode = WATER_READER;
+											} else if (TOKEN_STRING(json_buffer, tokens[current_token_index + 1], SENSOR_TYPE_BATTERY)) {
+													mode = BATTERY;
+											}
+											// TODO - add other sensor types.
+											
+											// TODO - what to do in case of an error? - currently ignore.
+									} // else - ignore this key.
 							}
+							else if (tokens[current_token_index + 1].type == JSMN_PRIMITIVE) {
+								// Read the value
+								if (!token_to_int(json_buffer, &tokens[current_token_index + 1], value)) {
+										current_token_index = next_object_token_index;
+										continue;
+								}
 
-							// Read the value
-							if (!token_to_int(json_buffer, &tokens[current_token_index + 1], value)) {
-									current_token_index = next_object_token_index;
-									continue;
+								if (TOKEN_STRING(json_buffer, tokens[current_token_index], ID_TAG)) { // Id tag
+										id = value;
+								} else if (TOKEN_STRING(json_buffer, tokens[current_token_index], PORT_INDEX_TAG)) { // Port index tag
+										port_index = value;
+								} // else - ignore this key.
 							}
-
-							if (TOKEN_STRING(json_buffer, tokens[current_token_index], ID_TAG)) { // Id tag
-									id = value;
-							} else if (TOKEN_STRING(json_buffer, tokens[current_token_index], PORT_INDEX_TAG)) { // Port index tag
-									port_index = value;
-							} // else - ignore this key.
-
 							current_token_index += 2;
 					}
 
 					if (id >= 0 && port_index >= 0) { // Add sensor
-							SensorPtr sensor(SensorFactory::CreateSensor(MOCK)); // TODO - add type.
+							SensorPtr sensor(SensorFactory::CreateSensor(mode)); // TODO - add type.
 							sensor->id = id;
 							sensor->port_index = port_index;
 							sensors.Add(sensor);
@@ -422,7 +447,7 @@ namespace JSON
 			int alarm_token_index, current_token_index, alarm_index;
 			jsmntok_t* tokens = &tokens_vector[0];
 
-			if (sensors.size())
+			if (sensors.empty())
 					return true;
 
 			alarm_token_index = find_json_array_token(tokens_vector, json_buffer, ALARM_TAG);
@@ -515,6 +540,44 @@ namespace JSON
 
 			return true;
 	}
-	
+
+	bool parse_time(const char* json_buffer, int &time)
+	{
+    int current_token_index;
+    Vector<jsmntok_t> tokens;
+    jsmntok_t* current_token;
+    size_t number_of_tokens;
+		Parser parser;
+    bool ret = true;
+
+    // Parse json string
+    if (parser.Parse(json_buffer, tokens) != JSON::JSMN_SUCCESS) {
+        Logger::AddLine("json_parse_time: Could not parse json.", Logger::ERROR);
+        return false;
+    }
+    
+    current_token = &tokens[0];
+    number_of_tokens = current_token->size;
+    if (number_of_tokens <= 0 || current_token->type != JSMN_OBJECT) {
+        Logger::AddLine("json_parse_time: Could not parse json.", Logger::ERROR);
+        return false;
+    }
+    // iterate of all tokens, try to load configuration values
+    current_token++;
+    for ( current_token_index = 0; current_token_index < number_of_tokens ; )
+		{
+        // Lets find out what to do with the key-
+        if (TOKEN_STRING(json_buffer, *current_token, TIME_TAG)) { // Id tag
+            if (!token_to_int(json_buffer, (current_token+1), time)) {
+                return true;
+            }
+        } // else - ignore this key.
+        current_token_index += 2;
+        current_token += 2;
+    }
+    
+    return ret;
+		
+	}	
 };
 

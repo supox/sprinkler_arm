@@ -15,15 +15,18 @@ public:
 	
 	virtual SensorType GetType() = 0;
 	bool ReportReadings();
-	virtual void TimeNotification();
 	void SetListener(ISensorListener* listener){m_listener = listener;}
 
+	virtual void TimeNotification(); // Reading cycle - the sensor read itself every minute
+
+	double GetLastReadingValue(){return last_reading_value;}
 	int id;
 	int port_index;
 	Vector<AlarmPtr> alarms;
 
 protected:
 	bool ReadSensor();
+	bool OnRead(const double value);
 	virtual bool ReadSensorFromHardware(double &value) = 0;
 	bool AddReadingIfNeeded(const bool will_alarm);
 	bool ReportReadingData(const char *url, ReadingData& data);
@@ -32,6 +35,7 @@ protected:
 	int last_reading_time;
 	int last_saved_reading_time;
 	int report_reading_time_delta;
+	bool m_has_alarmed;
 	Vector<ReadingData> readings_to_report;
 	ISensorListener* m_listener;
 

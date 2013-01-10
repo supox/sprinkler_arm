@@ -18,10 +18,10 @@ I (C:\Keil\ARM\ARMCC\bin\..\include\stdint.h)(0x4EB126E4)
 I (C:\Keil\ARM\CMSIS\Include\core_cmInstr.h)(0x5059B0EC)
 I (C:\Keil\ARM\CMSIS\Include\core_cmFunc.h)(0x4FDADAAC)
 I (C:\Keil\ARM\Inc\ST\STM32F10x\system_stm32f10x.h)(0x4F588B5C)
-F (.\ButtonsManager.cpp)(0x50E7F85F)(--cpp -c --cpu Cortex-M3 -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_MD -D_SIMULATOR -D_TESTS -o ".\build\buttonsmanager.o" --omf_browse ".\build\buttonsmanager.crf" --depend ".\build\buttonsmanager.d")
-I (ButtonsManager.h)(0x50E7F85A)
-I (Config.h)(0x50E8776F)
-I (IButtonListener.h)(0x50E09B25)
+F (.\InputsManager.cpp)(0x50EC7C83)(--cpp -c --cpu Cortex-M3 -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_MD -D_SIMULATOR -D_TESTS -o ".\build\inputsmanager.o" --omf_browse ".\build\inputsmanager.crf" --depend ".\build\inputsmanager.d")
+I (InputsManager.h)(0x50EC7C67)
+I (Config.h)(0x50EF2445)
+I (IInputListener.h)(0x50EC7BA7)
 I (Vector.h)(0x50E868AE)
 I (C:\Keil\ARM\ARMCC\bin\..\include\stdlib.h)(0x4EB126E4)
 I (C:\Keil\ARM\Inc\ST\STM32F10x\STM32F10x.h)(0x4F588B5C)
@@ -30,9 +30,9 @@ I (C:\Keil\ARM\ARMCC\bin\..\include\stdint.h)(0x4EB126E4)
 I (C:\Keil\ARM\CMSIS\Include\core_cmInstr.h)(0x5059B0EC)
 I (C:\Keil\ARM\CMSIS\Include\core_cmFunc.h)(0x4FDADAAC)
 I (C:\Keil\ARM\Inc\ST\STM32F10x\system_stm32f10x.h)(0x4F588B5C)
-F (.\ButtonsManager.h)(0x50E7F85A)()
-F (.\IButtonListener.h)(0x50E09B25)()
-F (.\main.cpp)(0x50EB2C47)(--cpp -c --cpu Cortex-M3 -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_MD -D_SIMULATOR -D_TESTS -o ".\build\main.o" --omf_browse ".\build\main.crf" --depend ".\build\main.d")
+F (.\InputsManager.h)(0x50EC7C67)()
+F (.\IInputListener.h)(0x50EC7BA7)()
+F (.\main.cpp)(0x50EF2543)(--cpp -c --cpu Cortex-M3 -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_MD -D_SIMULATOR -D_TESTS -o ".\build\main.o" --omf_browse ".\build\main.crf" --depend ".\build\main.d")
 I (C:\Keil\ARM\Inc\ST\STM32F10x\STM32F10x.h)(0x4F588B5C)
 I (C:\Keil\ARM\CMSIS\Include\core_cm3.h)(0x50066FD2)
 I (C:\Keil\ARM\ARMCC\bin\..\include\stdint.h)(0x4EB126E4)
@@ -42,36 +42,38 @@ I (C:\Keil\ARM\Inc\ST\STM32F10x\system_stm32f10x.h)(0x4F588B5C)
 I (LedsManager.h)(0x50E08293)
 I (C:\Keil\ARM\ARMCC\bin\..\include\cstddef)(0x4EB126E8)
 I (C:\Keil\ARM\ARMCC\bin\..\include\stddef.h)(0x4EB126DE)
-I (ButtonsManager.h)(0x50E7F85A)
-I (Config.h)(0x50E8776F)
-I (IButtonListener.h)(0x50E09B25)
+I (InputsManager.h)(0x50EC7C67)
+I (Config.h)(0x50EF2445)
+I (IInputListener.h)(0x50EC7BA7)
 I (Vector.h)(0x50E868AE)
 I (C:\Keil\ARM\ARMCC\bin\..\include\stdlib.h)(0x4EB126E4)
-I (LedButtonListener.h)(0x50E813BE)
+I (LedButtonListener.h)(0x50EC7CCD)
 I (ITimeListener.h)(0x50E7FACA)
 I (TimeManager.h)(0x50E9F094)
 I (TimeListenersList.h)(0x50E9F01A)
-I (Sprinkler.h)(0x50EB1AA9)
-I (Sensor.h)(0x50E9EBF5)
+I (Sprinkler.h)(0x50EF0A98)
+I (Sensor.h)(0x50EF2355)
 I (Alarm.h)(0x50E8397D)
 I (SmartPointer.h)(0x50E8435A)
 I (SensorType.h)(0x50D8AA49)
 I (ReadingData.h)(0x50D8B7E6)
 I (ISensorListener.h)(0x50E9E9CC)
-I (Valf.h)(0x50EB1B11)
-I (Irrigation.h)(0x50EB1F22)
-I (ValvesManager.h)(0x50EB2BB2)
+I (Valf.h)(0x50EC73E9)
+I (Irrigation.h)(0x50EC6F32)
+I (IrrigationList.h)(0x50EC71F5)
+I (ValvesManager.h)(0x50EC744F)
 I (IrrigationLogData.h)(0x50EB2A19)
 I (Logger.h)(0x50E864A8)
-F (.\LedButtonListener.h)(0x50E813BE)()
-F (.\Json.h)(0x50E845E2)()
-F (.\Json.cpp)(0x50E864A8)(--cpp -c --cpu Cortex-M3 -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_MD -D_SIMULATOR -D_TESTS -o ".\build\json.o" --omf_browse ".\build\json.crf" --depend ".\build\json.d")
+I (Tests.h)(0x50EF252D)
+F (.\LedButtonListener.h)(0x50EC7CCD)()
+F (.\Json.h)(0x50EF0B17)()
+F (.\Json.cpp)(0x50EF1E79)(--cpp -c --cpu Cortex-M3 -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_MD -D_SIMULATOR -D_TESTS -o ".\build\json.o" --omf_browse ".\build\json.crf" --depend ".\build\json.d")
 I (JsonParser.h)(0x50D61183)
 I (Vector.h)(0x50E868AE)
 I (C:\Keil\ARM\ARMCC\bin\..\include\stdlib.h)(0x4EB126E4)
 I (jsmntok_t.h)(0x507D6326)
-I (Json.h)(0x50E845E2)
-I (Sensor.h)(0x50E9EBF5)
+I (Json.h)(0x50EF0B17)
+I (Sensor.h)(0x50EF2355)
 I (Alarm.h)(0x50E8397D)
 I (SmartPointer.h)(0x50E8435A)
 I (C:\Keil\ARM\ARMCC\bin\..\include\stddef.h)(0x4EB126DE)
@@ -79,26 +81,27 @@ I (SensorType.h)(0x50D8AA49)
 I (ReadingData.h)(0x50D8B7E6)
 I (ITimeListener.h)(0x50E7FACA)
 I (ISensorListener.h)(0x50E9E9CC)
-I (Sprinkler.h)(0x50EB1AA9)
-I (Valf.h)(0x50EB1B11)
-I (Irrigation.h)(0x50EB1F22)
-I (ValvesManager.h)(0x50EB2BB2)
+I (Sprinkler.h)(0x50EF0A98)
+I (Valf.h)(0x50EC73E9)
+I (Irrigation.h)(0x50EC6F32)
+I (IrrigationList.h)(0x50EC71F5)
+I (ValvesManager.h)(0x50EC744F)
 I (IrrigationLogData.h)(0x50EB2A19)
 I (Logger.h)(0x50E864A8)
 I (SensorFactory.h)(0x50E9E90E)
 I (C:\Keil\ARM\ARMCC\bin\..\include\stdio.h)(0x4EB126E6)
 I (C:\Keil\ARM\ARMCC\bin\..\include\string.h)(0x4EB126E6)
 F (.\JsonParser.h)(0x50D61183)()
-F (.\JsonParser.cpp)(0x50E84D99)(--cpp -c --cpu Cortex-M3 -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_MD -D_SIMULATOR -D_TESTS -o ".\build\jsonparser.o" --omf_browse ".\build\jsonparser.crf" --depend ".\build\jsonparser.d")
+F (.\JsonParser.cpp)(0x50EF091B)(--cpp -c --cpu Cortex-M3 -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_MD -D_SIMULATOR -D_TESTS -o ".\build\jsonparser.o" --omf_browse ".\build\jsonparser.crf" --depend ".\build\jsonparser.d")
 I (JsonParser.h)(0x50D61183)
 I (Vector.h)(0x50E868AE)
 I (C:\Keil\ARM\ARMCC\bin\..\include\stdlib.h)(0x4EB126E4)
 I (jsmntok_t.h)(0x507D6326)
-F (.\Sprinkler.cpp)(0x50EB1AA0)(--cpp -c --cpu Cortex-M3 -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_MD -D_SIMULATOR -D_TESTS -o ".\build\sprinkler.o" --omf_browse ".\build\sprinkler.crf" --depend ".\build\sprinkler.d")
-I (Sprinkler.h)(0x50EB1AA9)
+F (.\Sprinkler.cpp)(0x50EF0BEB)(--cpp -c --cpu Cortex-M3 -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_MD -D_SIMULATOR -D_TESTS -o ".\build\sprinkler.o" --omf_browse ".\build\sprinkler.crf" --depend ".\build\sprinkler.d")
+I (Sprinkler.h)(0x50EF0A98)
 I (Vector.h)(0x50E868AE)
 I (C:\Keil\ARM\ARMCC\bin\..\include\stdlib.h)(0x4EB126E4)
-I (Sensor.h)(0x50E9EBF5)
+I (Sensor.h)(0x50EF2355)
 I (Alarm.h)(0x50E8397D)
 I (SmartPointer.h)(0x50E8435A)
 I (C:\Keil\ARM\ARMCC\bin\..\include\stddef.h)(0x4EB126DE)
@@ -106,17 +109,18 @@ I (SensorType.h)(0x50D8AA49)
 I (ReadingData.h)(0x50D8B7E6)
 I (ITimeListener.h)(0x50E7FACA)
 I (ISensorListener.h)(0x50E9E9CC)
-I (Valf.h)(0x50EB1B11)
-I (Irrigation.h)(0x50EB1F22)
-I (ValvesManager.h)(0x50EB2BB2)
+I (Valf.h)(0x50EC73E9)
+I (Irrigation.h)(0x50EC6F32)
+I (IrrigationList.h)(0x50EC71F5)
+I (ValvesManager.h)(0x50EC744F)
 I (IrrigationLogData.h)(0x50EB2A19)
-I (Config.h)(0x50E8776F)
+I (Config.h)(0x50EF2445)
 I (TimeManager.h)(0x50E9F094)
 I (TimeListenersList.h)(0x50E9F01A)
 I (Communication.h)(0x50E87075)
-I (StringBuffer.h)(0x50E8706C)
+I (StringBuffer.h)(0x50EDC3D5)
 I (Logger.h)(0x50E864A8)
-I (Json.h)(0x50E845E2)
+I (Json.h)(0x50EF0B17)
 I (C:\Keil\ARM\ARMCC\bin\..\include\algorithm)(0x4F8F20CC)
 I (C:\Keil\ARM\ARMCC\bin\..\include\memory)(0x4F316FC2)
 I (C:\Keil\ARM\ARMCC\bin\..\include\new)(0x4EB126E6)
@@ -132,9 +136,9 @@ I (C:\Keil\ARM\ARMCC\bin\..\include\cstring)(0x4EB126E6)
 I (C:\Keil\ARM\ARMCC\bin\..\include\string.h)(0x4EB126E6)
 I (C:\Keil\ARM\ARMCC\bin\..\include\rw/_algobase.h)(0x4EB1E324)
 I (C:\Keil\ARM\ARMCC\bin\..\include\cstdlib)(0x4EB126EA)
-F (.\Sprinkler.h)(0x50EB1AA9)()
+F (.\Sprinkler.h)(0x50EF0A98)()
 F (.\Vector.h)(0x50E868AE)()
-F (.\Config.h)(0x50E8776F)()
+F (.\Config.h)(0x50EF2445)()
 F (.\Logger.h)(0x50E864A8)()
 F (.\Logger.cpp)(0x50E864A7)(--cpp -c --cpu Cortex-M3 -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_MD -D_SIMULATOR -D_TESTS -o ".\build\logger.o" --omf_browse ".\build\logger.crf" --depend ".\build\logger.d")
 I (Logger.h)(0x50E864A8)
@@ -147,18 +151,24 @@ I (C:\Keil\ARM\CMSIS\Include\core_cmInstr.h)(0x5059B0EC)
 I (C:\Keil\ARM\CMSIS\Include\core_cmFunc.h)(0x4FDADAAC)
 I (C:\Keil\ARM\Inc\ST\STM32F10x\system_stm32f10x.h)(0x4F588B5C)
 I (C:\Keil\ARM\ARMCC\bin\..\include\stdio.h)(0x4EB126E6)
-F (.\Irrigation.cpp)(0x50EB1F52)(--cpp -c --cpu Cortex-M3 -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_MD -D_SIMULATOR -D_TESTS -o ".\build\irrigation.o" --omf_browse ".\build\irrigation.crf" --depend ".\build\irrigation.d")
-I (Irrigation.h)(0x50EB1F22)
+F (.\Irrigation.cpp)(0x50EC6F63)(--cpp -c --cpu Cortex-M3 -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_MD -D_SIMULATOR -D_TESTS -o ".\build\irrigation.o" --omf_browse ".\build\irrigation.crf" --depend ".\build\irrigation.d")
+I (Irrigation.h)(0x50EC6F32)
 I (C:\Keil\ARM\ARMCC\bin\..\include\stdlib.h)(0x4EB126E4)
-F (.\Irrigation.h)(0x50EB1F22)()
+F (.\Irrigation.h)(0x50EC6F32)()
+F (.\IrrigationList.cpp)(0x50EC7224)(--cpp -c --cpu Cortex-M3 -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_MD -D_SIMULATOR -D_TESTS -o ".\build\irrigationlist.o" --omf_browse ".\build\irrigationlist.crf" --depend ".\build\irrigationlist.d")
+I (IrrigationList.h)(0x50EC71F5)
+I (Irrigation.h)(0x50EC6F32)
+I (C:\Keil\ARM\ARMCC\bin\..\include\stdlib.h)(0x4EB126E4)
+I (C:\Keil\ARM\ARMCC\bin\..\include\stddef.h)(0x4EB126DE)
+F (.\IrrigationList.h)(0x50EC71F5)()
 F (.\IrrigationLogData.h)(0x50EB2A19)()
-F (.\Alarm.cpp)(0x50D8A6BF)(--cpp -c --cpu Cortex-M3 -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_MD -D_SIMULATOR -D_TESTS -o ".\build\alarm.o" --omf_browse ".\build\alarm.crf" --depend ".\build\alarm.d")
+F (.\Alarm.cpp)(0x50EC8C59)(--cpp -c --cpu Cortex-M3 -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_MD -D_SIMULATOR -D_TESTS -o ".\build\alarm.o" --omf_browse ".\build\alarm.crf" --depend ".\build\alarm.d")
 I (Alarm.h)(0x50E8397D)
 I (SmartPointer.h)(0x50E8435A)
 I (C:\Keil\ARM\ARMCC\bin\..\include\stddef.h)(0x4EB126DE)
 F (.\Alarm.h)(0x50E8397D)()
-F (.\Sensor.cpp)(0x50EB2C23)(--cpp -c --cpu Cortex-M3 -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_MD -D_SIMULATOR -D_TESTS -o ".\build\sensor.o" --omf_browse ".\build\sensor.crf" --depend ".\build\sensor.d")
-I (Sensor.h)(0x50E9EBF5)
+F (.\Sensor.cpp)(0x50EF23FB)(--cpp -c --cpu Cortex-M3 -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_MD -D_SIMULATOR -D_TESTS -o ".\build\sensor.o" --omf_browse ".\build\sensor.crf" --depend ".\build\sensor.d")
+I (Sensor.h)(0x50EF2355)
 I (Alarm.h)(0x50E8397D)
 I (SmartPointer.h)(0x50E8435A)
 I (C:\Keil\ARM\ARMCC\bin\..\include\stddef.h)(0x4EB126DE)
@@ -168,19 +178,19 @@ I (SensorType.h)(0x50D8AA49)
 I (ReadingData.h)(0x50D8B7E6)
 I (ITimeListener.h)(0x50E7FACA)
 I (ISensorListener.h)(0x50E9E9CC)
-I (Config.h)(0x50E8776F)
+I (Config.h)(0x50EF2445)
 I (C:\Keil\ARM\ARMCC\bin\..\include\Time.h)(0x4EB126E2)
 I (TimeManager.h)(0x50E9F094)
 I (TimeListenersList.h)(0x50E9F01A)
-I (StringBuffer.h)(0x50E8706C)
+I (StringBuffer.h)(0x50EDC3D5)
 I (Communication.h)(0x50E87075)
 I (C:\Keil\ARM\ARMCC\bin\..\include\stdio.h)(0x4EB126E6)
 I (C:\Keil\ARM\ARMCC\bin\..\include\string.h)(0x4EB126E6)
-F (.\Sensor.h)(0x50E9EBF5)()
+F (.\Sensor.h)(0x50EF2355)()
 F (.\SensorType.h)(0x50D8AA49)()
 F (.\SensorFactory.cpp)(0x50E9E977)(--cpp -c --cpu Cortex-M3 -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_MD -D_SIMULATOR -D_TESTS -o ".\build\sensorfactory.o" --omf_browse ".\build\sensorfactory.crf" --depend ".\build\sensorfactory.d")
 I (SensorFactory.h)(0x50E9E90E)
-I (Sensor.h)(0x50E9EBF5)
+I (Sensor.h)(0x50EF2355)
 I (Alarm.h)(0x50E8397D)
 I (SmartPointer.h)(0x50E8435A)
 I (C:\Keil\ARM\ARMCC\bin\..\include\stddef.h)(0x4EB126DE)
@@ -192,12 +202,13 @@ I (ITimeListener.h)(0x50E7FACA)
 I (ISensorListener.h)(0x50E9E9CC)
 I (MockSensor.h)(0x50E9E977)
 I (BatterySensor.h)(0x50E9E977)
-I (WaterSensor.h)(0x50E9E977)
+I (WaterSensor.h)(0x50EC85C6)
+I (IInputListener.h)(0x50EC7BA7)
 F (.\SensorFactory.h)(0x50E9E90E)()
-F (.\WaterSensor.h)(0x50E9E977)()
-F (.\WaterSensor.cpp)(0x50E9E977)(--cpp -c --cpu Cortex-M3 -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_MD -D_SIMULATOR -D_TESTS -o ".\build\watersensor.o" --omf_browse ".\build\watersensor.crf" --depend ".\build\watersensor.d")
-I (WaterSensor.h)(0x50E9E977)
-I (Sensor.h)(0x50E9EBF5)
+F (.\WaterSensor.h)(0x50EC85C6)()
+F (.\WaterSensor.cpp)(0x50EC8B6F)(--cpp -c --cpu Cortex-M3 -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_MD -D_SIMULATOR -D_TESTS -o ".\build\watersensor.o" --omf_browse ".\build\watersensor.crf" --depend ".\build\watersensor.d")
+I (WaterSensor.h)(0x50EC85C6)
+I (Sensor.h)(0x50EF2355)
 I (Alarm.h)(0x50E8397D)
 I (SmartPointer.h)(0x50E8435A)
 I (C:\Keil\ARM\ARMCC\bin\..\include\stddef.h)(0x4EB126DE)
@@ -207,9 +218,12 @@ I (SensorType.h)(0x50D8AA49)
 I (ReadingData.h)(0x50D8B7E6)
 I (ITimeListener.h)(0x50E7FACA)
 I (ISensorListener.h)(0x50E9E9CC)
+I (IInputListener.h)(0x50EC7BA7)
+I (InputsManager.h)(0x50EC7C67)
+I (Config.h)(0x50EF2445)
 F (.\MockSensor.cpp)(0x50E9E96E)(--cpp -c --cpu Cortex-M3 -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_MD -D_SIMULATOR -D_TESTS -o ".\build\mocksensor.o" --omf_browse ".\build\mocksensor.crf" --depend ".\build\mocksensor.d")
 I (MockSensor.h)(0x50E9E977)
-I (Sensor.h)(0x50E9EBF5)
+I (Sensor.h)(0x50EF2355)
 I (Alarm.h)(0x50E8397D)
 I (SmartPointer.h)(0x50E8435A)
 I (C:\Keil\ARM\ARMCC\bin\..\include\stddef.h)(0x4EB126DE)
@@ -222,7 +236,7 @@ I (ISensorListener.h)(0x50E9E9CC)
 F (.\MockSensor.h)(0x50E9E977)()
 F (.\BatterySensor.cpp)(0x50E9E976)(--cpp -c --cpu Cortex-M3 -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_MD -D_SIMULATOR -D_TESTS -o ".\build\batterysensor.o" --omf_browse ".\build\batterysensor.crf" --depend ".\build\batterysensor.d")
 I (BatterySensor.h)(0x50E9E977)
-I (Sensor.h)(0x50E9EBF5)
+I (Sensor.h)(0x50EF2355)
 I (Alarm.h)(0x50E8397D)
 I (SmartPointer.h)(0x50E8435A)
 I (C:\Keil\ARM\ARMCC\bin\..\include\stddef.h)(0x4EB126DE)
@@ -234,35 +248,37 @@ I (ITimeListener.h)(0x50E7FACA)
 I (ISensorListener.h)(0x50E9E9CC)
 F (.\BatterySensor.h)(0x50E9E977)()
 F (.\ReadingData.h)(0x50D8B7E6)()
-F (.\Valf.cpp)(0x50E9EE80)(--cpp -c --cpu Cortex-M3 -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_MD -D_SIMULATOR -D_TESTS -o ".\build\valf.o" --omf_browse ".\build\valf.crf" --depend ".\build\valf.d")
-I (Valf.h)(0x50EB1B11)
+F (.\Valf.cpp)(0x50EC73C5)(--cpp -c --cpu Cortex-M3 -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_MD -D_SIMULATOR -D_TESTS -o ".\build\valf.o" --omf_browse ".\build\valf.crf" --depend ".\build\valf.d")
+I (Valf.h)(0x50EC73E9)
 I (Vector.h)(0x50E868AE)
 I (C:\Keil\ARM\ARMCC\bin\..\include\stdlib.h)(0x4EB126E4)
-I (Irrigation.h)(0x50EB1F22)
+I (Irrigation.h)(0x50EC6F32)
 I (SmartPointer.h)(0x50E8435A)
 I (C:\Keil\ARM\ARMCC\bin\..\include\stddef.h)(0x4EB126DE)
+I (IrrigationList.h)(0x50EC71F5)
 I (Logger.h)(0x50E864A8)
 I (TimeManager.h)(0x50E9F094)
 I (ITimeListener.h)(0x50E7FACA)
 I (TimeListenersList.h)(0x50E9F01A)
 I (C:\Keil\ARM\ARMCC\bin\..\include\stdio.h)(0x4EB126E6)
-F (.\Valf.h)(0x50EB1B11)()
-F (.\ValvesManager.cpp)(0x50EB2C2A)(--cpp -c --cpu Cortex-M3 -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_MD -D_SIMULATOR -D_TESTS -o ".\build\valvesmanager.o" --omf_browse ".\build\valvesmanager.crf" --depend ".\build\valvesmanager.d")
-I (ValvesManager.h)(0x50EB2BB2)
+F (.\Valf.h)(0x50EC73E9)()
+F (.\ValvesManager.cpp)(0x50EC7A7C)(--cpp -c --cpu Cortex-M3 -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_MD -D_SIMULATOR -D_TESTS -o ".\build\valvesmanager.o" --omf_browse ".\build\valvesmanager.crf" --depend ".\build\valvesmanager.d")
+I (ValvesManager.h)(0x50EC744F)
 I (ITimeListener.h)(0x50E7FACA)
 I (Vector.h)(0x50E868AE)
 I (C:\Keil\ARM\ARMCC\bin\..\include\stdlib.h)(0x4EB126E4)
-I (Valf.h)(0x50EB1B11)
-I (Irrigation.h)(0x50EB1F22)
+I (Valf.h)(0x50EC73E9)
+I (Irrigation.h)(0x50EC6F32)
 I (SmartPointer.h)(0x50E8435A)
 I (C:\Keil\ARM\ARMCC\bin\..\include\stddef.h)(0x4EB126DE)
+I (IrrigationList.h)(0x50EC71F5)
 I (IrrigationLogData.h)(0x50EB2A19)
 I (TimeManager.h)(0x50E9F094)
 I (TimeListenersList.h)(0x50E9F01A)
 I (Logger.h)(0x50E864A8)
 I (Communication.h)(0x50E87075)
-I (StringBuffer.h)(0x50E8706C)
-I (Config.h)(0x50E8776F)
+I (StringBuffer.h)(0x50EDC3D5)
+I (Config.h)(0x50EF2445)
 I (C:\Keil\ARM\ARMCC\bin\..\include\stdio.h)(0x4EB126E6)
 I (C:\Keil\ARM\ARMCC\bin\..\include\string.h)(0x4EB126E6)
 I (C:\Keil\ARM\ARMCC\bin\..\include\algorithm)(0x4F8F20CC)
@@ -279,23 +295,23 @@ I (C:\Keil\ARM\ARMCC\bin\..\include\rw/_mutex.h)(0x4EB1E324)
 I (C:\Keil\ARM\ARMCC\bin\..\include\cstring)(0x4EB126E6)
 I (C:\Keil\ARM\ARMCC\bin\..\include\rw/_algobase.h)(0x4EB1E324)
 I (C:\Keil\ARM\ARMCC\bin\..\include\cstdlib)(0x4EB126EA)
-F (.\ValvesManager.h)(0x50EB2BB2)()
+F (.\ValvesManager.h)(0x50EC744F)()
 F (.\StringBuffer.cpp)(0x50E87062)(--cpp -c --cpu Cortex-M3 -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_MD -D_SIMULATOR -D_TESTS -o ".\build\stringbuffer.o" --omf_browse ".\build\stringbuffer.crf" --depend ".\build\stringbuffer.d")
-I (StringBuffer.h)(0x50E8706C)
+I (StringBuffer.h)(0x50EDC3D5)
 I (C:\Keil\ARM\ARMCC\bin\..\include\stdlib.h)(0x4EB126E4)
 I (Logger.h)(0x50E864A8)
 I (C:\Keil\ARM\ARMCC\bin\..\include\stdio.h)(0x4EB126E6)
 I (C:\Keil\ARM\ARMCC\bin\..\include\string.h)(0x4EB126E6)
-F (.\StringBuffer.h)(0x50E8706C)()
+F (.\StringBuffer.h)(0x50EDC3D5)()
 F (.\TestJson.cpp)(0x50E85DCF)(--cpp -c --cpu Cortex-M3 -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_MD -D_SIMULATOR -D_TESTS -o ".\build\testjson.o" --omf_browse ".\build\testjson.crf" --depend ".\build\testjson.d")
 I (C:\Keil\ARM\ARMCC\bin\..\include\stdio.h)(0x4EB126E6)
 I (C:\Keil\ARM\ARMCC\bin\..\include\stdlib.h)(0x4EB126E4)
-I (StringBuffer.h)(0x50E8706C)
+I (StringBuffer.h)(0x50EDC3D5)
 I (Vector.h)(0x50E868AE)
 I (JsonParser.h)(0x50D61183)
 I (jsmntok_t.h)(0x507D6326)
-I (Sprinkler.h)(0x50EB1AA9)
-I (Sensor.h)(0x50E9EBF5)
+I (Sprinkler.h)(0x50EF0A98)
+I (Sensor.h)(0x50EF2355)
 I (Alarm.h)(0x50E8397D)
 I (SmartPointer.h)(0x50E8435A)
 I (C:\Keil\ARM\ARMCC\bin\..\include\stddef.h)(0x4EB126DE)
@@ -303,9 +319,10 @@ I (SensorType.h)(0x50D8AA49)
 I (ReadingData.h)(0x50D8B7E6)
 I (ITimeListener.h)(0x50E7FACA)
 I (ISensorListener.h)(0x50E9E9CC)
-I (Valf.h)(0x50EB1B11)
-I (Irrigation.h)(0x50EB1F22)
-I (ValvesManager.h)(0x50EB2BB2)
+I (Valf.h)(0x50EC73E9)
+I (Irrigation.h)(0x50EC6F32)
+I (IrrigationList.h)(0x50EC71F5)
+I (ValvesManager.h)(0x50EC744F)
 I (IrrigationLogData.h)(0x50EB2A19)
 I (SensorFactory.h)(0x50E9E90E)
 F (.\TestSmartPointer.cpp)(0x50EB1D6B)(--cpp -c --cpu Cortex-M3 -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_MD -D_SIMULATOR -D_TESTS -o ".\build\testsmartpointer.o" --omf_browse ".\build\testsmartpointer.crf" --depend ".\build\testsmartpointer.d")
@@ -317,22 +334,40 @@ I (TimeListenersList.h)(0x50E9F01A)
 I (ITimeListener.h)(0x50E7FACA)
 I (C:\Keil\ARM\ARMCC\bin\..\include\stddef.h)(0x4EB126DE)
 I (TimeManager.h)(0x50E9F094)
+F (.\TestHelpers.cpp)(0x50EB1E94)(--cpp -c --cpu Cortex-M3 -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_MD -D_SIMULATOR -D_TESTS -o ".\build\testhelpers.o" --omf_browse ".\build\testhelpers.crf" --depend ".\build\testhelpers.d")
+I (TestHelpers.h)(0x50EB1E8D)
+F (.\TestHelpers.h)(0x50EB1E8D)()
+F (.\TestSensors.cpp)(0x50EC8A18)(--cpp -c --cpu Cortex-M3 -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_MD -D_SIMULATOR -D_TESTS -o ".\build\testsensors.o" --omf_browse ".\build\testsensors.crf" --depend ".\build\testsensors.d")
+I (SensorFactory.h)(0x50E9E90E)
+I (Sensor.h)(0x50EF2355)
+I (Alarm.h)(0x50E8397D)
+I (SmartPointer.h)(0x50E8435A)
+I (C:\Keil\ARM\ARMCC\bin\..\include\stddef.h)(0x4EB126DE)
+I (Vector.h)(0x50E868AE)
+I (C:\Keil\ARM\ARMCC\bin\..\include\stdlib.h)(0x4EB126E4)
+I (SensorType.h)(0x50D8AA49)
+I (ReadingData.h)(0x50D8B7E6)
+I (ITimeListener.h)(0x50E7FACA)
+I (ISensorListener.h)(0x50E9E9CC)
+I (InputsManager.h)(0x50EC7C67)
+I (Config.h)(0x50EF2445)
+I (IInputListener.h)(0x50EC7BA7)
+I (TestHelpers.h)(0x50EB1E8D)
 F (.\TestValvesManager.cpp)(0x50EB2BE9)(--cpp -c --cpu Cortex-M3 -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_MD -D_SIMULATOR -D_TESTS -o ".\build\testvalvesmanager.o" --omf_browse ".\build\testvalvesmanager.crf" --depend ".\build\testvalvesmanager.d")
 I (TestHelpers.h)(0x50EB1E8D)
-I (ValvesManager.h)(0x50EB2BB2)
+I (ValvesManager.h)(0x50EC744F)
 I (ITimeListener.h)(0x50E7FACA)
 I (Vector.h)(0x50E868AE)
 I (C:\Keil\ARM\ARMCC\bin\..\include\stdlib.h)(0x4EB126E4)
-I (Valf.h)(0x50EB1B11)
-I (Irrigation.h)(0x50EB1F22)
+I (Valf.h)(0x50EC73E9)
+I (Irrigation.h)(0x50EC6F32)
 I (SmartPointer.h)(0x50E8435A)
 I (C:\Keil\ARM\ARMCC\bin\..\include\stddef.h)(0x4EB126DE)
+I (IrrigationList.h)(0x50EC71F5)
 I (IrrigationLogData.h)(0x50EB2A19)
 I (TimeManager.h)(0x50E9F094)
 I (TimeListenersList.h)(0x50E9F01A)
-F (.\TestHelpers.h)(0x50EB1E8D)()
-F (.\TestHelpers.cpp)(0x50EB1E94)(--cpp -c --cpu Cortex-M3 -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_MD -D_SIMULATOR -D_TESTS -o ".\build\testhelpers.o" --omf_browse ".\build\testhelpers.crf" --depend ".\build\testhelpers.d")
-I (TestHelpers.h)(0x50EB1E8D)
+F (.\Tests.h)(0x50EF252D)()
 F (.\TimeListenersList.cpp)(0x50EB218F)(--cpp -c --cpu Cortex-M3 -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_MD -D_SIMULATOR -D_TESTS -o ".\build\timelistenerslist.o" --omf_browse ".\build\timelistenerslist.crf" --depend ".\build\timelistenerslist.d")
 I (TimeListenersList.h)(0x50E9F01A)
 I (ITimeListener.h)(0x50E7FACA)
@@ -351,8 +386,15 @@ I (C:\Keil\ARM\CMSIS\Include\core_cmFunc.h)(0x4FDADAAC)
 I (C:\Keil\ARM\Inc\ST\STM32F10x\system_stm32f10x.h)(0x4F588B5C)
 F (.\TimeManager.h)(0x50E9F094)()
 F (.\ITimeListener.h)(0x50E7FACA)()
-F (.\Communication.cpp)(0x50E87079)(--cpp -c --cpu Cortex-M3 -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_MD -D_SIMULATOR -D_TESTS -o ".\build\communication.o" --omf_browse ".\build\communication.crf" --depend ".\build\communication.d")
+F (.\Communication.cpp)(0x50EF1DFE)(--cpp -c --cpu Cortex-M3 -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_MD -D_SIMULATOR -D_TESTS -o ".\build\communication.o" --omf_browse ".\build\communication.crf" --depend ".\build\communication.d")
 I (Communication.h)(0x50E87075)
-I (StringBuffer.h)(0x50E8706C)
+I (StringBuffer.h)(0x50EDC3D5)
 I (C:\Keil\ARM\ARMCC\bin\..\include\stdlib.h)(0x4EB126E4)
+I (CommunicationTimeouts.h)(0x50EDBF61)
+I (TimeManager.h)(0x50E9F094)
+I (ITimeListener.h)(0x50E7FACA)
+I (TimeListenersList.h)(0x50E9F01A)
+I (C:\Keil\ARM\ARMCC\bin\..\include\stddef.h)(0x4EB126DE)
+I (C:\Keil\ARM\ARMCC\bin\..\include\stdio.h)(0x4EB126E6)
+I (C:\Keil\ARM\ARMCC\bin\..\include\string.h)(0x4EB126E6)
 F (.\Communication.h)(0x50E87075)()

@@ -6,6 +6,12 @@ Irrigation::Irrigation() :
 
 }
 
+Irrigation::Irrigation(const Irrigation& other) :
+	 start_time(other.start_time), valf_id(other.valf_id) ,mode(other.mode), amount(other.amount)
+
+{
+}
+
 Irrigation::Irrigation(	const int _start_time, const int _valf_id, const IrrigationModes _mode, const size_t _amount) :
 	 start_time(_start_time), valf_id(_valf_id) ,mode(_mode), amount(_amount)
 {
@@ -27,3 +33,13 @@ Irrigation& Irrigation::operator = (const Irrigation& other)
 	return *this;
 }
 
+bool Irrigation::operator == (const Irrigation& other)
+{
+	return (
+		start_time == other.start_time &&
+		valf_id == other.valf_id &&
+		mode == other.mode &&
+		amount == other.amount
+
+	);
+}

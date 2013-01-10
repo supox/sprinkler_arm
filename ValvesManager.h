@@ -17,6 +17,7 @@ public:
 
 private:
 	void UpdateValvesState();
+	void BuildIrrigationLists();
 
 	Vector<ValfPtr>* m_valves;
 	Vector<Irrigation>* m_irrigations;

@@ -102,6 +102,27 @@ bool Sprinkler::load_irrigations_instructions() {
 	return ret;
 }
 
+bool Sprinkler::load_time()
+{
+	bool ret;
+	StringBuffer sb;
+
+	Logger::AddLine("Sprinkler::load_time : Updating clock.", Logger::DUMP);
+	ret = Communication::GetWebPage(TIME_URL, sb);
+	if (ret) {
+		int current_time = 0;
+		ret = JSON::parse_time(sb.GetBuffer(), current_time);
+		if(ret)
+			TimeManager::SetSystemTime(current_time);
+	}
+
+	if(!ret) {
+			Logger::AddLine("sprinkler_load_irrigations : failed load irrigations instructions.", Logger::ERROR);
+	}
+	return ret;
+
+}
+
 bool Sprinkler::load_sprinkler_config()
 {
 	StringBuffer sb;
@@ -140,14 +161,17 @@ bool Sprinkler::load_valves_config()
 }
 
 bool Sprinkler::load_config() {
-    bool ret = true;
-    
-    ret &= load_sprinkler_config();
-    ret &= load_sensors_config();
-    ret &= load_valves_config();
-    ret &= load_irrigations_instructions();
-    
-    return ret;
+	bool ret = true;
+
+	ret &= load_sprinkler_config();
+	ret &= load_sensors_config();
+	ret &= load_valves_config();
+	ret &= load_irrigations_instructions();
+	ret &= load_time();
+	if(ret)
+		m_valves_manager.Update(valves, irrigations);
+
+	return ret;
 }
 
 bool Sprinkler::report_reading() {

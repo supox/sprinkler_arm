@@ -159,6 +159,21 @@ namespace JSON
 
 		start = read_pos;
 
+		// check the null special case.
+		if(js[read_pos] == 'n' && js[read_pos+1] == 'u' && js[read_pos+2] == 'l' && js[read_pos+3] == 'l')
+		{
+			read_pos += 4;
+			switch (js[read_pos]) {
+				case '\t' : case '\r' : case '\n' : case ' ' :
+				case ','  : case ']'  : case '}' :
+					goto found;
+			}
+			read_pos = start;
+			return JSMN_ERROR_INVAL;			
+		}
+		
+
+		
 		for (; js[read_pos] != '\0'; read_pos++) {
 			switch (js[read_pos]) {
 				case '\t' : case '\r' : case '\n' : case ' ' :

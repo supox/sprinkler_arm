@@ -1,11 +1,11 @@
 #pragma once
 
-#include "IButtonListener.h"
+#include "IInputListener.h"
 #include "LedsManager.h"
 #include "ITimeListener.h"
 #include "TimeManager.h"
 
-class LedButtonListener : public IButtonListener, public ITimeListener
+class LedButtonListener : public IInputListener, public ITimeListener
 {
 public:
 	LedButtonListener(LedsManager* manager, unsigned int ButtonIndex) :
@@ -14,7 +14,7 @@ public:
 	}
 	
 	virtual ~LedButtonListener(){}
-	virtual void OnButtonPressed(unsigned int ButtonIndex)
+	virtual void OnInputChanged(unsigned int ButtonIndex)
 	{
 		if(m_bRunning)
 			return;

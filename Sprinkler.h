@@ -32,6 +32,7 @@ private:
 	bool load_sprinkler_config();
 	bool load_sensors_config();
 	bool load_valves_config();
+	bool load_time();
 	bool load_config();
 	bool report_reading();
 

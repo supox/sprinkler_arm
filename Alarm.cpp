@@ -16,9 +16,9 @@ bool Alarm::will_alarm(const double sensor_value)
         case NOT_EQUAL :
             return alarm_value != sensor_value;
         case GREATER_THAN :
-            return alarm_value > sensor_value;
+            return sensor_value > alarm_value;
         case LESS_THAN :
-            return alarm_value < sensor_value;
+            return sensor_value < alarm_value;
         default:
             return false;
     }

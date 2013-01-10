@@ -417,19 +417,19 @@
               <FilePath>.\LedsManager.cpp</FilePath>
             </File>
             <File>
-              <FileName>ButtonsManager.cpp</FileName>
+              <FileName>InputsManager.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>.\ButtonsManager.cpp</FilePath>
+              <FilePath>.\InputsManager.cpp</FilePath>
             </File>
             <File>
-              <FileName>ButtonsManager.h</FileName>
+              <FileName>InputsManager.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\ButtonsManager.h</FilePath>
+              <FilePath>.\InputsManager.h</FilePath>
             </File>
             <File>
-              <FileName>IButtonListener.h</FileName>
+              <FileName>IInputListener.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\IButtonListener.h</FilePath>
+              <FilePath>.\IInputListener.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -531,6 +531,21 @@
               <FileType>5</FileType>
               <FilePath>.\Irrigation.h</FilePath>
             </File>
+            <File>
+              <FileName>IrrigationList.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\IrrigationList.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>IrrigationList.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\IrrigationList.h</FilePath>
+            </File>
+            <File>
+              <FileName>IrrigationLogData.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\IrrigationLogData.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -626,6 +641,16 @@
               <FileType>5</FileType>
               <FilePath>.\Valf.h</FilePath>
             </File>
+            <File>
+              <FileName>ValvesManager.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\ValvesManager.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>ValvesManager.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\ValvesManager.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -660,6 +685,31 @@
               <FileName>TestTimeListenerData.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\TestTimeListenerData.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>TestHelpers.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\TestHelpers.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>TestHelpers.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\TestHelpers.h</FilePath>
+            </File>
+            <File>
+              <FileName>TestSensors.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\TestSensors.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>TestValvesManager.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\TestValvesManager.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Tests.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Tests.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -849,7 +899,7 @@
             <CpuDllArguments></CpuDllArguments>
             <PeripheralDll></PeripheralDll>
             <PeripheralDllArguments></PeripheralDllArguments>
-            <InitializationFile></InitializationFile>
+            <InitializationFile>.\GPIO_Simulator.ini</InitializationFile>
           </SimDlls>
           <TargetDlls>
             <CpuDll></CpuDll>
@@ -1052,7 +1102,7 @@
             <uSurpInc>0</uSurpInc>
             <VariousControls>
               <MiscControls></MiscControls>
-              <Define>STM32F10X_MD _SIMULATOR</Define>
+              <Define>STM32F10X_MD _SIMULATOR _TESTS</Define>
               <Undefine></Undefine>
               <IncludePath></IncludePath>
             </VariousControls>
@@ -1121,19 +1171,19 @@
               <FilePath>.\LedsManager.cpp</FilePath>
             </File>
             <File>
-              <FileName>ButtonsManager.cpp</FileName>
+              <FileName>InputsManager.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>.\ButtonsManager.cpp</FilePath>
+              <FilePath>.\InputsManager.cpp</FilePath>
             </File>
             <File>
-              <FileName>ButtonsManager.h</FileName>
+              <FileName>InputsManager.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\ButtonsManager.h</FilePath>
+              <FilePath>.\InputsManager.h</FilePath>
             </File>
             <File>
-              <FileName>IButtonListener.h</FileName>
+              <FileName>IInputListener.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\IButtonListener.h</FilePath>
+              <FilePath>.\IInputListener.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -1235,6 +1285,21 @@
               <FileType>5</FileType>
               <FilePath>.\Irrigation.h</FilePath>
             </File>
+            <File>
+              <FileName>IrrigationList.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\IrrigationList.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>IrrigationList.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\IrrigationList.h</FilePath>
+            </File>
+            <File>
+              <FileName>IrrigationLogData.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\IrrigationLogData.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -1330,6 +1395,16 @@
               <FileType>5</FileType>
               <FilePath>.\Valf.h</FilePath>
             </File>
+            <File>
+              <FileName>ValvesManager.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\ValvesManager.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>ValvesManager.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\ValvesManager.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -1364,6 +1439,31 @@
               <FileName>TestTimeListenerData.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\TestTimeListenerData.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>TestHelpers.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\TestHelpers.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>TestHelpers.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\TestHelpers.h</FilePath>
+            </File>
+            <File>
+              <FileName>TestSensors.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\TestSensors.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>TestValvesManager.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\TestValvesManager.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Tests.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Tests.h</FilePath>
             </File>
           </Files>
         </Group>
