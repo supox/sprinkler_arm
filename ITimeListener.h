@@ -4,5 +4,5 @@ class ITimeListener
 {
 public:
 	virtual ~ITimeListener(){};
-	virtual void TimeNotification() = 0;
+	virtual void TimeNotification(unsigned int time) = 0;
 };

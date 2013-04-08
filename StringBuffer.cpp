@@ -10,6 +10,7 @@ StringBuffer::StringBuffer() :
 	memory(NULL), write_pos(0), read_pos(0)
 {
 	memory = (char*)malloc(1);
+	memory[0] = 0;
 }
 
 StringBuffer::~StringBuffer()

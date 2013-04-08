@@ -1,149 +1,258 @@
 #include "Communication.h"
 #include "CommunicationTimeouts.h"
 #include "TimeManager.h"
+#include "HttpParser.h"
+#include "GsmModem.h"
+#include "GsmStatusParser.h"
 
+#include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
 
+#define WEB_SERVER "tranquil-ravine-7080.herokuapp.com"
+
 namespace Communication
 {
+	using namespace GsmStates;
+
 	static bool send_command(const char* command);
+	static bool send_command_with_any_response(const char* command);
 	static bool send_command_with_response(const char* command, const char* response);
-	static bool send_part_of_command(const char* command);
 	static bool wait_for_response(const char* response, size_t timeout);
 	static bool wait_for_any_response(size_t timeout_ms);
+	static bool gsm_send_post_data(const char* server, const char* url, StringBuffer& request, StringBuffer& response, bool post);
 
-	static void send_headers(const char *server, const char* url, const size_t data_size); 
-	static bool wait_for_headers_ready(size_t timeout_ms);
 	static bool gsm_init();
-	static void gsm_hw_send_byte(const char ch);
-	static bool gsm_hw_has_pending_byte();
-	static char* gsm_hw_get_line();
-	static void gsm_hw_init();
-	static bool gsm_hw_has_init = false;	
-	static bool gsm_has_init = false;
+	static bool setup_gprs();
+	static bool send_request(const char* server, const char* url, StringBuffer& request, bool post);
+	static bool read_response(StringBuffer& response);
+	static bool send_server_address(const char *server);
+	static void send_headers(const char *server, const char* url, const size_t data_size = 0, bool post = false); 
+	static bool wait_for_headers_ready(size_t timeout_ms);
+	static bool gsm_shut_down_gprs();
+	static GsmStates::eGsmState get_current_gsm_state();
+	
+	static GsmModem& modem = GsmModem::GetModem();
 
-	
-	#define STR0 "{\"id\":1,\"identifier\":\"12345\",\"machine_version\":\"1.0\",\"mac_address\":\"FF:FF:FF:FF:FF:FF\",\"refresh_rate_seconds\":3600,\"latitude\":0,\"longitude\":null,\"created_at\":\"2012-11-09 17:34:39\",\"updated_at\":\"2012-11-09 17:34:39\",\"main_valve_timing\":\"simultaneous\",\"main_valve_delay\":0,\"main_valf\":0}"
-	#define STR1 "{\"sensors\":[{\"id\":1,\"port_index\":0, \"type\":\"water_meter\"},{\"id\":2,\"port_index\":1,\"type\":\"water_meter\"}],\"alarms\":[{\"port_index\":1,\"alarm_value\":5.0,\"condition_type\":\"greater_than\"}]}\n"
-	#define STR2 "[{\"id\":4,\"port_index\":3},{\"id\":5,\"port_index\":4}]\n"
-	#define STR3 "[{\"start_time\":1350339360,\"valf_id\":4,\"irrigation_mode\":\"time\",\"amount\":2},{\"start_time\":1350339360,\"valf_id\":5,\"irrigation_mode\":\"time\",\"amount\":4},{\"start_time\":1350944160,\"valf_id\":4,\"irrigation_mode\":\"time\",\"amount\":2},{\"start_time\":1350944160,\"valf_id\":5,\"irrigation_mode\":\"volume\",\"amount\":4}]\n\n"
-	#define STR4 "{\"time\":1350339320}\n\n"
-	
 	bool GetWebPage(const char* url, StringBuffer& sb)
 	{
-		static int state = 0;
-		switch(state)
-		{
-			case 0:
-				sb.Write(STR0, sizeof(STR0));
-				break;
-			case 1:
-				// Sensors
-				sb.Write(STR1, sizeof(STR1));
-				break;
-			case 2:
-				// Valves
-				sb.Write(STR2, sizeof(STR2));
-				break;
-			case 3: // Irrigations
-				sb.Write(STR3, sizeof(STR3));
-				break;
-			case 4: // Irrigations
-				sb.Write(STR4, sizeof(STR4));
-				break;
-			default:
-				return false;
-		}
-		state++;
-		return true;
+		StringBuffer request;
+		return gsm_send_post_data(WEB_SERVER, url, request, sb, false);
 	}
 	
 	bool PostWebPage(const char* url, StringBuffer& request, StringBuffer& response)
 	{
-		return false;
+		return gsm_send_post_data(WEB_SERVER, url, request, response, true);
 	}
 	
-	bool gsm_send_post_data(const char* server, const char* url, StringBuffer& request, StringBuffer& response) {
-		bool ret = false;
-
-		if(!gsm_has_init && !gsm_init() )
-			return false;
-
-		if(!send_command_with_response("AT+CGATT=1","OK"))
-			return false;
-
-		if(!send_command_with_response("AT+CIICR","OK"))
-			return false;
-		if(!send_command("AT+CIFSR"))
-			return false;
-		if(!send_command_with_response("AT+CDNSORIP=1","OK"))
-			return false;
-
-		send_part_of_command("AT+CIPSTART=\"TCP\",\"");
-		send_part_of_command( server );
-		if(!send_command_with_response("\",\"80\"", "OK"))
-			return false;
-		if(!wait_for_response("CONNECT OK", CONNECTION_TIME_OUT))
-			return false;
-
-		send_part_of_command("AT+CIPSEND\r\n");
-		if(!wait_for_headers_ready(CONNECTION_TIME_OUT))// Wait for ">"
-			return false;
-		send_headers(server, url, request.GetBufferSize());
-		send_command(request.GetBuffer());
-		gsm_hw_send_byte(26);
-
-		if(!wait_for_response("SEND OK", CONNECTION_TIME_OUT)) // Wait for "SEND OK"
-			return false;
-
-		int t0 = TimeManager::GetSystemTime();
-		do
-		{
-		}
-		while(TimeManager::GetSystemTime() - t0 < TRANSFER_TIME_OUT);
+	// Main communication flow
+	bool gsm_send_post_data(const char* server, const char* url, StringBuffer& request, StringBuffer& response, bool post) {
+		send_command("\r\n\r\n"); // Clear old commands from modem's buffer
 		
-		for(int tries = 0 ; tries < 4 ; tries++) {
-			if(wait_for_response("{\"result\": \"OK\"}", CONNECTION_TIME_OUT)) {
-				ret = true;
+		GsmStates::eGsmState state = get_current_gsm_state();
+		switch(state)
+		{
+			default:
+				if( !gsm_init() )
+					return false;
 				break;
-			}
+			case IP_START:
+			case IP_CONFIG:
+			case IP_STATUS:
+			case IP_CLOSE:
+				// No need to init
+				break;
 		}
 
-		send_command("AT+CIPCLOSE");
-		send_command("AT+CIPSHUT");
+		state = get_current_gsm_state();
+		switch(state)
+		{
+			default:
+				if( !setup_gprs() )
+					return false;
+					break;
+			case IP_CONFIG:
+			case IP_STATUS:
+			// case IP_CLOSE:
+				// No need to setup gprs.
+			break;
+		}		
+		
+		if(!send_request(server, url, request, post))
+			return false;
+		
+		bool ret = read_response(response);
+		
+		// close data
+		if(get_current_gsm_state() != GsmStates::IP_CLOSE)
+			send_command_with_response("AT+CIPCLOSE", "CLOSE OK");
+		
+		modem.ClearBuffer();
+
 		return ret;
 	}
 
-	void send_headers(const char *server, const char* url, const size_t data_size)
+	bool setup_gprs()
 	{
-		char length_str[10];
-		snprintf(length_str, 10, "%d", data_size);
-		send_part_of_command("POST ");
-		send_part_of_command( url );
-		send_part_of_command( " HTTP/1.1\r\nContent-Type: application/json\r\nAccept: application/json\r\nHost: " );
-		send_part_of_command( server );
-		send_part_of_command( "\r\nContent-Length: ");
-		send_part_of_command( length_str );
-		send_part_of_command("\r\nConnection: Close\r\n\r\n");
+		// TODO - AT+CSQ, AT+CREG?, AT+CGATT?, 
+		GsmStates::eGsmState state = get_current_gsm_state();
+		if(state == GsmStates::IP_START ) {
+			if(!send_command_with_response("AT+CIICR","OK"))
+				return false;
+		}
+		if(!send_command_with_any_response("AT+CIFSR"))
+			return false;
+		if(!send_command_with_response("AT+CDNSORIP=1","OK"))
+			return false;
+		
+		return true;
+	}
+	
+	bool send_request(const char* server, const char* url, StringBuffer& request, bool post)
+	{
+		// Make sure modem is in the right state
+		switch(get_current_gsm_state())
+		{
+			case GsmStates::IP_STATUS :
+			case GsmStates::IP_CLOSE :
+				break;
+			default:
+				return false;
+		}
+		
+		if(!send_server_address(server))
+			return false;
+		
+		if(!wait_for_response("CONNECT OK", CONNECTION_TIME_OUT))
+			return false;
+
+		send_command("AT+CIPSEND");
+		if(!wait_for_headers_ready(CONNECTION_TIME_OUT))// Wait for ">"
+			return false;
+		send_headers(server, url, request.GetBufferSize(), post);
+		send_command(request.GetBuffer());
+		modem.Write(26);
+
+		if(!wait_for_response("SEND OK", CONNECTION_TIME_OUT)) // Wait for "SEND OK"
+			return false;
+		
+		return true;
+	}
+	
+	bool read_response(StringBuffer& response)
+	{
+		// Read response:
+		const int t0 = TimeManager::GetSystemTime();
+		HttpParser httpParser(response);
+		HttpParser::ReturnCodes returnCode = HttpParser::ePending;
+
+		// read previously buffered bytes
+		while(modem.ReadBuffer.NumberOfAvailableBytes)
+			httpParser.Write((char*)TextBufferGetChar(&modem.ReadBuffer), 1);
+		TextBufferClear(&modem.ReadBuffer);
+
+		// poll bytes
+		do
+		{
+			if(modem.ReadBytesFromModem()) {
+				httpParser.Write((char*)modem.ReadBuffer.ReadingPosition, modem.ReadBuffer.NumberOfAvailableBytes);
+				TextBufferClear(&modem.ReadBuffer);
+			}
+			else {
+				returnCode = httpParser.Parse();
+			}
+			if(returnCode == HttpParser::ePending)
+				TimeManager::DelayMs(100);
+		}
+		while( returnCode == HttpParser::ePending && TimeManager::GetSystemTime() - t0 < TRANSFER_TIME_OUT);
+
+		return ( returnCode == HttpParser::eOk );
+	}
+	
+	#define SERVER_ADDRESS_PREFIX "AT+CIPSTART=\"TCP\",\""
+	#define SERVER_ADDRESS_POSTFIX "\",\"80\""
+	bool send_server_address(const char* server)
+	{
+		const size_t command_size = sizeof(SERVER_ADDRESS_PREFIX)-1 + sizeof(SERVER_ADDRESS_POSTFIX)-1 + strlen(server) + 1;
+		char* command = (char*)malloc(command_size);
+		if(!command)
+			return false;
+		
+		strcpy(command, SERVER_ADDRESS_PREFIX);
+		strcat(command, server);
+		strcat(command, SERVER_ADDRESS_POSTFIX);
+		
+		bool ret = send_command_with_response(command, "OK");
+		
+		free(command);
+		return ret;
+	}
+	
+	void send_headers(const char *server, const char* url, const size_t data_size /* = 0 */, bool post /* = false */)
+	{
+		if(post)
+			modem.Write("POST ");
+		else
+			modem.Write("GET ");
+		modem.Write( url );
+		modem.Write( " HTTP/1.1\r\nContent-Type: application/json\r\nAccept: application/json\r\nHost: " );
+		modem.Write( server );
+		modem.Write( "\r\n" );
+		if(post) {
+			char length_str[10];
+			snprintf(length_str, 10, "%d", data_size);
+			modem.Write( "Content-Length: ");
+			modem.Write( length_str );
+			modem.Write( "\r\n" );
+		}
+		modem.Write("Connection: Close\r\n\r\n");
 	}
 	
 	bool gsm_shut_down_gprs(void) {
-		return send_command("at+cipshut");
+		return send_command_with_response("AT+CIPSHUT", "SHUT OK");
 	}
 
+	GsmStates::eGsmState get_current_gsm_state()
+	{
+		if(!send_command("AT+CIPSTATUS"))
+			return GsmStates::ERROR;
+
+		char *line;
+		for(int ntries=8; ntries ; ntries--) {
+			line = modem.ReadLine(DEFAULT_TIME_OUT);
+			if(!line) // timeout
+				break;
+			
+			if(strcmp(line,"ERROR") == 0)
+				break;
+			
+			GsmStates::eGsmState state = ParseGsmState(line);
+			if(state != GsmStates::UNKNOWN)
+				return state;
+		}
+		
+		return GsmStates::UNKNOWN;
+	}
+	
 	bool send_command(const char* command)
 	{
-		send_part_of_command(command);
-		send_part_of_command("\r\n");
+		modem.ClearBuffer();
+
+		modem.Write(command);
+		modem.Write("\r\n");
+		TimeManager::DelayMs(COMMAND_WAIT_TIME_MS);
+		return true;
+	}
+
+	bool send_command_with_any_response(const char* command)
+	{
+		send_command(command);
 		return wait_for_any_response(DEFAULT_TIME_OUT);
 	}
 
 	bool send_command_with_response(const char* command, const char* response)
 	{
-		send_part_of_command(command);
-		send_part_of_command("\r\n");
-
+		send_command(command);
 		return wait_for_response(response, DEFAULT_TIME_OUT);
 	}
 
@@ -151,35 +260,27 @@ namespace Communication
 		int t0 = TimeManager::GetSystemTime();
 		do
 		{
-			if(gsm_hw_has_pending_byte())
-				return true;
+			if(modem.ReadBytesFromModem()) {
+				while(modem.ReadBuffer.NumberOfAvailableBytes != 0) {
+					if(TextBufferGetChar(&modem.ReadBuffer) == '>')
+						return true;
+				}
+			}
+			TimeManager::DelayMs(50);
 		}
 		while(TimeManager::GetSystemTime() - t0 < timeout);
 		return false;
 	}
 
-	char* wait_for_new_line(size_t timeout) {
-		char* response;
-		int t0 = TimeManager::GetSystemTime();
-		do
-		{
-			response = gsm_hw_get_line();
-			if(response)
-				return response;
-		}
-		while(TimeManager::GetSystemTime() - t0 < timeout);
-		return NULL;
-	}
-
 	bool wait_for_any_response(size_t timeout) {
-		return wait_for_new_line(timeout) != 0;
+		return modem.ReadLine(timeout) != 0;
 	}
 
 	bool wait_for_response(const char* response, size_t timeout) {
 		int ntries;
 		char *p;
 		for(ntries=8; ntries ; ntries--) {
-			p = wait_for_new_line(timeout);
+			p = modem.ReadLine(timeout);
 			if(!p) {
 				return false;	/* terminate because of timeout */
 			}
@@ -193,63 +294,45 @@ namespace Communication
 		return false;
 	}
 
-	bool send_part_of_command(const char* command)
-	{
-		// TODO...
-		printf("%s",command);
-		return true;
-	}
-
 	bool gsm_init()
 	{
-		if(!gsm_hw_has_init)
-		{
-			gsm_hw_init();
-			// Disable echo
-			if(!send_command_with_response("ATE0\r\n", "OK"))
-				return false;
-			gsm_hw_has_init = true;
-		}
+		if(!modem.Init())
+			return false;
 
+		// Clear line, etc.
+		modem.Write("\r\n\r\n");
+		// reset profile
+		if(!send_command_with_response("ATZ", "OK"))
+		{
+			// try to reset send state.
+			modem.Write(26);
+			TimeManager::DelayMs(400);
+			modem.Write("\r\n\r\n");
+			
+			TimeManager::DelayMs(400);
+			gsm_shut_down_gprs();
+			TimeManager::DelayMs(400);
+
+			if(!send_command_with_response("ATZ", "OK"))
+				return false;
+		}
+		// Disable echo
+		if(!send_command_with_response("ATE0", "OK"))
+			return false;
+		
+		if(get_current_gsm_state() != GsmStates::IP_INITIAL) {
+			send_command_with_response("AT+CIPSHUT","SHUT OK");
+			TimeManager::DelayMs(400);			
+		}
+		
 		if(!send_command_with_response("AT+CGATT=1","OK"))
 			return false;
 		if(!send_command_with_response("AT+CGDCONT=1,\"IP\",\"uinternet\"","OK"))
 			return false;
 		if(!send_command_with_response("AT+CDNSCFG=\"192.118.8.82\",\"192.118.8.83\"","OK"))
+			return false;		
+		if(!send_command_with_response("AT+CSTT=\"uinternet\",\"orange\",\"orange\"","OK")) // AT+CSTT="uinternet","orange","orange"
 			return false;
-		if(!send_command_with_response("AT+CSTT=\"uinternet\",\"orange\",\"orange\"","OK"))
-			return false;
-		gsm_has_init = true;
 		return true;
-	}
-		
-	void gsm_hw_send_byte(const char ch)
-	{
-		// TODO...
-	}
-
-	bool gsm_hw_has_pending_byte()
-	{
-		// TODO
-		return true;
-	}
-	
-	char* gsm_hw_get_line()
-	{
-		// TODO
-		return NULL;
-	}
-	void gsm_hw_init()
-	{
-		// TODO...
-	}
-	
-	
+	}	
 };
-
-extern "C" {
-	void USART3_IRQHandler()
-	{
-			// TODO - handle interrupt
-	}
-}

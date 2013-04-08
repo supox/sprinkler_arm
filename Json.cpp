@@ -2,13 +2,14 @@
 #include "Json.h"
 #include "Logger.h"
 #include "SensorFactory.h"
+
 #include <stdio.h>
 #include <string.h>
 
 #define SENSORS_TAG             "sensors"
 #define ID_TAG                  "id"
 #define ALARM_TAG               "alarms"
-#define TIME_TAG               	"time"
+#define TIME_TAG               	"Time"
 #define PORT_INDEX_TAG          "port_index"
 #define ALARM_VALUE_TAG         "alarm_value"
 #define CONDITION_TYPE_TAG      "condition_type"
@@ -124,7 +125,7 @@ namespace JSON
 
     // Parse json string
     if (parser.Parse(json_buffer, tokens) != JSON::JSMN_SUCCESS) {
-        Logger::AddLine("json_parse_sprinkler_configuration: Could not parse json.", Logger::ERROR);
+        Logger::AddLine("json_parse_sprinkler_nfiguration: Could not parse json.", Logger::ERROR);
         return false;
     }
     
@@ -148,11 +149,13 @@ namespace JSON
             }
         } else if (TOKEN_STRING(json_buffer, *current_token, MAIN_VALF_DELAY_TAG)) { // Port index tag
             if (!token_to_int(json_buffer, (current_token+1), sprinkler.main_valf_delay)) {
-                return false;
+                // return false;
+							sprinkler.main_valf_delay = 0;
             }
         } else if (TOKEN_STRING(json_buffer, *current_token, MAIN_VALF_TAG)) { // Port index tag
             if (!token_to_int(json_buffer, (current_token+1), sprinkler.main_valf)) {
-                return false;
+                // return false;
+							sprinkler.main_valf = -1;
             }
         } // else - ignore this key.
         current_token_index += 2;
@@ -279,7 +282,7 @@ namespace JSON
 			// expected json : [{"start_time":1350339360,"valf_id":4,"irrigation_mode":"time","amount":2}]
 			current_token = &tokens[0];
 			number_of_tokens = current_token->size;
-			if (number_of_tokens <= 0 || current_token->type != JSMN_ARRAY) {
+			if (current_token->type != JSMN_ARRAY) {
 					Logger::AddLine("json_parse_irrigations: Could not parse json.", Logger::ERROR);
 					return false;
 			}
@@ -291,7 +294,7 @@ namespace JSON
 			for (irrigation_index = 0 ; irrigation_index < number_of_tokens; irrigation_index++) {
 					const int next_irrigation_token_index = current_token_index+current_token->size;
 					int number_of_processed_tokens = 0;
-					int start_time=0;
+					size_t start_time=0;
 					int valf_id=-1;
 					Irrigation::IrrigationModes mode = Irrigation::TIME;
 					size_t amount = 0;
@@ -312,9 +315,9 @@ namespace JSON
 							}
 
 							if ((current_token+1)->type == JSMN_PRIMITIVE) {
-									int value;
+									size_t value;
 									// Read the value
-									if (!token_to_int(json_buffer, current_token+1, value)) { // Error
+									if (!token_to_uint(json_buffer, current_token+1, value)) { // Error
 											current_token_index = next_object_token;
 											current_token = &tokens[current_token_index];
 											continue;
@@ -324,7 +327,7 @@ namespace JSON
 											start_time = value;
 											number_of_processed_tokens++;
 									} else if (TOKEN_STRING(json_buffer, *current_token, VALF_ID_TAG)) {
-											valf_id = value;
+											valf_id = (int)value;
 											number_of_processed_tokens++;
 									} else if (TOKEN_STRING(json_buffer, *current_token, AMOUNT_TAG)) {
 											amount = value;
@@ -433,7 +436,7 @@ namespace JSON
 					}
 
 					if (id >= 0 && port_index >= 0) { // Add sensor
-							SensorPtr sensor(SensorFactory::CreateSensor(mode)); // TODO - add type.
+							SensorPtr sensor(SensorFactory::CreateSensor(mode));
 							sensor->id = id;
 							sensor->port_index = port_index;
 							sensors.Add(sensor);
@@ -541,7 +544,7 @@ namespace JSON
 			return true;
 	}
 
-	bool parse_time(const char* json_buffer, int &time)
+	bool parse_time(const char* json_buffer, unsigned int &time)
 	{
     int current_token_index;
     Vector<jsmntok_t> tokens;
@@ -568,7 +571,7 @@ namespace JSON
 		{
         // Lets find out what to do with the key-
         if (TOKEN_STRING(json_buffer, *current_token, TIME_TAG)) { // Id tag
-            if (!token_to_int(json_buffer, (current_token+1), time)) {
+            if (!token_to_uint(json_buffer, (current_token+1), time)) {
                 return true;
             }
         } // else - ignore this key.

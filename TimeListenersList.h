@@ -5,12 +5,12 @@
 class TimeListenerData
 {
 public:
-	TimeListenerData(const int _Time, ITimeListener* _listener) 
+	TimeListenerData(const unsigned int _Time, ITimeListener* _listener) 
 		: Time(_Time), listener(_listener), Next(NULL)
 	{
 	}
 	
-	int Time;
+	unsigned int Time;
 	ITimeListener* listener;
 	TimeListenerData* Next;
 };

@@ -8,18 +8,21 @@ public:
 	static TimeManager* GetTimeManager();
 	~TimeManager();
 	
-	static void SetSystemTime(const int CurrentTime);
-	static int GetSystemTime();
+	static void SetSystemTime(const unsigned int CurrentTime);
+	static unsigned int GetSystemTime();
 
-	static void NotifyAt(ITimeListener* listener, const int Time);
+	static void NotifyAt(ITimeListener* listener, const unsigned int Time);
 	static void RemoveNotifications(ITimeListener* listener);
-	static void NotifyListeners();
+
+	static void DelayMs(size_t ms);
 
 private:
 	TimeManager(); // Singelton
+	static void UpdateNextAlarmTime();
+	static void NotifyListeners();
+
 	static TimeManager* Instance;
 
-	static int m_CurrentTime;
 	static TimeListenersList m_Listeners;
 
 };

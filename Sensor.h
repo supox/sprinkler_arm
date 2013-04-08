@@ -17,7 +17,7 @@ public:
 	bool ReportReadings();
 	void SetListener(ISensorListener* listener){m_listener = listener;}
 
-	virtual void TimeNotification(); // Reading cycle - the sensor read itself every minute
+	virtual void TimeNotification(unsigned int time); // Reading cycle - the sensor read itself every minute
 
 	double GetLastReadingValue(){return last_reading_value;}
 	int id;

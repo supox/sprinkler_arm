@@ -17,7 +17,7 @@ public:
 	Irrigation& operator = (const Irrigation& other);
 	bool operator == (const Irrigation& other);
 
-	int start_time;
+	size_t start_time;
 	int valf_id;
 	IrrigationModes mode;
 	size_t amount;

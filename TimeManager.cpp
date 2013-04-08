@@ -1,24 +1,19 @@
 #include "TimeManager.h"
 #include "STM32F10x.h"
+#include "rtc_handler.h"
 
-/*----------------------------------------------------------------------------
-  Systick Interrupt Handler
-  SysTick interrupt happens every 100 ms
- *----------------------------------------------------------------------------*/
+static volatile unsigned int s_current_tick_counter = 0;
 extern "C"
 {
 	void SysTick_Handler (void) {
-		static unsigned char ticks = 0;
-		ticks++;
-		if(ticks == 10) {
-			ticks=0;
-			TimeManager::NotifyListeners();
+		s_current_tick_counter++;
+		if(s_current_tick_counter == 1000) {
+			s_current_tick_counter=0;
 		}
 	}
 }
 
 // Static memebers
-int TimeManager::m_CurrentTime = 0;
 TimeListenersList TimeManager::m_Listeners;
 
 // Singelton
@@ -29,57 +24,77 @@ TimeManager* TimeManager::GetTimeManager()
 }
 
 TimeManager::TimeManager()
-{
-	if(SysTick_Config(SystemCoreClock/10) != 0) // Generate interrupt each 100 ms 
-	{
-		// CONFIG ERROR
-		// printf("ERROR...");
-		while(1);
-	}
+{	
+	rtc_init();	
+	rtc_set_on_alarm_handler(TimeManager::NotifyListeners);
 }
 
 TimeManager::~TimeManager()
 {
 }
 	
-void TimeManager::SetSystemTime(const int CurrentTime)
+void TimeManager::SetSystemTime(const unsigned int CurrentTime)
 {
-	m_CurrentTime = CurrentTime;
+	rtc_set_time(CurrentTime);
 }
 
-int TimeManager::GetSystemTime()
+unsigned int TimeManager::GetSystemTime()
 {
-	return m_CurrentTime;
+	return rtc_get_time();
 }
 
-void TimeManager::NotifyAt(ITimeListener* listener, const int Time)
+void TimeManager::UpdateNextAlarmTime()
+{
+		TimeListenerData* nextListener = m_Listeners.GetFirst();
+		if(nextListener != NULL)
+		{
+			rtc_set_alarm(nextListener->Time);
+		}
+}
+
+void TimeManager::NotifyAt(ITimeListener* listener, const unsigned int Time)
 {
 	m_Listeners.Add(Time, listener);
+	UpdateNextAlarmTime();
 }
 
 void TimeManager::RemoveNotifications(ITimeListener* listener)
 {
 	m_Listeners.Remove(listener);
+	UpdateNextAlarmTime();
 }
 
 void TimeManager::NotifyListeners()
 {
-	m_CurrentTime++;
+	unsigned int current_time = GetSystemTime();
 
-	while(true)
+	TimeListenerData* nextListener = m_Listeners.GetFirst();
+	for( ; nextListener != NULL && nextListener->Time <= current_time ; nextListener = m_Listeners.GetFirst() )
 	{
-		TimeListenerData* nextListener = m_Listeners.GetFirst();
-		if(nextListener != NULL && nextListener->Time <= m_CurrentTime)
-		{
-			// Remove from list first, to avoid cases where the listener add itself again.
-			ITimeListener* listener = nextListener->listener;
-			m_Listeners.RemoveFirst();
-			
-			// Notify listener
-			if(listener != NULL)
-				listener->TimeNotification();
-		}
-		else
-			break;
+		// Remove from list first, to avoid cases where the listener add itself again.
+		ITimeListener* listener = nextListener->listener;
+		m_Listeners.RemoveFirst();
+		
+		// Notify listener
+		if(listener != NULL)
+			listener->TimeNotification(current_time);
 	}
+	
+	UpdateNextAlarmTime();
+}
+
+void TimeManager::DelayMs(size_t ms)
+{
+	SysTick_Config(SystemCoreClock/1000);
+	
+	while(ms)
+	{
+		volatile size_t last_tick_counter = s_current_tick_counter;
+		while(last_tick_counter == s_current_tick_counter);
+		ms--;
+	}		
+	
+	// Shut down clock:
+  SysTick->CTRL &= ~SysTick_CTRL_ENABLE_Msk;
+	
 }

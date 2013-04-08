@@ -11,12 +11,12 @@ public:
 	ValvesManager();
 	virtual ~ValvesManager();
 	
-	virtual void TimeNotification();
+	virtual void TimeNotification(unsigned int time);
 	void Update(Vector<ValfPtr>& valves, Vector<Irrigation> &irrigations);
 	bool ReportIrrigationLog(const char* url);
 
 private:
-	void UpdateValvesState();
+	void UpdateValvesState(const unsigned int time);
 	void BuildIrrigationLists();
 
 	Vector<ValfPtr>* m_valves;

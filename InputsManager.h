@@ -6,12 +6,13 @@
 class InputsManager
 {
 public:
-	InputsManager();
+	static InputsManager *GetInputsManager();	
 	~InputsManager();
 
-	static void AddInputListener(IInputListener* listener);
+	void AddInputListener(IInputListener* listener);
 	static void NotifyListeners(unsigned int input_index);
 
 private:
+	InputsManager(); // Singelton
 	static Vector<IInputListener*> m_listeners;
 };

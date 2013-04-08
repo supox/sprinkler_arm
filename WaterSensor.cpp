@@ -3,7 +3,7 @@
 
 WaterSensor::WaterSensor(ISensorListener* listener) : Sensor(listener)
 {
-	InputsManager::AddInputListener(this);
+	InputsManager::GetInputsManager()->AddInputListener(this);
 }
 
 WaterSensor::~WaterSensor()

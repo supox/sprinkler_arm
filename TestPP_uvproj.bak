@@ -43,14 +43,14 @@
             <NotGenerated>0</NotGenerated>
             <InvalidFlash>1</InvalidFlash>
           </TargetStatus>
-          <OutputDirectory>.\build\</OutputDirectory>
+          <OutputDirectory>.\build\device\</OutputDirectory>
           <OutputName>TestPP</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
           <CreateHexFile>0</CreateHexFile>
           <DebugInformation>1</DebugInformation>
           <BrowseInformation>1</BrowseInformation>
-          <ListingPath>.\build\</ListingPath>
+          <ListingPath>.\build\device\</ListingPath>
           <HexFormatSelection>1</HexFormatSelection>
           <Merge32K>0</Merge32K>
           <CreateBatchFile>0</CreateBatchFile>
@@ -348,9 +348,9 @@
             <uSurpInc>0</uSurpInc>
             <VariousControls>
               <MiscControls></MiscControls>
-              <Define>STM32F10X_MD</Define>
+              <Define>STM32F10X_MD USE_STDPERIPH_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath></IncludePath>
+              <IncludePath>.\STM32F10x_StdPeriph_Driver\inc</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -417,19 +417,19 @@
               <FilePath>.\LedsManager.cpp</FilePath>
             </File>
             <File>
-              <FileName>ButtonsManager.cpp</FileName>
+              <FileName>InputsManager.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>.\ButtonsManager.cpp</FilePath>
+              <FilePath>.\InputsManager.cpp</FilePath>
             </File>
             <File>
-              <FileName>ButtonsManager.h</FileName>
+              <FileName>InputsManager.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\ButtonsManager.h</FilePath>
+              <FilePath>.\InputsManager.h</FilePath>
             </File>
             <File>
-              <FileName>IButtonListener.h</FileName>
+              <FileName>IInputListener.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\IButtonListener.h</FilePath>
+              <FilePath>.\IInputListener.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -531,6 +531,21 @@
               <FileType>5</FileType>
               <FilePath>.\Irrigation.h</FilePath>
             </File>
+            <File>
+              <FileName>IrrigationList.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\IrrigationList.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>IrrigationList.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\IrrigationList.h</FilePath>
+            </File>
+            <File>
+              <FileName>IrrigationLogData.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\IrrigationLogData.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -626,6 +641,16 @@
               <FileType>5</FileType>
               <FilePath>.\Valf.h</FilePath>
             </File>
+            <File>
+              <FileName>ValvesManager.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\ValvesManager.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>ValvesManager.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\ValvesManager.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -640,6 +665,16 @@
               <FileName>StringBuffer.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\StringBuffer.h</FilePath>
+            </File>
+            <File>
+              <FileName>text_buffer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\text_buffer.c</FilePath>
+            </File>
+            <File>
+              <FileName>text_buffer.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\text_buffer.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -660,6 +695,46 @@
               <FileName>TestTimeListenerData.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\TestTimeListenerData.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>TestHelpers.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\TestHelpers.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>TestHelpers.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\TestHelpers.h</FilePath>
+            </File>
+            <File>
+              <FileName>TestSensors.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\TestSensors.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>TestValvesManager.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\TestValvesManager.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Tests.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Tests.h</FilePath>
+            </File>
+            <File>
+              <FileName>TestHTTPParser.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\TestHTTPParser.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>TestGsmModem.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\TestGsmModem.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>TestGsmStatusParser.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\TestGsmStatusParser.cpp</FilePath>
             </File>
           </Files>
         </Group>
@@ -691,6 +766,21 @@
               <FileType>5</FileType>
               <FilePath>.\ITimeListener.h</FilePath>
             </File>
+            <File>
+              <FileName>rtc_handler.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\rtc_handler.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>rtc_handler.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\rtc_handler.h</FilePath>
+            </File>
+            <File>
+              <FileName>TestRTC.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\TestRTC.cpp</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -705,6 +795,296 @@
               <FileName>Communication.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\Communication.h</FilePath>
+            </File>
+            <File>
+              <FileName>I2CRoutines.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\I2CRoutines.h</FilePath>
+            </File>
+            <File>
+              <FileName>I2CRoutines.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\I2CRoutines.c</FilePath>
+            </File>
+            <File>
+              <FileName>http_parser.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\http_parser.c</FilePath>
+            </File>
+            <File>
+              <FileName>http_parser.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\http_parser.h</FilePath>
+            </File>
+            <File>
+              <FileName>HttpParser.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\HttpParser.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>HttpParser.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\HttpParser.h</FilePath>
+            </File>
+            <File>
+              <FileName>GsmModem.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\GsmModem.h</FilePath>
+            </File>
+            <File>
+              <FileName>GsmModem.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\GsmModem.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>GsmStatusParser.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\GsmStatusParser.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>GsmStatusParser.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\GsmStatusParser.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Perp_Library</GroupName>
+          <Files>
+            <File>
+              <FileName>misc.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\STM32F10x_StdPeriph_Driver\inc\misc.h</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_adc.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\STM32F10x_StdPeriph_Driver\inc\stm32f10x_adc.h</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_bkp.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\STM32F10x_StdPeriph_Driver\inc\stm32f10x_bkp.h</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_can.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\STM32F10x_StdPeriph_Driver\inc\stm32f10x_can.h</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_cec.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\STM32F10x_StdPeriph_Driver\inc\stm32f10x_cec.h</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_conf.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\STM32F10x_StdPeriph_Driver\inc\stm32f10x_conf.h</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_crc.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\STM32F10x_StdPeriph_Driver\inc\stm32f10x_crc.h</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_dac.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\STM32F10x_StdPeriph_Driver\inc\stm32f10x_dac.h</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_dbgmcu.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\STM32F10x_StdPeriph_Driver\inc\stm32f10x_dbgmcu.h</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_dma.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\STM32F10x_StdPeriph_Driver\inc\stm32f10x_dma.h</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_exti.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\STM32F10x_StdPeriph_Driver\inc\stm32f10x_exti.h</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_flash.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\STM32F10x_StdPeriph_Driver\inc\stm32f10x_flash.h</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_fsmc.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\STM32F10x_StdPeriph_Driver\inc\stm32f10x_fsmc.h</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_gpio.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\STM32F10x_StdPeriph_Driver\inc\stm32f10x_gpio.h</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_i2c.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\STM32F10x_StdPeriph_Driver\inc\stm32f10x_i2c.h</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_iwdg.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\STM32F10x_StdPeriph_Driver\inc\stm32f10x_iwdg.h</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_pwr.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\STM32F10x_StdPeriph_Driver\inc\stm32f10x_pwr.h</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_rcc.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\STM32F10x_StdPeriph_Driver\inc\stm32f10x_rcc.h</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_rtc.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\STM32F10x_StdPeriph_Driver\inc\stm32f10x_rtc.h</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_sdio.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\STM32F10x_StdPeriph_Driver\inc\stm32f10x_sdio.h</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_spi.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\STM32F10x_StdPeriph_Driver\inc\stm32f10x_spi.h</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_tim.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\STM32F10x_StdPeriph_Driver\inc\stm32f10x_tim.h</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_usart.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\STM32F10x_StdPeriph_Driver\inc\stm32f10x_usart.h</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_wwdg.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\STM32F10x_StdPeriph_Driver\inc\stm32f10x_wwdg.h</FilePath>
+            </File>
+            <File>
+              <FileName>misc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\STM32F10x_StdPeriph_Driver\src\misc.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_adc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\STM32F10x_StdPeriph_Driver\src\stm32f10x_adc.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_bkp.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\STM32F10x_StdPeriph_Driver\src\stm32f10x_bkp.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_can.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\STM32F10x_StdPeriph_Driver\src\stm32f10x_can.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_cec.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\STM32F10x_StdPeriph_Driver\src\stm32f10x_cec.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_crc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\STM32F10x_StdPeriph_Driver\src\stm32f10x_crc.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_dac.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\STM32F10x_StdPeriph_Driver\src\stm32f10x_dac.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_dbgmcu.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\STM32F10x_StdPeriph_Driver\src\stm32f10x_dbgmcu.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_dma.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\STM32F10x_StdPeriph_Driver\src\stm32f10x_dma.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_exti.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\STM32F10x_StdPeriph_Driver\src\stm32f10x_exti.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_flash.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\STM32F10x_StdPeriph_Driver\src\stm32f10x_flash.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_fsmc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\STM32F10x_StdPeriph_Driver\src\stm32f10x_fsmc.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_gpio.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\STM32F10x_StdPeriph_Driver\src\stm32f10x_gpio.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_i2c.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\STM32F10x_StdPeriph_Driver\src\stm32f10x_i2c.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_iwdg.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\STM32F10x_StdPeriph_Driver\src\stm32f10x_iwdg.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_pwr.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\STM32F10x_StdPeriph_Driver\src\stm32f10x_pwr.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_rcc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\STM32F10x_StdPeriph_Driver\src\stm32f10x_rcc.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_rtc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\STM32F10x_StdPeriph_Driver\src\stm32f10x_rtc.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_sdio.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\STM32F10x_StdPeriph_Driver\src\stm32f10x_sdio.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_spi.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\STM32F10x_StdPeriph_Driver\src\stm32f10x_spi.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_tim.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\STM32F10x_StdPeriph_Driver\src\stm32f10x_tim.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_usart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\STM32F10x_StdPeriph_Driver\src\stm32f10x_usart.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_wwdg.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\STM32F10x_StdPeriph_Driver\src\stm32f10x_wwdg.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -747,14 +1127,14 @@
             <NotGenerated>0</NotGenerated>
             <InvalidFlash>1</InvalidFlash>
           </TargetStatus>
-          <OutputDirectory>.\build\</OutputDirectory>
+          <OutputDirectory>.\build\simulator\</OutputDirectory>
           <OutputName>TestPP</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
           <CreateHexFile>0</CreateHexFile>
           <DebugInformation>1</DebugInformation>
           <BrowseInformation>1</BrowseInformation>
-          <ListingPath>.\build\</ListingPath>
+          <ListingPath>.\build\simulator\</ListingPath>
           <HexFormatSelection>1</HexFormatSelection>
           <Merge32K>0</Merge32K>
           <CreateBatchFile>0</CreateBatchFile>
@@ -849,7 +1229,7 @@
             <CpuDllArguments></CpuDllArguments>
             <PeripheralDll></PeripheralDll>
             <PeripheralDllArguments></PeripheralDllArguments>
-            <InitializationFile></InitializationFile>
+            <InitializationFile>.\GPIO_Simulator.ini</InitializationFile>
           </SimDlls>
           <TargetDlls>
             <CpuDll></CpuDll>
@@ -1052,9 +1432,9 @@
             <uSurpInc>0</uSurpInc>
             <VariousControls>
               <MiscControls></MiscControls>
-              <Define>STM32F10X_MD _SIMULATOR</Define>
+              <Define>STM32F10X_MD _SIMULATOR USE_STDPERIPH_DRIVER _TESTS</Define>
               <Undefine></Undefine>
-              <IncludePath></IncludePath>
+              <IncludePath>.\STM32F10x_StdPeriph_Driver\inc</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -1121,19 +1501,19 @@
               <FilePath>.\LedsManager.cpp</FilePath>
             </File>
             <File>
-              <FileName>ButtonsManager.cpp</FileName>
+              <FileName>InputsManager.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>.\ButtonsManager.cpp</FilePath>
+              <FilePath>.\InputsManager.cpp</FilePath>
             </File>
             <File>
-              <FileName>ButtonsManager.h</FileName>
+              <FileName>InputsManager.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\ButtonsManager.h</FilePath>
+              <FilePath>.\InputsManager.h</FilePath>
             </File>
             <File>
-              <FileName>IButtonListener.h</FileName>
+              <FileName>IInputListener.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\IButtonListener.h</FilePath>
+              <FilePath>.\IInputListener.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -1235,6 +1615,21 @@
               <FileType>5</FileType>
               <FilePath>.\Irrigation.h</FilePath>
             </File>
+            <File>
+              <FileName>IrrigationList.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\IrrigationList.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>IrrigationList.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\IrrigationList.h</FilePath>
+            </File>
+            <File>
+              <FileName>IrrigationLogData.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\IrrigationLogData.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -1330,6 +1725,16 @@
               <FileType>5</FileType>
               <FilePath>.\Valf.h</FilePath>
             </File>
+            <File>
+              <FileName>ValvesManager.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\ValvesManager.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>ValvesManager.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\ValvesManager.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -1344,6 +1749,16 @@
               <FileName>StringBuffer.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\StringBuffer.h</FilePath>
+            </File>
+            <File>
+              <FileName>text_buffer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\text_buffer.c</FilePath>
+            </File>
+            <File>
+              <FileName>text_buffer.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\text_buffer.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -1364,6 +1779,46 @@
               <FileName>TestTimeListenerData.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\TestTimeListenerData.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>TestHelpers.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\TestHelpers.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>TestHelpers.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\TestHelpers.h</FilePath>
+            </File>
+            <File>
+              <FileName>TestSensors.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\TestSensors.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>TestValvesManager.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\TestValvesManager.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Tests.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Tests.h</FilePath>
+            </File>
+            <File>
+              <FileName>TestHTTPParser.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\TestHTTPParser.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>TestGsmModem.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\TestGsmModem.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>TestGsmStatusParser.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\TestGsmStatusParser.cpp</FilePath>
             </File>
           </Files>
         </Group>
@@ -1395,6 +1850,21 @@
               <FileType>5</FileType>
               <FilePath>.\ITimeListener.h</FilePath>
             </File>
+            <File>
+              <FileName>rtc_handler.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\rtc_handler.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>rtc_handler.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\rtc_handler.h</FilePath>
+            </File>
+            <File>
+              <FileName>TestRTC.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\TestRTC.cpp</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -1409,6 +1879,296 @@
               <FileName>Communication.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\Communication.h</FilePath>
+            </File>
+            <File>
+              <FileName>I2CRoutines.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\I2CRoutines.h</FilePath>
+            </File>
+            <File>
+              <FileName>I2CRoutines.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\I2CRoutines.c</FilePath>
+            </File>
+            <File>
+              <FileName>http_parser.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\http_parser.c</FilePath>
+            </File>
+            <File>
+              <FileName>http_parser.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\http_parser.h</FilePath>
+            </File>
+            <File>
+              <FileName>HttpParser.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\HttpParser.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>HttpParser.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\HttpParser.h</FilePath>
+            </File>
+            <File>
+              <FileName>GsmModem.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\GsmModem.h</FilePath>
+            </File>
+            <File>
+              <FileName>GsmModem.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\GsmModem.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>GsmStatusParser.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\GsmStatusParser.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>GsmStatusParser.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\GsmStatusParser.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Perp_Library</GroupName>
+          <Files>
+            <File>
+              <FileName>misc.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\STM32F10x_StdPeriph_Driver\inc\misc.h</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_adc.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\STM32F10x_StdPeriph_Driver\inc\stm32f10x_adc.h</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_bkp.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\STM32F10x_StdPeriph_Driver\inc\stm32f10x_bkp.h</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_can.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\STM32F10x_StdPeriph_Driver\inc\stm32f10x_can.h</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_cec.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\STM32F10x_StdPeriph_Driver\inc\stm32f10x_cec.h</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_conf.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\STM32F10x_StdPeriph_Driver\inc\stm32f10x_conf.h</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_crc.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\STM32F10x_StdPeriph_Driver\inc\stm32f10x_crc.h</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_dac.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\STM32F10x_StdPeriph_Driver\inc\stm32f10x_dac.h</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_dbgmcu.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\STM32F10x_StdPeriph_Driver\inc\stm32f10x_dbgmcu.h</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_dma.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\STM32F10x_StdPeriph_Driver\inc\stm32f10x_dma.h</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_exti.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\STM32F10x_StdPeriph_Driver\inc\stm32f10x_exti.h</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_flash.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\STM32F10x_StdPeriph_Driver\inc\stm32f10x_flash.h</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_fsmc.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\STM32F10x_StdPeriph_Driver\inc\stm32f10x_fsmc.h</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_gpio.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\STM32F10x_StdPeriph_Driver\inc\stm32f10x_gpio.h</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_i2c.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\STM32F10x_StdPeriph_Driver\inc\stm32f10x_i2c.h</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_iwdg.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\STM32F10x_StdPeriph_Driver\inc\stm32f10x_iwdg.h</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_pwr.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\STM32F10x_StdPeriph_Driver\inc\stm32f10x_pwr.h</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_rcc.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\STM32F10x_StdPeriph_Driver\inc\stm32f10x_rcc.h</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_rtc.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\STM32F10x_StdPeriph_Driver\inc\stm32f10x_rtc.h</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_sdio.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\STM32F10x_StdPeriph_Driver\inc\stm32f10x_sdio.h</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_spi.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\STM32F10x_StdPeriph_Driver\inc\stm32f10x_spi.h</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_tim.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\STM32F10x_StdPeriph_Driver\inc\stm32f10x_tim.h</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_usart.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\STM32F10x_StdPeriph_Driver\inc\stm32f10x_usart.h</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_wwdg.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\STM32F10x_StdPeriph_Driver\inc\stm32f10x_wwdg.h</FilePath>
+            </File>
+            <File>
+              <FileName>misc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\STM32F10x_StdPeriph_Driver\src\misc.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_adc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\STM32F10x_StdPeriph_Driver\src\stm32f10x_adc.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_bkp.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\STM32F10x_StdPeriph_Driver\src\stm32f10x_bkp.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_can.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\STM32F10x_StdPeriph_Driver\src\stm32f10x_can.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_cec.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\STM32F10x_StdPeriph_Driver\src\stm32f10x_cec.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_crc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\STM32F10x_StdPeriph_Driver\src\stm32f10x_crc.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_dac.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\STM32F10x_StdPeriph_Driver\src\stm32f10x_dac.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_dbgmcu.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\STM32F10x_StdPeriph_Driver\src\stm32f10x_dbgmcu.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_dma.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\STM32F10x_StdPeriph_Driver\src\stm32f10x_dma.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_exti.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\STM32F10x_StdPeriph_Driver\src\stm32f10x_exti.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_flash.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\STM32F10x_StdPeriph_Driver\src\stm32f10x_flash.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_fsmc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\STM32F10x_StdPeriph_Driver\src\stm32f10x_fsmc.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_gpio.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\STM32F10x_StdPeriph_Driver\src\stm32f10x_gpio.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_i2c.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\STM32F10x_StdPeriph_Driver\src\stm32f10x_i2c.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_iwdg.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\STM32F10x_StdPeriph_Driver\src\stm32f10x_iwdg.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_pwr.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\STM32F10x_StdPeriph_Driver\src\stm32f10x_pwr.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_rcc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\STM32F10x_StdPeriph_Driver\src\stm32f10x_rcc.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_rtc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\STM32F10x_StdPeriph_Driver\src\stm32f10x_rtc.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_sdio.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\STM32F10x_StdPeriph_Driver\src\stm32f10x_sdio.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_spi.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\STM32F10x_StdPeriph_Driver\src\stm32f10x_spi.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_tim.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\STM32F10x_StdPeriph_Driver\src\stm32f10x_tim.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_usart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\STM32F10x_StdPeriph_Driver\src\stm32f10x_usart.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_wwdg.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\STM32F10x_StdPeriph_Driver\src\stm32f10x_wwdg.c</FilePath>
             </File>
           </Files>
         </Group>

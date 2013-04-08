@@ -3,22 +3,22 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "StringBuffer.h"
-#include "Vector.h"
+#include "Json.h"
 #include "JsonParser.h"
-#include "Sprinkler.h"
-#include "Valf.h"
-#include "SensorFactory.h"
+#include "TestHelpers.h"
+
+using namespace TestHelpers;
+
+void TestJsonTime()
+{
+	int time=0;
+	bool ret = JSON::parse_time("{\"Time\":1364825982}", time);
+	assert(ret);
+	assert(time==1364825982);
+}
 
 void TestJson()
-{	
-	StringBuffer sb;
-	Valf v(0,0);
-	
-	Sensor* sensor = SensorFactory::CreateSensor(WATER_READER);
-	delete(sensor);
-	
-	Sprinkler s;
+{
 	Vector<JSON::jsmntok_t> tokens;
 	JSON::Parser parser;
 	int jsmn_ret = parser.Parse(

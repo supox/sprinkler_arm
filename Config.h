@@ -12,7 +12,7 @@
 #define LOGGER_DUMP_MODE_DEFAULT true
 
 // URLS and server
-#define SERVER_URL "http://localhost:3000/"
+#define SERVER_URL "/"
 #define TIME_URL SERVER_URL "time"
 #define SPRINKLER_URL SERVER_URL "sprinklers/1/"
 #define SPRINKLER_CONFIGURATION_URL SPRINKLER_URL  "configuration/"

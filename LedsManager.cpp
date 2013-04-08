@@ -1,14 +1,20 @@
 #include "LedsManager.h"
 #include "STM32F10x.h"
 
+LedsManager* LedsManager::GetLedsManager()
+{
+	static LedsManager* s_instance = new LedsManager();
+	return s_instance;
+}
+
 LedsManager::LedsManager() : m_iNumberOfLeds(2)
 {
 	// Turn on IO Port B
 	RCC->APB2ENR |= RCC_APB2ENR_IOPBEN;
 
 	//set PB08-PB09 ports as output
-	GPIOB->CRH		&= ~0x000000FF;               /* PB.8..9 clear                 */
-	GPIOB->CRH		|=  0x00000033;               /* PB.8..9 Output                */
+	GPIOB->CRH		&= ~0x000000FF;               // PB.8..9 clear
+	GPIOB->CRH		|=  0x00000033;               // PB.8..9 Output
 }
 
 LedsManager::~LedsManager()
@@ -39,7 +45,7 @@ bool LedsManager::GetLed(const size_t led_index)
 {
 	if(led_index < m_iNumberOfLeds) {
 		int mask = GetMask(led_index);
-		return ( GPIOB->ODR & mask ) != 0;
+		return ( GPIOB->ODR & mask ) == 0;
 	}
 	return false;
 }

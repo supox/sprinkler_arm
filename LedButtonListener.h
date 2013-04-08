@@ -8,9 +8,10 @@
 class LedButtonListener : public IInputListener, public ITimeListener
 {
 public:
-	LedButtonListener(LedsManager* manager, unsigned int ButtonIndex) :
-		m_manager(manager), m_ButtonIndex(ButtonIndex), m_bRunning(false)
+	LedButtonListener(LedsManager* manager, unsigned int ButtonIndex, unsigned int LedIndex) :
+		m_manager(manager), m_ButtonIndex(ButtonIndex), m_LedIndex(LedIndex), m_bRunning(false)
 	{
+		m_manager->SetLed(m_LedIndex, false);
 	}
 	
 	virtual ~LedButtonListener(){}
@@ -23,15 +24,15 @@ public:
 			return;
 		
 		// Turn led on for the next 3 seconds.
-		m_manager->SetLed(m_ButtonIndex, true);
+		m_manager->SetLed(m_LedIndex, true);
 		TimeManager *timeManager = TimeManager::GetTimeManager();
 		timeManager->NotifyAt(this, timeManager->GetSystemTime() + 3);
 		m_bRunning = true;
 	}
 	
-	virtual void TimeNotification()
+	virtual void TimeNotification(unsigned int time)
 	{
-		m_manager->SetLed(m_ButtonIndex, false);
+		m_manager->SetLed(m_LedIndex, false);
 		m_bRunning = false;
 	}
 	
@@ -39,5 +40,6 @@ public:
 private:
 	LedsManager* m_manager;
 	unsigned int m_ButtonIndex;
+	unsigned int m_LedIndex;
 	bool m_bRunning;
 };

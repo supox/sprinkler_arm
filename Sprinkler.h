@@ -12,18 +12,18 @@ public:
 	Sprinkler();
 	virtual ~Sprinkler();
 	
-	virtual void TimeNotification();
+	virtual void TimeNotification(unsigned int time);
 	virtual void OnAlarm(Sensor*);
 
 	int id;
 	unsigned int refresh_rate;
 	int main_valf_delay;
 	int main_valf;
-	int last_report_time;
-	int last_irrigation_load_time;
+	unsigned int last_report_time;
+	unsigned int last_irrigation_load_time;
 
 private:
-	int get_next_task_time();
+	unsigned int get_next_task_time();
 	bool needs_to_do_tasks();
 	void do_tasks();
 	bool needs_to_report_reading();

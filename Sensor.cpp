@@ -65,12 +65,12 @@ bool Sensor::OnRead(const double value)
 	return ret;
 }
 
-void Sensor::TimeNotification()
+void Sensor::TimeNotification(unsigned int time)
 {
 	ReadSensor();
 	
 	// Roll
-	TimeManager::NotifyAt(this, TimeManager::GetSystemTime() + report_reading_time_delta);
+	TimeManager::NotifyAt(this, time + report_reading_time_delta);
 }
 
 bool Sensor::AddReadingIfNeeded(const bool has_alarm)

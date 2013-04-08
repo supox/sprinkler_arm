@@ -1,4 +1,6 @@
 #ifdef _TESTS
+#include "TestHelpers.h"
+using namespace TestHelpers;
 
 #include "TimeListenersList.h"
 #include "TimeManager.h"
@@ -71,12 +73,10 @@ static void TestTimeManager()
 	MockTimeListener mockListener2;
 	
 	TimeManager *manager = TimeManager::GetTimeManager();
-	if(manager == NULL)
-		while(true);
+	assert(manager == NULL);
 	
 	manager->SetSystemTime(1000);
-	if(manager->GetSystemTime() != 1000)
-		while(true);
+	assert(manager->GetSystemTime() == 1000);
 	
 	manager->NotifyAt(&mockListener1, 1005);
 	manager->NotifyAt(&mockListener2, 1010);

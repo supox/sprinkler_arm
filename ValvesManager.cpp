@@ -17,9 +17,9 @@ ValvesManager::~ValvesManager()
 {
 }
 	
-void ValvesManager::TimeNotification()
+void ValvesManager::TimeNotification(unsigned int time)
 {
-	UpdateValvesState();
+	UpdateValvesState(time);
 }
 
 void ValvesManager::Update(Vector<ValfPtr>& valves, Vector<Irrigation> &irrigations)
@@ -32,7 +32,7 @@ void ValvesManager::Update(Vector<ValfPtr>& valves, Vector<Irrigation> &irrigati
 	TimeManager::RemoveNotifications(this);
 	
 	// recompute valves state
-	UpdateValvesState();
+	UpdateValvesState(TimeManager::GetSystemTime());
 }
 
 void ValvesManager::BuildIrrigationLists()
@@ -56,9 +56,8 @@ void ValvesManager::BuildIrrigationLists()
 	}
 }
 
-void ValvesManager::UpdateValvesState()
+void ValvesManager::UpdateValvesState(const unsigned int current_time)
 {
-	const int current_time = TimeManager::GetSystemTime();
 	const unsigned int number_of_valves = m_valves->size();
 	
 	int next_notification_time = -1;
@@ -87,8 +86,8 @@ void ValvesManager::UpdateValvesState()
 					break;
 				}
 				
-				const int end_time = irrigation.start_time + irrigation.amount -1;
-				if(end_time < current_time)
+				const int end_time = irrigation.start_time + irrigation.amount;
+				if(end_time <= current_time)
 				{
 					// End of irrigation, remove and check for the next one.
 					irrigation_list.RemoveFirst();
@@ -96,8 +95,9 @@ void ValvesManager::UpdateValvesState()
 				}
 				
 				// else - irrigation active
-				if(end_time > next_notification_time || next_notification_time < 0)
+				if(end_time < next_notification_time || next_notification_time < 0)
 					next_notification_time = end_time;
+				
 				is_open = true;
 				
 				break;				

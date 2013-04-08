@@ -3,6 +3,7 @@
 
 void Logger::AddLine(const char* message, const Logger::LoggerLevel level)
 {
-	// TODO!
+	#ifdef _SIMULATOR
 	printf("LOG : %s\n", message);
+	#endif
 }

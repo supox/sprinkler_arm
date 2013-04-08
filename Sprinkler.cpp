@@ -22,7 +22,7 @@ Sprinkler::Sprinkler():
 	load_config();
 	
 	// Start report loop
-	TimeNotification();
+	TimeNotification(TimeManager::GetSystemTime());
 }
 
 Sprinkler::~Sprinkler()
@@ -34,7 +34,7 @@ void Sprinkler::OnAlarm(Sensor* s)
 	has_alarmed = true;
 }
 
-int Sprinkler::get_next_task_time()
+unsigned int Sprinkler::get_next_task_time()
 {
 	if( last_report_time <= 0 || last_irrigation_load_time <= 0) // Try every minute until success
 		return TimeManager::GetSystemTime() + 60;
@@ -74,12 +74,12 @@ bool Sprinkler::needs_to_report_reading() {
     if (has_alarmed)
         return true;
 
-    int current_time = TimeManager::GetSystemTime();
+    unsigned int current_time = TimeManager::GetSystemTime();
     return (current_time >= last_report_time + refresh_rate);
 }
 
 bool Sprinkler::needs_to_load_irrigations() {
-    int current_time = TimeManager::GetSystemTime();
+    unsigned int current_time = TimeManager::GetSystemTime();
     return (current_time >= last_irrigation_load_time + DEFAULT_IRRIGATIONS_REFRESH_TIME);
 }
 
@@ -110,7 +110,7 @@ bool Sprinkler::load_time()
 	Logger::AddLine("Sprinkler::load_time : Updating clock.", Logger::DUMP);
 	ret = Communication::GetWebPage(TIME_URL, sb);
 	if (ret) {
-		int current_time = 0;
+		unsigned int current_time = 0;
 		ret = JSON::parse_time(sb.GetBuffer(), current_time);
 		if(ret)
 			TimeManager::SetSystemTime(current_time);
@@ -128,7 +128,7 @@ bool Sprinkler::load_sprinkler_config()
 	StringBuffer sb;
 	bool ret = Communication::GetWebPage(SPRINKLER_CONFIGURATION_URL, sb);
 	if (ret)
-		ret = JSON::parse_sprinkler_configuration(sb.GetBuffer(), *this); // I'll go to hell bcz if this circular dependency.
+		ret = JSON::parse_sprinkler_configuration(sb.GetBuffer(), *this); // I'll go to hell bcz of this circular dependency.
 
 	return ret;
 }
@@ -143,7 +143,7 @@ bool Sprinkler::load_sensors_config() {
 	if(ret)
 	{
 		unsigned int number_of_sensors = sensors.size();
-		for(unsigned int sensor_index = 0; sensor_index < number_of_sensors ; sensor_index++)
+		for(unsigned int sensor_index = 0 ; sensor_index < number_of_sensors ; sensor_index++)
 			sensors[sensor_index]->SetListener(this);
 	}
 	
@@ -163,11 +163,11 @@ bool Sprinkler::load_valves_config()
 bool Sprinkler::load_config() {
 	bool ret = true;
 
+	ret &= load_time();
 	ret &= load_sprinkler_config();
 	ret &= load_sensors_config();
 	ret &= load_valves_config();
 	ret &= load_irrigations_instructions();
-	ret &= load_time();
 	if(ret)
 		m_valves_manager.Update(valves, irrigations);
 
@@ -194,12 +194,12 @@ bool Sprinkler::report_reading() {
 	return ret;
 }
 
-void Sprinkler::TimeNotification()
+void Sprinkler::TimeNotification(unsigned int time)
 {
 	if(needs_to_do_tasks())
 		do_tasks();
 
-	int next_notification = get_next_task_time();
+	unsigned int next_notification = get_next_task_time();
 	
 	// Watch dog.
 	next_notification = std::min(next_notification,TimeManager::GetSystemTime() + 3600);

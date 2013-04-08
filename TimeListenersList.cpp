@@ -2,7 +2,7 @@
 
 TimeListenersList::TimeListenersList()
 {
-	root = new TimeListenerData(-1,NULL);
+	root = new TimeListenerData((unsigned int)-1,NULL);
 }
 
 TimeListenersList::~TimeListenersList()

@@ -12,11 +12,37 @@
 void DoTests()
 {
 	#ifdef _TESTS
+		// TestHTTPParser();
 		// TestIrrigationList();
 		// TestValvesManager();
-		TestSensors();
+		// TestSensors();
+		// CheckUART();
+		// TestGsmStatusParser();
+		// TestJsonTime();
 	#endif
+	
+	#ifdef _TEST_GSM_MODEM
+		TestGsmModem();
+	#endif
+	
+	#ifdef _TEST_RTC
+		TestRTC();
+	#endif
+	
 }
+
+LedsManager *ledsManager = LedsManager::GetLedsManager();
+LedButtonListener listener1(ledsManager,0,0);
+LedButtonListener listener2(ledsManager,1,1);
+LedButtonListener listener3(ledsManager,2,0);
+
+static void InitLeds(void)
+{
+	InputsManager::GetInputsManager()->AddInputListener(&listener1);
+	InputsManager::GetInputsManager()->AddInputListener(&listener2);
+	InputsManager::GetInputsManager()->AddInputListener(&listener3);
+}
+
 
 int main(void)
 {
@@ -25,16 +51,11 @@ int main(void)
 
 	Logger::AddLine("Starting.", Logger::DUMP);
 
-	// DoTests();
-	
+	DoTests();
+	InitLeds();
+
 	Sprinkler s;
-	LedsManager ledsManager;
-	InputsManager inputsManager;
-	LedButtonListener listener1(&ledsManager,0);
-	LedButtonListener listener2(&ledsManager,1);
-	inputsManager.AddInputListener(&listener1);
-	inputsManager.AddInputListener(&listener2);
-		
+
 	//forever do...
 	while(1)
 	{
