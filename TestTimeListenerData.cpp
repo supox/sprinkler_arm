@@ -58,7 +58,7 @@ class MockTimeListener : public ITimeListener
 		MockTimeListener () : HasNotified(false)
 		{
 		}
-		virtual void TimeNotification()
+		virtual void TimeNotification(unsigned int time)
 		{
 			HasNotified = true;
 		}

@@ -2,12 +2,10 @@
 #include "HttpParser.h"
 
 HttpParser::HttpParser(StringBuffer& body) :
-	settings(), m_body(body), m_message(), m_iMessageIndex(0), has_done(false)
+	settings(), m_body(body), m_message(), has_done(false)
 {
-	http_parser_init(&parser, HTTP_RESPONSE);
 	settings.on_body = body_cb;
 	settings.on_message_complete = message_complete_cb;
-	parser.data = this;
 }
 
 HttpParser::~HttpParser()
@@ -26,13 +24,16 @@ void HttpParser::Write(const char* data, size_t buffer_length)
 
 HttpParser::ReturnCodes HttpParser::Parse()
 {
-	const size_t buffer_size = m_message.GetBufferSize() - m_iMessageIndex;
+	http_parser parser;
+	http_parser_init(&parser, HTTP_RESPONSE);
+	parser.data = this;
+
+	const size_t buffer_size = m_message.GetBufferSize();
 
 	if(buffer_size == 0)
 		return ePending;
 	
-  size_t nparsed = http_parser_execute(&parser, &settings, m_message.GetBuffer() + m_iMessageIndex, buffer_size);
-	m_iMessageIndex += nparsed;
+  size_t nparsed = http_parser_execute(&parser, &settings, m_message.GetBuffer(), buffer_size);
  
 	if(has_done)
 		return eOk;

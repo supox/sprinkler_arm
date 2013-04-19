@@ -21,6 +21,7 @@ namespace Communication
 	static bool wait_for_response(const char* response, size_t timeout);
 	static bool wait_for_any_response(size_t timeout_ms);
 	static bool gsm_send_post_data(const char* server, const char* url, StringBuffer& request, StringBuffer& response, bool post);
+	static bool gsm_send_post_data_with_retry(const char* server, const char* url, StringBuffer& request, StringBuffer& response, bool post);
 
 	static bool gsm_init();
 	static bool setup_gprs();
@@ -37,12 +38,21 @@ namespace Communication
 	bool GetWebPage(const char* url, StringBuffer& sb)
 	{
 		StringBuffer request;
-		return gsm_send_post_data(WEB_SERVER, url, request, sb, false);
+		return gsm_send_post_data_with_retry(WEB_SERVER, url, request, sb, false);
 	}
 	
 	bool PostWebPage(const char* url, StringBuffer& request, StringBuffer& response)
 	{
-		return gsm_send_post_data(WEB_SERVER, url, request, response, true);
+		return gsm_send_post_data_with_retry(WEB_SERVER, url, request, response, true);
+	}
+	
+	bool gsm_send_post_data_with_retry(const char* server, const char* url, StringBuffer& request, StringBuffer& response, bool post) {
+		bool ret = false;
+		for(int retry_number = 0; !ret && retry_number < NUMBER_OF_COMMUNICATION_RETRIES; retry_number++)
+		{
+			ret = gsm_send_post_data(server, url, request, response, post);
+		}
+		return ret;
 	}
 	
 	// Main communication flow
@@ -55,6 +65,7 @@ namespace Communication
 			default:
 				if( !gsm_init() )
 					return false;
+				state = get_current_gsm_state();
 				break;
 			case IP_START:
 			case IP_CONFIG:
@@ -64,18 +75,16 @@ namespace Communication
 				break;
 		}
 
-		state = get_current_gsm_state();
 		switch(state)
 		{
+			case IP_CONFIG:
+			case IP_STATUS:
+				// No need to setup gprs.
+				break;
 			default:
 				if( !setup_gprs() )
 					return false;
 					break;
-			case IP_CONFIG:
-			case IP_STATUS:
-			// case IP_CLOSE:
-				// No need to setup gprs.
-			break;
 		}		
 		
 		if(!send_request(server, url, request, post))

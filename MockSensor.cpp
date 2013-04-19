@@ -1,7 +1,7 @@
 #include "MockSensor.h"
 #include <stdlib.h>
 
-MockSensor::MockSensor(ISensorListener* listener) : Sensor(listener)
+MockSensor::MockSensor(const int id, const int port_index, ISensorListener* listener) : Sensor(id, port_index, listener)
 {
 }
 

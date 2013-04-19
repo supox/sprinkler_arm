@@ -4,7 +4,7 @@
 class MockSensor : public Sensor
 {
 public:
-	MockSensor(ISensorListener* listener = NULL);
+	MockSensor(const int id, const int port_index, ISensorListener* listener = NULL);
 	virtual ~MockSensor();
 	virtual SensorType GetType();
 

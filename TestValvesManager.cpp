@@ -54,7 +54,7 @@ void TestValvesManager()
 	assert( mock_valf2->state == false );
 
 	TimeManager::SetSystemTime(23);
-	manager.TimeNotification();
+	manager.TimeNotification(TimeManager::GetSystemTime());
 	assert( mock_valf1->state == false );
 	assert( mock_valf2->state == false );
 
@@ -75,37 +75,37 @@ void TestValvesManager()
 	assert( mock_valf2->state == false );
 
 	TimeManager::SetSystemTime(5);
-	manager.TimeNotification();
+	manager.TimeNotification(TimeManager::GetSystemTime());
 	assert( mock_valf1->state == true );
 	assert( mock_valf2->state == false );
 
 	TimeManager::SetSystemTime(6);
-	manager.TimeNotification();
+	manager.TimeNotification(TimeManager::GetSystemTime());
 	assert( mock_valf1->state == true );
 	assert( mock_valf2->state == true );
 
 	TimeManager::SetSystemTime(8);
-	manager.TimeNotification();
+	manager.TimeNotification(TimeManager::GetSystemTime());
 	assert( mock_valf1->state == true );
 	assert( mock_valf2->state == false );
 
 	TimeManager::SetSystemTime(10);
-	manager.TimeNotification();
+	manager.TimeNotification(TimeManager::GetSystemTime());
 	assert( mock_valf1->state == false );
 	assert( mock_valf2->state == false );
 
 	TimeManager::SetSystemTime(11);
-	manager.TimeNotification();
+	manager.TimeNotification(TimeManager::GetSystemTime());
 	assert( mock_valf1->state == true );
 	assert( mock_valf2->state == true );
 
 	TimeManager::SetSystemTime(13);
-	manager.TimeNotification();
+	manager.TimeNotification(TimeManager::GetSystemTime());
 	assert( mock_valf1->state == true );
 	assert( mock_valf2->state == false );
 
 	TimeManager::SetSystemTime(16);
-	manager.TimeNotification();
+	manager.TimeNotification(TimeManager::GetSystemTime());
 	assert( mock_valf1->state == false );
 	assert( mock_valf2->state == false );
 

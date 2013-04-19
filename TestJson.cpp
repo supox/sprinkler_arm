@@ -11,7 +11,7 @@ using namespace TestHelpers;
 
 void TestJsonTime()
 {
-	int time=0;
+	unsigned int time=0;
 	bool ret = JSON::parse_time("{\"Time\":1364825982}", time);
 	assert(ret);
 	assert(time==1364825982);

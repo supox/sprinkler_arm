@@ -1,7 +1,7 @@
 #include "WaterSensor.h"
 #include "InputsManager.h"
 
-WaterSensor::WaterSensor(ISensorListener* listener) : Sensor(listener)
+WaterSensor::WaterSensor(const int id, const int port_index, ISensorListener* listener) : Sensor(id, port_index, listener)
 {
 	InputsManager::GetInputsManager()->AddInputListener(this);
 }
@@ -16,13 +16,12 @@ SensorType WaterSensor::GetType()
 }
 
 
-void WaterSensor::OnInputChanged(unsigned int input_index)
+void WaterSensor::OnInputChanged(unsigned int input_index, const bool input_value)
 {
-	if( this->port_index == input_index ) 
+	if( !input_value && this->port_index == input_index ) 
 	{
-		// increament reading
-		this->last_reading_value++;
-		OnRead(last_reading_value);
+		// OnRead would increament reading
+		OnRead(last_reading_value+1);
 	}
 }
 

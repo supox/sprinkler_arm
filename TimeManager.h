@@ -1,12 +1,13 @@
 #pragma once
 #include "ITimeListener.h"
 #include "TimeListenersList.h"
+#include "ITask.h"
 
-class TimeManager
+class TimeManager : private ITask
 {
 public:
 	static TimeManager* GetTimeManager();
-	~TimeManager();
+	virtual ~TimeManager();
 	
 	static void SetSystemTime(const unsigned int CurrentTime);
 	static unsigned int GetSystemTime();
@@ -19,10 +20,15 @@ public:
 private:
 	TimeManager(); // Singelton
 	static void UpdateNextAlarmTime();
-	static void NotifyListeners();
+	static void RTCHandler();
+	virtual void DoTask();
 
 	static TimeManager* Instance;
-
 	static TimeListenersList m_Listeners;
+
+	#ifdef _TESTS
+	public:
+	#endif
+	static void NotifyListeners();
 
 };

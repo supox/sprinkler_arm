@@ -4,7 +4,7 @@
 class BatterySensor : public Sensor
 {
 public:
-	BatterySensor(ISensorListener* listener = NULL);
+	BatterySensor(const int id, const int port_index, ISensorListener* listener = NULL);
 	virtual ~BatterySensor();
 	virtual SensorType GetType();
 

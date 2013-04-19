@@ -71,9 +71,21 @@ void Sprinkler::do_tasks()
 }
 
 bool Sprinkler::needs_to_report_reading() {
+		// Check if alarmed.
     if (has_alarmed)
         return true;
 
+		// Check if number of readings exceed maximum allowed number.
+		const unsigned int number_of_sensors = sensors.size();
+		unsigned int number_of_readings = 0;
+		for (unsigned int sensor_index = 0 ; sensor_index < number_of_sensors ; sensor_index++ )
+		{
+			number_of_readings += sensors[sensor_index]->GetNumberOfReadingToReport();
+		}
+		if(number_of_readings >= MAX_NUMBER_OF_READING_BEFORE_REPORTING)
+			return true;
+		
+		// Check if last report time was older than refresh rate
     unsigned int current_time = TimeManager::GetSystemTime();
     return (current_time >= last_report_time + refresh_rate);
 }

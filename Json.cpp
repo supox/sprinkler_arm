@@ -436,9 +436,7 @@ namespace JSON
 					}
 
 					if (id >= 0 && port_index >= 0) { // Add sensor
-							SensorPtr sensor(SensorFactory::CreateSensor(mode));
-							sensor->id = id;
-							sensor->port_index = port_index;
+							SensorPtr sensor(SensorFactory::CreateSensor(mode, id, port_index));
 							sensors.Add(sensor);
 					}
 			}

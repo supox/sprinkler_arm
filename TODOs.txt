@@ -1,0 +1,2 @@
+- Add alarm type - Maximum and minimum rate for valf during irrigation and not during irrigation.
+- 

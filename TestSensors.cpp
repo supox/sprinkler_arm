@@ -20,7 +20,7 @@ void TestSensors()
 	MockSensorListener listener;
 	const int port_index = 3;
 	
-	SensorPtr sensor(SensorFactory::CreateSensor(WATER_READER, &listener));
+	SensorPtr sensor(SensorFactory::CreateSensor(WATER_READER, 0, 0, &listener));
 	assert(sensor.get()!=NULL);
 	assert(sensor->GetType() == WATER_READER);
 	assert(sensor->GetLastReadingValue() == 0);

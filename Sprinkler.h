@@ -6,7 +6,7 @@
 #include "ITimeListener.h"
 #include "ValvesManager.h"
 
-class Sprinkler : public ITimeListener, public ISensorListener
+class Sprinkler : private ITimeListener, private ISensorListener
 {
 public:
 	Sprinkler();

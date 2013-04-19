@@ -1,6 +1,7 @@
 #include "TimeManager.h"
 #include "STM32F10x.h"
 #include "rtc_handler.h"
+#include "Scheduler.h"
 
 static volatile unsigned int s_current_tick_counter = 0;
 extern "C"
@@ -26,7 +27,7 @@ TimeManager* TimeManager::GetTimeManager()
 TimeManager::TimeManager()
 {	
 	rtc_init();	
-	rtc_set_on_alarm_handler(TimeManager::NotifyListeners);
+	rtc_set_on_alarm_handler(TimeManager::RTCHandler);
 }
 
 TimeManager::~TimeManager()
@@ -62,6 +63,17 @@ void TimeManager::RemoveNotifications(ITimeListener* listener)
 {
 	m_Listeners.Remove(listener);
 	UpdateNextAlarmTime();
+}
+
+void TimeManager::DoTask()
+{
+	NotifyListeners();
+}
+
+void TimeManager::RTCHandler()
+{
+	// Add task to scheduler
+	Scheduler::AddTask(GetTimeManager());
 }
 
 void TimeManager::NotifyListeners()

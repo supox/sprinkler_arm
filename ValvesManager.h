@@ -5,7 +5,7 @@
 #include "Irrigation.h"
 #include "IrrigationLogData.h"
 
-class ValvesManager : public ITimeListener
+class ValvesManager : private ITimeListener
 {
 public:
 	ValvesManager();

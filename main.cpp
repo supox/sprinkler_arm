@@ -4,8 +4,7 @@
 #include "LedButtonListener.h"
 #include "Sprinkler.h"
 #include "Logger.h"
-
-// #pragma import(__use_no_semihosting)
+#include "Scheduler.h"
 
 #include "Tests.h"
 
@@ -19,6 +18,7 @@ void DoTests()
 		// CheckUART();
 		// TestGsmStatusParser();
 		// TestJsonTime();
+		TestScheduler();
 	#endif
 	
 	#ifdef _TEST_GSM_MODEM
@@ -60,5 +60,6 @@ int main(void)
 	while(1)
 	{
 		__wfi();
+		Scheduler::DoTasks();
 	}
 }

@@ -7,10 +7,10 @@
 #include "ITimeListener.h"
 #include "ISensorListener.h"
 
-class Sensor : public ITimeListener
+class Sensor : protected ITimeListener
 {
 public:
-	Sensor(ISensorListener* listener = NULL);
+	Sensor(const int id, const int port_index, ISensorListener* listener = NULL);
 	virtual ~Sensor();
 	
 	virtual SensorType GetType() = 0;
@@ -20,6 +20,7 @@ public:
 	virtual void TimeNotification(unsigned int time); // Reading cycle - the sensor read itself every minute
 
 	double GetLastReadingValue(){return last_reading_value;}
+	unsigned int GetNumberOfReadingToReport(){return readings_to_report.size();}
 	int id;
 	int port_index;
 	Vector<AlarmPtr> alarms;
@@ -28,7 +29,7 @@ protected:
 	bool ReadSensor();
 	bool OnRead(const double value);
 	virtual bool ReadSensorFromHardware(double &value) = 0;
-	bool AddReadingIfNeeded(const bool will_alarm);
+	bool AddReadingIfNeeded(const bool will_alarm, const bool value_different_from_last_value);
 	bool ReportReadingData(const char *url, ReadingData& data);
 
 	double last_reading_value;

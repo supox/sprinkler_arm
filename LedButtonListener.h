@@ -5,7 +5,7 @@
 #include "ITimeListener.h"
 #include "TimeManager.h"
 
-class LedButtonListener : public IInputListener, public ITimeListener
+class LedButtonListener : public IInputListener, private ITimeListener
 {
 public:
 	LedButtonListener(LedsManager* manager, unsigned int ButtonIndex, unsigned int LedIndex) :
@@ -15,12 +15,12 @@ public:
 	}
 	
 	virtual ~LedButtonListener(){}
-	virtual void OnInputChanged(unsigned int ButtonIndex)
+	virtual void OnInputChanged(unsigned int ButtonIndex, const bool ButtonValue)
 	{
 		if(m_bRunning)
 			return;
 		
-		if(ButtonIndex != m_ButtonIndex)
+		if(ButtonIndex != m_ButtonIndex || ButtonValue)
 			return;
 		
 		// Turn led on for the next 3 seconds.

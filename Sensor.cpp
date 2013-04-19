@@ -8,9 +8,9 @@
 #include <stdio.h> // for sprintf
 #include <string.h> // for strcmp
 
-Sensor::Sensor(ISensorListener* listener /* = NULL */) :
-	id(0),
-	port_index(0),
+Sensor::Sensor(const int _id, const int _port_index, ISensorListener* listener /* = NULL */) :
+	id(_id),
+	port_index(_port_index),
 	alarms(),
 	last_reading_value(0),
 	last_reading_time(0),
@@ -42,7 +42,7 @@ bool Sensor::ReadSensor()
 bool Sensor::OnRead(const double value)
 {
 	bool ret = true;
-	
+	bool value_different_from_last_value = last_reading_value != value;
 	last_reading_value = value;
 	last_reading_time = TimeManager::GetSystemTime();
 	bool has_alarmed = false;		
@@ -55,7 +55,7 @@ bool Sensor::OnRead(const double value)
 		}
 	}
 	
-	ret = AddReadingIfNeeded(has_alarmed);
+	ret = AddReadingIfNeeded(has_alarmed, value_different_from_last_value);
 	if(has_alarmed && m_listener != NULL)
 		m_listener->OnAlarm(this);
 
@@ -73,8 +73,11 @@ void Sensor::TimeNotification(unsigned int time)
 	TimeManager::NotifyAt(this, time + report_reading_time_delta);
 }
 
-bool Sensor::AddReadingIfNeeded(const bool has_alarm)
+bool Sensor::AddReadingIfNeeded(const bool has_alarm, const bool value_different_from_last_value)
 {
+	if(value_different_from_last_value)
+		return true;
+	
 	if(has_alarm && !m_has_alarmed || last_reading_time > last_saved_reading_time + report_reading_time_delta)
 	{
 		// Save reading to queue:
