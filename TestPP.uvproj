@@ -516,6 +516,11 @@
               <FileType>1</FileType>
               <FilePath>.\fputc_redirect.c</FilePath>
             </File>
+            <File>
+              <FileName>List.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\List.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -740,6 +745,11 @@
               <FileName>TestGsmStatusParser.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\TestGsmStatusParser.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>TestScheduler.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\TestScheduler.cpp</FilePath>
             </File>
           </Files>
         </Group>
@@ -1085,6 +1095,26 @@
               <FileName>stm32f10x_wwdg.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\STM32F10x_StdPeriph_Driver\src\stm32f10x_wwdg.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Scheduler</GroupName>
+          <Files>
+            <File>
+              <FileName>Scheduler.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Scheduler.h</FilePath>
+            </File>
+            <File>
+              <FileName>Scheduler.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\Scheduler.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>ITask.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\ITask.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -1600,6 +1630,11 @@
               <FileType>1</FileType>
               <FilePath>.\fputc_redirect.c</FilePath>
             </File>
+            <File>
+              <FileName>List.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\List.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -1824,6 +1859,11 @@
               <FileName>TestGsmStatusParser.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\TestGsmStatusParser.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>TestScheduler.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\TestScheduler.cpp</FilePath>
             </File>
           </Files>
         </Group>
@@ -2169,6 +2209,26 @@
               <FileName>stm32f10x_wwdg.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\STM32F10x_StdPeriph_Driver\src\stm32f10x_wwdg.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Scheduler</GroupName>
+          <Files>
+            <File>
+              <FileName>Scheduler.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Scheduler.h</FilePath>
+            </File>
+            <File>
+              <FileName>Scheduler.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\Scheduler.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>ITask.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\ITask.h</FilePath>
             </File>
           </Files>
         </Group>

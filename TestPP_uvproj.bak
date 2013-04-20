@@ -682,6 +682,11 @@
           <GroupName>Tests</GroupName>
           <Files>
             <File>
+              <FileName>TestRTC.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\TestRTC.cpp</FilePath>
+            </File>
+            <File>
               <FileName>TestJson.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\TestJson.cpp</FilePath>
@@ -775,11 +780,6 @@
               <FileName>rtc_handler.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\rtc_handler.h</FilePath>
-            </File>
-            <File>
-              <FileName>TestRTC.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\TestRTC.cpp</FilePath>
             </File>
           </Files>
         </Group>
@@ -1766,6 +1766,11 @@
           <GroupName>Tests</GroupName>
           <Files>
             <File>
+              <FileName>TestRTC.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\TestRTC.cpp</FilePath>
+            </File>
+            <File>
               <FileName>TestJson.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\TestJson.cpp</FilePath>
@@ -1859,11 +1864,6 @@
               <FileName>rtc_handler.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\rtc_handler.h</FilePath>
-            </File>
-            <File>
-              <FileName>TestRTC.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\TestRTC.cpp</FilePath>
             </File>
           </Files>
         </Group>

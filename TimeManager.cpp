@@ -49,7 +49,10 @@ void TimeManager::UpdateNextAlarmTime()
 		TimeListenerData* nextListener = m_Listeners.GetFirst();
 		if(nextListener != NULL)
 		{
-			rtc_set_alarm(nextListener->Time);
+			if(nextListener->Time <= GetSystemTime())
+				RTCHandler();
+			else
+				rtc_set_alarm(nextListener->Time);
 		}
 }
 

@@ -1,2 +1,2 @@
 - Add alarm type - Maximum and minimum rate for valf during irrigation and not during irrigation.
-- 
+- Add Reset to the PIC via I2C.
