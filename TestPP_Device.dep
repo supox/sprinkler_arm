@@ -500,7 +500,7 @@ I (LedsManager.h)(0x51003B69)
 I (C:\Keil\ARM\ARMCC\bin\..\include\cstddef)(0x4EB134F8)
 I (C:\Keil\ARM\ARMCC\bin\..\include\stddef.h)(0x4EB134EE)
 F (.\rtc_handler.h)(0x515EBDFC)()
-F (.\Communication.cpp)(0x5170E39D)(--cpp -c --cpu Cortex-M3 -g -O0 --apcs=interwork -I.\STM32F10x_StdPeriph_Driver\inc -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER -o ".\build\device\communication.o" --omf_browse ".\build\device\communication.crf" --depend ".\build\device\communication.d")
+F (.\Communication.cpp)(0x5172BFFA)(--cpp -c --cpu Cortex-M3 -g -O0 --apcs=interwork -I.\STM32F10x_StdPeriph_Driver\inc -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER -o ".\build\device\communication.o" --omf_browse ".\build\device\communication.crf" --depend ".\build\device\communication.d")
 I (Communication.h)(0x50E87E85)
 I (StringBuffer.h)(0x51592A2A)
 I (C:\Keil\ARM\ARMCC\bin\..\include\stdlib.h)(0x4EB134F4)
@@ -513,9 +513,10 @@ I (ITask.h)(0x517159E7)
 I (HttpParser.h)(0x51698150)
 I (http_parser.h)(0x51537033)
 I (C:\Keil\ARM\ARMCC\bin\..\include\stdint.h)(0x4EB134F4)
-I (GsmModem.h)(0x51630C5E)
+I (GsmModem.h)(0x5172ADAD)
 I (text_buffer.h)(0x51631493)
 I (GsmStatusParser.h)(0x515EEA5A)
+I (APNManager.h)(0x5172BBE0)
 I (C:\Keil\ARM\ARMCC\bin\..\include\stdio.h)(0x4EB134F6)
 I (C:\Keil\ARM\ARMCC\bin\..\include\string.h)(0x4EB134F6)
 F (.\Communication.h)(0x50E87E85)()
@@ -572,9 +573,9 @@ I (http_parser.h)(0x51537033)
 I (C:\Keil\ARM\ARMCC\bin\..\include\stddef.h)(0x4EB134EE)
 I (C:\Keil\ARM\ARMCC\bin\..\include\stdint.h)(0x4EB134F4)
 F (.\HttpParser.h)(0x51698150)()
-F (.\GsmModem.h)(0x51630C5E)()
-F (.\GsmModem.cpp)(0x516310F7)(--cpp -c --cpu Cortex-M3 -g -O0 --apcs=interwork -I.\STM32F10x_StdPeriph_Driver\inc -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER -o ".\build\device\gsmmodem.o" --omf_browse ".\build\device\gsmmodem.crf" --depend ".\build\device\gsmmodem.d")
-I (GsmModem.h)(0x51630C5E)
+F (.\GsmModem.h)(0x5172ADAD)()
+F (.\GsmModem.cpp)(0x5172B18F)(--cpp -c --cpu Cortex-M3 -g -O0 --apcs=interwork -I.\STM32F10x_StdPeriph_Driver\inc -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER -o ".\build\device\gsmmodem.o" --omf_browse ".\build\device\gsmmodem.crf" --depend ".\build\device\gsmmodem.d")
+I (GsmModem.h)(0x5172ADAD)
 I (text_buffer.h)(0x51631493)
 I (C:\Keil\ARM\ARMCC\bin\..\include\stdlib.h)(0x4EB134F4)
 I (CommunicationTimeouts.h)(0x5170E368)
@@ -621,6 +622,11 @@ F (.\GsmStatusParser.cpp)(0x51598349)(--cpp -c --cpu Cortex-M3 -g -O0 --apcs=int
 I (GsmStatusParser.h)(0x515EEA5A)
 I (C:\Keil\ARM\ARMCC\bin\..\include\String.h)(0x4EB134F6)
 F (.\GsmStatusParser.h)(0x515EEA5A)()
+F (.\APNManager.h)(0x5172BBE0)()
+F (.\APNManager.cpp)(0x5172BEC7)(--cpp -c --cpu Cortex-M3 -g -O0 --apcs=interwork -I.\STM32F10x_StdPeriph_Driver\inc -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER -o ".\build\device\apnmanager.o" --omf_browse ".\build\device\apnmanager.crf" --depend ".\build\device\apnmanager.d")
+I (APNManager.h)(0x5172BBE0)
+I (C:\Keil\ARM\ARMCC\bin\..\include\stddef.h)(0x4EB134EE)
+I (C:\Keil\ARM\ARMCC\bin\..\include\string.h)(0x4EB134F6)
 F (.\STM32F10x_StdPeriph_Driver\inc\misc.h)(0x4E01A04A)()
 F (.\STM32F10x_StdPeriph_Driver\inc\stm32f10x_adc.h)(0x4E01A04A)()
 F (.\STM32F10x_StdPeriph_Driver\inc\stm32f10x_bkp.h)(0x4E01A04A)()

@@ -21,6 +21,12 @@ bool GsmModem::Init()
 }
 
 
+void GsmModem::ResetModem()
+{
+	I2C_Master_Write("R", strlen("R"), MODEM_I2C1_CONTROL_ADDRESS);
+	TimeManager::DelayMs(7000);
+}
+
 bool GsmModem::Write(const char* buffer)
 {
 	#ifdef _SIMULATOR
@@ -39,7 +45,7 @@ void GsmModem::Write(const char ch)
 
 unsigned char GsmModem::NumberOfPendingByte(void)
 {
-		I2C_Master_Read(1, MODEM_I2C1_ADDRESS + 2 );
+		I2C_Master_Read(1, MODEM_I2C1_CONTROL_ADDRESS );
 		if(TextBufferNumberOfAvailableBytes(I2C_GetReadingBuffer()))
 			return TextBufferGetChar(I2C_GetReadingBuffer());
 		return 0;

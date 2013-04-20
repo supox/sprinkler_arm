@@ -8,6 +8,8 @@
 #	define MODEM_I2C1_ADDRESS	 (0x12)
 #endif
 
+#define MODEM_I2C1_CONTROL_ADDRESS (MODEM_I2C1_ADDRESS + 2)
+
 class GsmModem
 {
 public:
@@ -21,6 +23,7 @@ public:
 	unsigned char ReadBytesFromModem();
 	char* ReadLine(size_t timeout);
 	void ClearBuffer();
+	void ResetModem();
 
 private:
 	GsmModem();

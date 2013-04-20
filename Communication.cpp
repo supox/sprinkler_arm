@@ -4,6 +4,7 @@
 #include "HttpParser.h"
 #include "GsmModem.h"
 #include "GsmStatusParser.h"
+#include "APNManager.h"
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -24,6 +25,7 @@ namespace Communication
 	static bool gsm_send_post_data_with_retry(const char* server, const char* url, StringBuffer& request, StringBuffer& response, bool post);
 
 	static bool gsm_init();
+	static bool send_apn_parameters();
 	static bool setup_gprs();
 	static bool send_request(const char* server, const char* url, StringBuffer& request, bool post);
 	static bool read_response(StringBuffer& response);
@@ -58,7 +60,7 @@ namespace Communication
 	// Main communication flow
 	bool gsm_send_post_data(const char* server, const char* url, StringBuffer& request, StringBuffer& response, bool post) {
 		send_command("\r\n\r\n"); // Clear old commands from modem's buffer
-		
+
 		GsmStates::eGsmState state = get_current_gsm_state();
 		switch(state)
 		{
@@ -322,8 +324,12 @@ namespace Communication
 			gsm_shut_down_gprs();
 			TimeManager::DelayMs(400);
 
-			if(!send_command_with_response("ATZ", "OK"))
-				return false;
+			if(!send_command_with_response("ATZ", "OK")) {
+				// Try resetting the modem.
+				modem.ResetModem();
+				if(!send_command_with_response("ATZ", "OK"))
+					return false;
+			}
 		}
 		// Disable echo
 		if(!send_command_with_response("ATE0", "OK"))
@@ -334,14 +340,56 @@ namespace Communication
 			TimeManager::DelayMs(400);			
 		}
 		
-		if(!send_command_with_response("AT+CGATT=1","OK"))
+		if(!send_command_with_response("AT+CGATT=1","OK")) {
+			// Case of modem power down. Try to restart.
+			if(send_command_with_response("AT+CGATT=1","+CME ERROR: 107")) {
+				modem.ResetModem();
+				if(!send_command_with_response("ATE0", "OK"))
+					return false;
+			}
 			return false;
+		}
+				
+		if(!send_apn_parameters())
+			return false;
+		
+		return true;
+	}
+
+	// Set up network and APN.
+	bool send_apn_parameters()
+	{
+		// Query for the current network operator:
+		send_command("AT+COPS?");
+		char* line;
+		char* network_operator = NULL;
+		for(size_t retry_number = 0 ; retry_number < 3 ; retry_number++) {
+			line = modem.ReadLine(DEFAULT_TIME_OUT);
+			if(line == NULL)
+				return false;
+			if(strncmp(line, "+COPS: 0,0,", 11) == 0) { // search for the next '"'
+				network_operator = line + 12;
+				for(line = network_operator; *line && *line != '"' ; line++);
+				*line = 0;
+				break;
+			}
+		}
+		if(network_operator == NULL)
+			return false;
+		
+		// Setup operator according to the APN list:
+		char apn_buffer[255];
+		if(!APNManager::GetAPNParameters(network_operator, apn_buffer, sizeof(apn_buffer)))
+			return false;
+		
 		if(!send_command_with_response("AT+CGDCONT=1,\"IP\",\"uinternet\"","OK"))
 			return false;
 		if(!send_command_with_response("AT+CDNSCFG=\"192.118.8.82\",\"192.118.8.83\"","OK"))
 			return false;		
-		if(!send_command_with_response("AT+CSTT=\"uinternet\",\"orange\",\"orange\"","OK")) // AT+CSTT="uinternet","orange","orange"
+		if(!send_command_with_response(apn_buffer ,"OK")) // AT+CSTT="uinternet","orange","orange"
 			return false;
+
 		return true;
-	}	
+	}
+	
 };
