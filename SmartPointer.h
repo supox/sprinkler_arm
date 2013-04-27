@@ -41,6 +41,16 @@ public:
 		return m_ptr;
 	}
 	
+	inline bool operator==(const SmartPointer<T>& sp) const
+	{
+		return m_ptr == sp.m_ptr;
+	}
+
+	inline bool operator!=(const SmartPointer<T>& sp) const
+	{
+		return m_ptr != sp.m_ptr;
+	}
+
 	SmartPointer<T>& operator = (const SmartPointer<T>& sp)
 	{
 		// Assignment operator

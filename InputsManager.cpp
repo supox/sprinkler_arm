@@ -36,7 +36,7 @@ InputsManager::~InputsManager()
 {
 }
 
-Vector<IInputListener*> InputsManager::m_listeners;
+CVector<IInputListener*> InputsManager::m_listeners;
 unsigned int InputsManager::m_disabled_buttons = 0;
 
 void InputsManager::AddInputListener(IInputListener* listener)
@@ -44,24 +44,16 @@ void InputsManager::AddInputListener(IInputListener* listener)
 	m_listeners.Add(listener);
 }
 
+void InputsManager::RemoveInputListener(IInputListener* listener)
+{
+	m_listeners.Remove(listener);
+}
+
 void InputsManager::NotifyListeners(unsigned int input_index)
 {
 	const unsigned int mask = (1 << input_index);
 	const bool input_value = (GPIOC->IDR & mask) != 0;
 
-	/*
-	if(clock_enabled())
-	{
-		if((m_disabled_buttons & mask) != 0)
-			return;
-	}
-	else {
-		m_disabled_buttons = 0;
-	}
-	m_disabled_buttons |= mask;
-	enable_clock();
-	*/
-	
 	const unsigned int listeners_size = m_listeners.size();
 	for(unsigned int index = 0 ; index < listeners_size ; ++index ) {
 		if(m_listeners[index] != NULL)

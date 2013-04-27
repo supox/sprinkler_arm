@@ -1,1 +1,1 @@
-git push https://github.com/supox/sprinkler_arm
+git push https://supox@github.com/supox/sprinkler_arm

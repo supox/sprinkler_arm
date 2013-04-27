@@ -856,6 +856,16 @@
               <FileType>5</FileType>
               <FilePath>.\GsmStatusParser.h</FilePath>
             </File>
+            <File>
+              <FileName>APNManager.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\APNManager.h</FilePath>
+            </File>
+            <File>
+              <FileName>APNManager.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\APNManager.cpp</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -1969,6 +1979,16 @@
               <FileName>GsmStatusParser.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\GsmStatusParser.h</FilePath>
+            </File>
+            <File>
+              <FileName>APNManager.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\APNManager.h</FilePath>
+            </File>
+            <File>
+              <FileName>APNManager.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\APNManager.cpp</FilePath>
             </File>
           </Files>
         </Group>

@@ -34,6 +34,11 @@ void Sprinkler::OnAlarm(Sensor* s)
 	has_alarmed = true;
 }
 
+void Sprinkler::OnReportDataFull(Sensor* s)
+{
+	report_reading();
+}
+
 unsigned int Sprinkler::get_next_task_time()
 {
 	if( last_report_time <= 0 || last_irrigation_load_time <= 0) // Try every minute until success
@@ -147,14 +152,30 @@ bool Sprinkler::load_sprinkler_config()
 
 bool Sprinkler::load_sensors_config() {
 	StringBuffer sb;
+		Vector<SensorPtr> new_sensors;
+
 
 	// Load sensors
 	bool ret = Communication::GetWebPage(SENSORS_CONFIGURATION_URL, sb);
 	if (ret)
-			ret = JSON::parse_sensors(sb.GetBuffer(), sensors);
+			ret = JSON::parse_sensors(sb.GetBuffer(), new_sensors);
 	if(ret)
 	{
-		unsigned int number_of_sensors = sensors.size();
+		// Check if need to update sensors.
+		if(sensors.size() != new_sensors.size()) {
+			sensors = new_sensors;
+		}
+		else {
+			const unsigned int number_of_sensors = sensors.size();
+			for(unsigned int sensor_index = 0 ; sensor_index < number_of_sensors ; sensor_index++) {
+				if(sensors[sensor_index]->UpdateFrom(new_sensors[sensor_index].get())) {
+					sensors[sensor_index] = new_sensors[sensor_index];
+				}
+			}
+		}
+		
+		// assign listener
+		const unsigned int number_of_sensors = sensors.size();
 		for(unsigned int sensor_index = 0 ; sensor_index < number_of_sensors ; sensor_index++)
 			sensors[sensor_index]->SetListener(this);
 	}

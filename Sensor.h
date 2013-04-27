@@ -1,6 +1,7 @@
 #pragma once
 #include "Alarm.h"
 #include "Vector.h"
+#include "CVector.h"
 #include "SensorType.h"
 #include "ReadingData.h"
 #include "SmartPointer.h"
@@ -10,7 +11,7 @@
 class Sensor : protected ITimeListener
 {
 public:
-	Sensor(const int id, const int port_index, ISensorListener* listener = NULL);
+	Sensor(const int id, const int port_index, const double sensor_value = 0, ISensorListener* listener = NULL);
 	virtual ~Sensor();
 	
 	virtual SensorType GetType() = 0;
@@ -19,8 +20,13 @@ public:
 
 	virtual void TimeNotification(unsigned int time); // Reading cycle - the sensor read itself every minute
 
+	// If the other is too different, return false.
+	virtual bool UpdateFrom(Sensor* other);
+
 	double GetLastReadingValue(){return last_reading_value;}
 	unsigned int GetNumberOfReadingToReport(){return readings_to_report.size();}
+	int GetReportReadingTimeDelta(){return report_reading_time_delta;}
+
 	int id;
 	int port_index;
 	Vector<AlarmPtr> alarms;
@@ -37,7 +43,7 @@ protected:
 	int last_saved_reading_time;
 	int report_reading_time_delta;
 	bool m_has_alarmed;
-	Vector<ReadingData> readings_to_report;
+	CVector<ReadingData> readings_to_report;
 	ISensorListener* m_listener;
 
 };

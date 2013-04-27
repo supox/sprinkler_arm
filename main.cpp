@@ -18,7 +18,9 @@ void DoTests()
 		// CheckUART();
 		// TestGsmStatusParser();
 		// TestJsonTime();
-		TestScheduler();
+		// TestScheduler();
+		// TestJsonSensors();
+		TestMemory();
 	#endif
 	
 	#ifdef _TEST_GSM_MODEM

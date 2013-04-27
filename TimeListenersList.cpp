@@ -1,4 +1,5 @@
 #include "TimeListenersList.h"
+#include "CriticalSectionHelper.h"
 
 TimeListenersList::TimeListenersList()
 {
@@ -13,6 +14,8 @@ TimeListenersList::~TimeListenersList()
 
 void TimeListenersList::Clear()
 {
+	CriticalSectionHelper c;
+
 	// delete list
 	TimeListenerData* current = root->Next;
 	TimeListenerData* next;
@@ -45,6 +48,8 @@ void TimeListenersList::Add(int Time, ITimeListener* listener)
 
 bool TimeListenersList::Remove(int Time, ITimeListener* listener)
 {
+	CriticalSectionHelper c;
+
 	// search the node
 	TimeListenerData* current ;
 	for(
@@ -67,6 +72,8 @@ bool TimeListenersList::Remove(int Time, ITimeListener* listener)
 
 bool TimeListenersList::Remove(ITimeListener* listener)
 {
+	CriticalSectionHelper c;
+
 	bool ret = false;
 	// search the node
 	TimeListenerData* current ;
@@ -98,6 +105,8 @@ TimeListenerData* TimeListenersList::GetFirst()
 
 void TimeListenersList::RemoveFirst()
 {
+	CriticalSectionHelper c;
+	
 	TimeListenerData *node = root->Next;
 	if(node != NULL)
 	{

@@ -1,13 +1,17 @@
 #include "WaterSensor.h"
 #include "InputsManager.h"
 
-WaterSensor::WaterSensor(const int id, const int port_index, ISensorListener* listener) : Sensor(id, port_index, listener)
+WaterSensor::WaterSensor(const int id, const int port_index, const double sensor_value, ISensorListener* listener)
+	: Sensor(id, port_index, sensor_value, listener)
 {
+	// Water reading is interrupt driven, one hour would be enough.
+	report_reading_time_delta = 3600;
 	InputsManager::GetInputsManager()->AddInputListener(this);
 }
 
 WaterSensor::~WaterSensor()
 {
+	InputsManager::GetInputsManager()->RemoveInputListener(this);
 }
 
 SensorType WaterSensor::GetType()

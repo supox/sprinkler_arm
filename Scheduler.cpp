@@ -1,5 +1,6 @@
 #include "Scheduler.h"
 #include "List.h"
+#include "CriticalSectionHelper.h"
 
 namespace Scheduler
 {
@@ -7,10 +8,17 @@ namespace Scheduler
 
 	void DoTasks()
 	{
-		for( ITask* task = Tasks.Dequeue() ; task != NULL ; task = Tasks.Dequeue())
+		ITask* task ;
+		do
 		{
-			task->DoTask();
+			{
+				CriticalSectionHelper c;
+				task = Tasks.Dequeue();
+			}
+			if(task!=NULL)
+				task->DoTask();
 		}
+		while(task!=NULL);
 	}
 	
 	void AddTask(ITask* task) {
@@ -18,6 +26,8 @@ namespace Scheduler
 	}
 	
 	void RemoveTask(ITask* task) {
+		CriticalSectionHelper c;
+
 		Tasks.Remove(task);
 	}
 };

@@ -9,6 +9,28 @@
 
 using namespace TestHelpers;
 
+void TestJsonSensors()
+{
+	Vector<SensorPtr> sensors;
+	bool ret = JSON::parse_sensors("{\"sensors\":[{\"id\":4,\"port_index\":6, \"type\":\"water_meter\", \"value\":8.0}], \"alarms\":[]}", sensors);
+	assert(ret);
+	assert(sensors.size() == 1);
+	assert(sensors[0]->GetType() == WATER_READER);
+	assert(sensors[0]->id == 4);
+	assert(sensors[0]->port_index == 6);
+	assert(sensors[0]->GetLastReadingValue() == 8.0);
+	
+	sensors.Clear();
+	ret = JSON::parse_sensors("{\"sensors\":[{\"id\":4,\"port_index\":6, \"type\":\"water_meter\", \"value\":null}], \"alarms\":[]}", sensors);
+	assert(ret);
+	assert(sensors.size() == 1);
+	assert(sensors[0]->GetType() == WATER_READER);
+	assert(sensors[0]->id == 4);
+	assert(sensors[0]->port_index == 6);
+	assert(sensors[0]->GetLastReadingValue() == 0);
+	
+}
+
 void TestJsonTime()
 {
 	unsigned int time=0;

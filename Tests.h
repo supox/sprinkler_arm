@@ -9,8 +9,10 @@ void TestSensors();
 void CheckUART();
 void TestGsmStatusParser();
 void TestJsonTime();
+void TestJsonSensors();
 void TestTimes();
 void TestScheduler();
+void TestMemory();
 #endif
 
 #ifdef _TEST_GSM_MODEM

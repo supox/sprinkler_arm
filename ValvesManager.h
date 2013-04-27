@@ -1,6 +1,7 @@
 #pragma once
 #include "ITimeListener.h"
 #include "Vector.h"
+#include "CVector.h"
 #include "Valf.h"
 #include "Irrigation.h"
 #include "IrrigationLogData.h"
@@ -21,5 +22,5 @@ private:
 
 	Vector<ValfPtr>* m_valves;
 	Vector<Irrigation>* m_irrigations;
-	Vector<IrrigationLogData> m_logs;
+	CVector<IrrigationLogData> m_logs;
 };

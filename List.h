@@ -45,15 +45,15 @@ public:
 			return true;
 		}
 
-		bool Empty(){return m_root.Next == NULL;}
+		inline bool Empty(){return m_root.Next == NULL;}
 		
-		T* Peak() {
+		inline T* Peak() {
 			if(Empty())
 				return NULL;
 			return m_root.Next->Element;
 		}
 		
-		T* Dequeue() {
+		inline T* Dequeue() {
 			T* ret = Peak();
 			if(ret != NULL)
 				Remove(ret);

@@ -3,5 +3,5 @@
 
 namespace SensorFactory
 {
-	Sensor* CreateSensor(const SensorType type, const int id, const int port_index, ISensorListener* listener = NULL);
+	Sensor* CreateSensor(const SensorType type, const int id, const int port_index, const double sensor_value = 0, ISensorListener* listener = NULL);
 }

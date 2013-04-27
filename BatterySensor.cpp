@@ -1,6 +1,6 @@
 #include "BatterySensor.h"
 
-BatterySensor::BatterySensor(const int id, const int port_index, ISensorListener* listener) : Sensor(id, port_index, listener)
+BatterySensor::BatterySensor(const int id, const int port_index, const double sensor_value, ISensorListener* listener) : Sensor(id, port_index, sensor_value, listener)
 {
 }
 

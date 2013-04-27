@@ -98,10 +98,19 @@ void TimeManager::NotifyListeners()
 	UpdateNextAlarmTime();
 }
 
+static inline void my_SysTick_Config(uint32_t ticks)
+{
+  SysTick->LOAD  = ticks - 1;                                  /* set reload register */
+  NVIC_SetPriority (SysTick_IRQn, 6);  /* set Priority for Systick Interrupt */
+  SysTick->VAL   = 0;                                          /* Load the SysTick Counter Value */
+  SysTick->CTRL  = SysTick_CTRL_CLKSOURCE_Msk |
+                   SysTick_CTRL_TICKINT_Msk   |
+                   SysTick_CTRL_ENABLE_Msk;                    /* Enable SysTick IRQ and SysTick Timer */
+}
+
 void TimeManager::DelayMs(size_t ms)
 {
-	SysTick_Config(SystemCoreClock/1000);
-	
+	my_SysTick_Config(SystemCoreClock/1000);
 	while(ms)
 	{
 		volatile size_t last_tick_counter = s_current_tick_counter;

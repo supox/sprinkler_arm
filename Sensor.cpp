@@ -8,11 +8,13 @@
 #include <stdio.h> // for sprintf
 #include <string.h> // for strcmp
 
-Sensor::Sensor(const int _id, const int _port_index, ISensorListener* listener /* = NULL */) :
+#define MAX_READINGS_NUMBER_BEFORE_REPORTING 0x200
+
+Sensor::Sensor(const int _id, const int _port_index, const double sensor_value /* = 0 */, ISensorListener* listener /* = NULL */) :
 	id(_id),
 	port_index(_port_index),
 	alarms(),
-	last_reading_value(0),
+	last_reading_value(sensor_value),
 	last_reading_time(0),
 	last_saved_reading_time(0),
 	report_reading_time_delta(DEFAULT_SENSOR_READING_TIME_DELTA_SECONDS),
@@ -43,8 +45,10 @@ bool Sensor::OnRead(const double value)
 {
 	bool ret = true;
 	bool value_different_from_last_value = last_reading_value != value;
+	
 	last_reading_value = value;
 	last_reading_time = TimeManager::GetSystemTime();
+	
 	bool has_alarmed = false;		
 	const unsigned int number_of_alarms = alarms.size();
 	for(int index = 0; index < number_of_alarms ; index++)
@@ -56,6 +60,7 @@ bool Sensor::OnRead(const double value)
 	}
 	
 	ret = AddReadingIfNeeded(has_alarmed, value_different_from_last_value);
+	
 	if(has_alarmed && m_listener != NULL)
 		m_listener->OnAlarm(this);
 
@@ -75,10 +80,7 @@ void Sensor::TimeNotification(unsigned int time)
 
 bool Sensor::AddReadingIfNeeded(const bool has_alarm, const bool value_different_from_last_value)
 {
-	if(value_different_from_last_value)
-		return true;
-	
-	if(has_alarm && !m_has_alarmed || last_reading_time > last_saved_reading_time + report_reading_time_delta)
+	if(value_different_from_last_value || has_alarm && !m_has_alarmed || last_reading_time >= last_saved_reading_time + report_reading_time_delta)
 	{
 		// Save reading to queue:
 		ReadingData data;
@@ -86,7 +88,15 @@ bool Sensor::AddReadingIfNeeded(const bool has_alarm, const bool value_different
 		data.reading_value = last_reading_value;
 		readings_to_report.Add(data);
 		last_saved_reading_time = last_reading_time;
+		
+		if(readings_to_report.size() >= MAX_READINGS_NUMBER_BEFORE_REPORTING) {
+			if(m_listener!=NULL)
+				m_listener->OnReportDataFull(this);
+		}
+		
+		return true;
 	}
+	
 	return true;
 }
 
@@ -100,15 +110,17 @@ bool Sensor::ReportReadings()
 	
 	// Report all readings
 	bool ret = true;
+	CVector<ReadingData> failed_to_sent_readings;
 	const unsigned int number_of_reports = readings_to_report.size();
 	for(unsigned int report_index = 0 ; report_index < number_of_reports ; report_index++)
 	{
-		if (!ReportReadingData(url, readings_to_report[report_index]))
+		if (!ReportReadingData(url, readings_to_report[report_index])) {
 			ret = false;
+			failed_to_sent_readings.Add(readings_to_report[report_index]);
+		}
 	}
 
-	if(ret)
-		readings_to_report.Clear();
+	readings_to_report = failed_to_sent_readings;
 	
 	return ret;
 }
@@ -130,4 +142,19 @@ bool Sensor::ReportReadingData(const char *url, ReadingData& data)
 		return false;
 	
 	return (strcmp(response.GetBuffer(), ACK_STRING) == 0);
+}
+
+bool Sensor::UpdateFrom(Sensor* other)
+{
+	if(this->GetType() != other->GetType())
+		return false;
+	if(this->id != other->id || this->port_index != other->port_index)
+		return false;
+
+	this->report_reading_time_delta	= other->report_reading_time_delta;
+	this->alarms = other->alarms;
+	if(	this->last_reading_value < other->last_reading_value )
+		this->last_reading_value = other->last_reading_value;
+
+	return true;
 }

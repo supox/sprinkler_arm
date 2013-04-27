@@ -34,6 +34,7 @@
 #define SENSOR_TYPE_HUMIDITY		"humidity"
 #define SENSOR_TYPE_FERT				"fert_meter"
 #define SENSOR_TYPE_DIFFERENTIAL_PRESSURE				"differential_pressure"
+#define VALUE_TAG								"value"
 
 // Useful macro to compare between the string of the tag (t) and a string (s).
 #define TOKEN_STRING(js, t, s) \
@@ -387,10 +388,11 @@ namespace JSON
 			// iterate of all tokens, try to build sensors
 			for (sensor_index = 0 ; sensor_index < tokens[sensors_array_token_index].size; sensor_index++) {
 					int id = -1, port_index = -1, value;
+					double sensor_value = 0;
 					SensorType mode = MOCK;
 					const unsigned int next_sensor_token_index = current_token_index + tokens[current_token_index].size + 1;
 
-					// We're expecting something like - {"id":4,"port_index":6, "type":"water_meter"}
+					// We're expecting something like - {"id":4,"port_index":6, "type":"water_meter", "value":8.0}
 					if (tokens[current_token_index].type != JSMN_OBJECT || tokens[current_token_index].size < 4) {
 							current_token_index = next_sensor_token_index;
 							continue;
@@ -421,6 +423,12 @@ namespace JSON
 							}
 							else if (tokens[current_token_index + 1].type == JSMN_PRIMITIVE) {
 								// Read the value
+								if (TOKEN_STRING(json_buffer, tokens[current_token_index], VALUE_TAG)) { // Value tag
+									if (!token_to_double(json_buffer, &tokens[current_token_index + 1], sensor_value)) {
+										current_token_index = next_object_token_index;
+										continue;
+									}
+								}
 								if (!token_to_int(json_buffer, &tokens[current_token_index + 1], value)) {
 										current_token_index = next_object_token_index;
 										continue;
@@ -436,7 +444,7 @@ namespace JSON
 					}
 
 					if (id >= 0 && port_index >= 0) { // Add sensor
-							SensorPtr sensor(SensorFactory::CreateSensor(mode, id, port_index));
+							SensorPtr sensor(SensorFactory::CreateSensor(mode, id, port_index, sensor_value));
 							sensors.Add(sensor);
 					}
 			}

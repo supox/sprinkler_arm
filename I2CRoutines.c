@@ -45,10 +45,6 @@ static bool bI2cInit = false;
 void I2C1_EV_IRQHandler(void);
 void I2C1_ER_IRQHandler(void);
 
-unsigned char debug_buffer[0x900] = {0};
-static unsigned char *debug_buffer_ptr = debug_buffer;
-static unsigned char *debug_buffer_end_of_buffer = debug_buffer + sizeof(debug_buffer);
-
 TextBuffer* I2C_GetReadingBuffer(void)
 {
 	return &I2C_ReadBuffer;
@@ -329,10 +325,6 @@ void I2C1_EV_IRQHandler(void)
 						unsigned char received_byte = I2C1->DR;				
 						TextBufferPutChar(&I2C_ReadBuffer, received_byte);
 				
-						*debug_buffer_ptr = received_byte;
-						debug_buffer_ptr++;
-						if(debug_buffer_ptr >= debug_buffer_end_of_buffer)
-							debug_buffer_ptr = debug_buffer;
 						NumberOfBytesToRead--;
 					}
 					return;
@@ -341,12 +333,7 @@ void I2C1_EV_IRQHandler(void)
 					/* Read the data register */
 					unsigned char received_byte = I2C1->DR;				
 					TextBufferPutChar(&I2C_ReadBuffer, received_byte);
-				
-					*debug_buffer_ptr = received_byte;
-					debug_buffer_ptr++;
-					if(debug_buffer_ptr >= debug_buffer_end_of_buffer)
-						debug_buffer_ptr = debug_buffer;
-				
+								
 					/* Decrement the number of bytes to be read */
 					NumberOfBytesToRead--;
 					/* If it remains only one byte to read, disable ACK and program the STOP (EV7_1) */
