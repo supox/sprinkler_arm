@@ -36,7 +36,7 @@ protected:
 	bool OnRead(const double value);
 	virtual bool ReadSensorFromHardware(double &value) = 0;
 	bool AddReadingIfNeeded(const bool will_alarm, const bool value_different_from_last_value);
-	bool ReportReadingData(const char *url, ReadingData& data);
+	bool ReportReadingData(const char *url, const size_t report_start_index, const size_t report_end_index);
 
 	double last_reading_value;
 	int last_reading_time;

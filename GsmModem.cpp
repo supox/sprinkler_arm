@@ -33,7 +33,14 @@ bool GsmModem::Write(const char* buffer)
 	printf("%s",buffer);
 	#endif
 	
-	I2C_Master_Write((const unsigned char*)buffer, strlen(buffer), MODEM_I2C1_ADDRESS);
+	// split to chunks of 0xff
+	size_t buffer_size = strlen(buffer);
+	for(size_t buffer_index = 0 ; buffer_index < buffer_size ; ) {
+		const size_t remaining_bytes = buffer_size - buffer_index;
+		const size_t bytes_to_send = (remaining_bytes < 0xff) ? remaining_bytes : 0xff;
+		I2C_Master_Write((const unsigned char*)buffer + buffer_index, bytes_to_send, MODEM_I2C1_ADDRESS);
+		buffer_index += bytes_to_send;
+	}
 	
 	return true;
 }

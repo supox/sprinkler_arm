@@ -65,14 +65,12 @@ void Sprinkler::do_tasks()
     }
     
     // load irrigation instruction if needed.
-		bool ret = true;
     if(needs_to_load_irrigations()) {
-        ret = load_irrigations_instructions();
+        load_irrigations_instructions();
     }
     
     // Update valves mode:
-    if(ret)
-			m_valves_manager.Update(valves, irrigations);
+		m_valves_manager.Update(valves, irrigations);
 }
 
 bool Sprinkler::needs_to_report_reading() {
@@ -108,9 +106,12 @@ bool Sprinkler::load_irrigations_instructions() {
 	Logger::AddLine("sprinkler_load_irrigations : Loading irrigations instructions.", Logger::DUMP);
 	ret = Communication::GetWebPage(SPRINKLER_IRRIGATION_URL, sb);
 	if (ret) {
-			ret = JSON::parse_irrigations(sb.GetBuffer(), irrigations);
-			if(ret)
-					last_irrigation_load_time = TimeManager::GetSystemTime();
+		Vector<Irrigation> new_irrigations;
+		ret = JSON::parse_irrigations(sb.GetBuffer(), new_irrigations);
+		if(ret) {
+			last_irrigation_load_time = TimeManager::GetSystemTime();
+			irrigations = new_irrigations;
+		}
 	}
 
 	if(!ret) {
@@ -147,6 +148,9 @@ bool Sprinkler::load_sprinkler_config()
 	if (ret)
 		ret = JSON::parse_sprinkler_configuration(sb.GetBuffer(), *this); // I'll go to hell bcz of this circular dependency.
 
+	// DEBUG !!
+	refresh_rate = 60*2;
+	
 	return ret;
 }
 
@@ -187,8 +191,12 @@ bool Sprinkler::load_valves_config()
 {
 	StringBuffer sb;
 	bool ret = Communication::GetWebPage(SPRINKLER_VALVES_URL, sb);
-	if (ret)
-			ret = JSON::parse_valves(sb.GetBuffer(), valves);
+	if (ret) {
+		Vector<ValfPtr> new_valves;
+		ret = JSON::parse_valves(sb.GetBuffer(), new_valves);
+		if(ret)
+			valves = new_valves;
+	}
 
 	return ret;
 }
@@ -201,8 +209,8 @@ bool Sprinkler::load_config() {
 	ret &= load_sensors_config();
 	ret &= load_valves_config();
 	ret &= load_irrigations_instructions();
-	if(ret)
-		m_valves_manager.Update(valves, irrigations);
+
+	m_valves_manager.Update(valves, irrigations);
 
 	return ret;
 }

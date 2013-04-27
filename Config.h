@@ -22,7 +22,8 @@
 #define SPRINKLER_VALVES_URL SPRINKLER_URL "valves/"
 #define SPRINKLER_IRRIGATION_URL SPRINKLER_URL
 #define SENSOR_URL_FORMAT SPRINKLER_URL "sensors/%d/create_reading/"
-#define SENSOR_READING_JSON_FORMAT "{\"sensor_reading\":{\"sensor_value\":%.0lf,\"read_time\":%d}}"
+#define SENSOR_READINGS_PREFIX "{\"sensor_readings\":["
+#define SENSOR_READING_JSON_FORMAT "{\"sensor_value\":%.0lf,\"read_time\":%d}"
 #define ACK_STRING "{\"result\": \"OK\"}"
 
 #define NUMBER_OF_BUTTONS 2

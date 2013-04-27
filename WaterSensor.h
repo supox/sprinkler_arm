@@ -15,5 +15,6 @@ protected:
 	virtual bool ReadSensorFromHardware(double &value);
 	virtual void OnInputChanged(unsigned int input_index, const bool input_value);
 	virtual void DoTask();
-
+private:
+	unsigned int last_reading_interrupt;
 };

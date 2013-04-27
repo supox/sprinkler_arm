@@ -8,6 +8,9 @@
 
 #include "Tests.h"
 
+// Use alternative heap implementaion, for apps with many memory allocations.
+#pragma import(__use_realtime_heap)
+
 void DoTests()
 {
 	#ifdef _TESTS

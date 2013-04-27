@@ -92,6 +92,7 @@ bool Sensor::AddReadingIfNeeded(const bool has_alarm, const bool value_different
 		if(readings_to_report.size() >= MAX_READINGS_NUMBER_BEFORE_REPORTING) {
 			if(m_listener!=NULL)
 				m_listener->OnReportDataFull(this);
+			readings_to_report.RemoveAt(0);
 		}
 		
 		return true;
@@ -102,6 +103,10 @@ bool Sensor::AddReadingIfNeeded(const bool has_alarm, const bool value_different
 
 bool Sensor::ReportReadings()
 {	
+	const unsigned int number_of_reports = readings_to_report.size();
+	if(number_of_reports == 0)
+		return true;
+
 	// Build URL
 	char url[128]; // asprintf would be alot easier... sigh
 	int number_of_elements = snprintf(url, 128, SENSOR_URL_FORMAT, id);
@@ -111,12 +116,17 @@ bool Sensor::ReportReadings()
 	// Report all readings
 	bool ret = true;
 	CVector<ReadingData> failed_to_sent_readings;
-	const unsigned int number_of_reports = readings_to_report.size();
-	for(unsigned int report_index = 0 ; report_index < number_of_reports ; report_index++)
+	const size_t report_bulk = 10;
+	for(size_t report_index = 0 ; report_index < number_of_reports ; report_index+=report_bulk)
 	{
-		if (!ReportReadingData(url, readings_to_report[report_index])) {
+		size_t bulk_end_index = report_index + report_bulk;
+		if(bulk_end_index >= number_of_reports)
+			bulk_end_index = number_of_reports-1;
+		
+		if (!ReportReadingData(url, report_index, bulk_end_index)) {
 			ret = false;
-			failed_to_sent_readings.Add(readings_to_report[report_index]);
+			for(size_t failed_index = report_index ; failed_index <= bulk_end_index ; failed_index++)
+				failed_to_sent_readings.Add(readings_to_report[failed_index]);
 		}
 	}
 
@@ -125,18 +135,24 @@ bool Sensor::ReportReadings()
 	return ret;
 }
 
-bool Sensor::ReportReadingData(const char *url, ReadingData& data)
+bool Sensor::ReportReadingData(const char *url, const size_t report_start_index, const size_t report_end_index)
 {
 	StringBuffer request;
 	StringBuffer response;
 	char buf[128];
 
-	// would be so much easier with asprintf...
-	int str_length = snprintf(buf, 128, SENSOR_READING_JSON_FORMAT, data.reading_value, data.reading_time);
-	if (str_length < 0) // sprintf failed
+	request.Write(SENSOR_READINGS_PREFIX, sizeof(SENSOR_READINGS_PREFIX)-1);
+	for(size_t report_index = report_start_index ; report_index <= report_end_index ; report_index++) {
+		const ReadingData& data = readings_to_report[report_index];
+		// would be so much easier with asprintf...
+		int str_length = snprintf(buf, 128, SENSOR_READING_JSON_FORMAT, data.reading_value, data.reading_time);
+		if (str_length < 0) // sprintf failed
 			return false;
-	
-	request.Write(buf,str_length);
+		request.Write(buf,str_length);
+		if(report_index != report_end_index)
+			request.Write(",", 1);
+	}
+	request.Write("]}", 2);
 	
 	if(!Communication::PostWebPage(url, request, response))
 		return false;
