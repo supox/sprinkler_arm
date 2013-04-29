@@ -34,6 +34,9 @@ void DoTests()
 		TestRTC();
 	#endif
 	
+	#ifdef _TESTS_STORAGE
+		TestStorage();
+	#endif
 }
 
 LedsManager *ledsManager = LedsManager::GetLedsManager();

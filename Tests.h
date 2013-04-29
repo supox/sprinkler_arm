@@ -23,3 +23,6 @@ void TestGsmModem();
 void TestRTC();
 #endif
 
+#ifdef _TESTS_STORAGE
+void TestStorage();
+#endif
