@@ -147,9 +147,6 @@ bool Sprinkler::load_sprinkler_config()
 	bool ret = Communication::GetWebPage(SPRINKLER_CONFIGURATION_URL, sb);
 	if (ret)
 		ret = JSON::parse_sprinkler_configuration(sb.GetBuffer(), *this); // I'll go to hell bcz of this circular dependency.
-
-	// DEBUG !!
-	refresh_rate = 60*2;
 	
 	return ret;
 }

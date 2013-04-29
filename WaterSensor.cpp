@@ -25,7 +25,7 @@ void WaterSensor::OnInputChanged(unsigned int input_index, const bool input_valu
 {
 	if( !input_value && this->port_index == input_index ) 
 	{
-		// TODO - decrease time resolution, currently it is one minute.
+		// TODO - decrease time resolution, currently it is one second.
 		const unsigned int current_time = TimeManager::GetSystemTime();
 		if(last_reading_interrupt == current_time)
 			return;

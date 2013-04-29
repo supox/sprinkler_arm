@@ -116,7 +116,7 @@ bool Sensor::ReportReadings()
 	// Report all readings
 	bool ret = true;
 	CVector<ReadingData> failed_to_sent_readings;
-	const size_t report_bulk = 10;
+	const size_t report_bulk = 30;
 	for(size_t report_index = 0 ; report_index < number_of_reports ; report_index+=report_bulk)
 	{
 		size_t bulk_end_index = report_index + report_bulk;

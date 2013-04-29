@@ -1,6 +1,7 @@
 - Add alarm type - Maximum and minimum rate for valf during irrigation and not during irrigation.
-- Limit the number of readings to avoid overflow. (V, kinda.)
 - Use flash as a backup for last value.
 - Bootloader
 - Handle button jitters
 - Fix timing differences
+- SMS on alarms - add phone numbers to configuration.
+- Dynamic reload on last readings, show more readings, graph of all reading(?)
