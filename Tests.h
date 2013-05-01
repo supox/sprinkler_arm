@@ -25,4 +25,5 @@ void TestRTC();
 
 #ifdef _TESTS_STORAGE
 void TestStorage();
+void TestSerialization();
 #endif

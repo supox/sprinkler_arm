@@ -3,9 +3,8 @@
 #include "Storage.h"
 #include "stm32f10x_flash.h"
 
-#define FL_EERPOM_StartAddr 0x08007C00 // start from address after 94kbyte flash size 
-#define FL_EEPROM_EndAddr 0x08007FFF // 1K data size 
-#define FL_EEPROM_PageSize 0x400 // 1K 
+#define FL_EERPOM_StartAddr 0x08001000 // start from address after 94kbyte flash size 
+#define FL_EEPROM_EndAddr 0x08007FFF // ~25K data size 
 
 namespace Storage
 {
@@ -20,9 +19,9 @@ namespace Storage
 				return false;
 			sHasErased = true;
 		}
-
-		FLASH_Unlock(); 
-		FLASH_ClearFlag(FLASH_FLAG_BSY | FLASH_FLAG_EOP| FLASH_FLAG_PGERR | FLASH_FLAG_WRPRTERR);
+		
+		FLASH_Unlock();
+		FLASH_ClearFlag(FLASH_FLAG_BSY | FLASH_FLAG_EOP | FLASH_FLAG_PGERR | FLASH_FLAG_WRPRTERR); 
 		
 		start_address += FL_EERPOM_StartAddr;
 		FLASH_Status FLASHStatus=FLASH_COMPLETE; 
@@ -55,7 +54,7 @@ namespace Storage
 		/*erase the page*/ 
 		for(unsigned int erase_counter=0; erase_counter < number_of_pages; erase_counter++) 
 		{ 
-			FLASHStatus = FLASH_ErasePage(start_address + ( FL_EEPROM_PageSize * erase_counter )); 
+			FLASHStatus = FLASH_ErasePage(start_address + ( PageSize * erase_counter )); 
 			if (FLASHStatus != FLASH_COMPLETE) 
 				break;
 		} 
@@ -97,7 +96,7 @@ namespace Storage
 		if(data_size <= 0)
 			return true;
 		
-		unsigned int number_of_pages = data_size/FL_EEPROM_PageSize;
+		unsigned int number_of_pages = data_size/PageSize;
 		if (number_of_pages< 1) 
 			number_of_pages=1; 
 		

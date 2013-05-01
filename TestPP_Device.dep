@@ -105,7 +105,7 @@ I (.\STM32F10x_StdPeriph_Driver\inc\stm32f10x_wwdg.h)(0x4E01A04C)
 I (.\STM32F10x_StdPeriph_Driver\inc\misc.h)(0x4E01A04A)
 F (.\InputsManager.h)(0x517B7380)()
 F (.\IInputListener.h)(0x5170E47F)()
-F (.\main.cpp)(0x517ED7A0)(--cpp -c --cpu Cortex-M3 -g -O0 --apcs=interwork -I.\STM32F10x_StdPeriph_Driver\inc -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER -D_TESTS_STORAGE -o ".\build\device\main.o" --omf_browse ".\build\device\main.crf" --depend ".\build\device\main.d")
+F (.\main.cpp)(0x5181641B)(--cpp -c --cpu Cortex-M3 -g -O0 --apcs=interwork -I.\STM32F10x_StdPeriph_Driver\inc -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER -D_TESTS_STORAGE -o ".\build\device\main.o" --omf_browse ".\build\device\main.crf" --depend ".\build\device\main.d")
 I (C:\Keil\ARM\Inc\ST\STM32F10x\STM32F10x.h)(0x5102B86F)
 I (C:\Keil\ARM\CMSIS\Include\core_cm3.h)(0x50067DE2)
 I (C:\Keil\ARM\ARMCC\bin\..\include\stdint.h)(0x4EB134F4)
@@ -151,7 +151,7 @@ I (TimeListenersList.h)(0x515EB9CD)
 I (ITask.h)(0x517159E7)
 I (Sprinkler.h)(0x517A2941)
 I (Vector.h)(0x517AF888)
-I (Sensor.h)(0x517BEE74)
+I (Sensor.h)(0x518163C4)
 I (Alarm.h)(0x50E8478D)
 I (SmartPointer.h)(0x517A307E)
 I (SensorType.h)(0x50D8B859)
@@ -164,7 +164,7 @@ I (ValvesManager.h)(0x517B744A)
 I (IrrigationLogData.h)(0x50EB3829)
 I (Logger.h)(0x50E872B8)
 I (Scheduler.h)(0x51715EE4)
-I (Tests.h)(0x517ED617)
+I (Tests.h)(0x518162CE)
 F (.\LedButtonListener.h)(0x5170E664)()
 F (.\Json.h)(0x5172C885)()
 F (.\Json.cpp)(0x5172CC5A)(--cpp -c --cpu Cortex-M3 -g -O0 --apcs=interwork -I.\STM32F10x_StdPeriph_Driver\inc -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER -D_TESTS_STORAGE -o ".\build\device\json.o" --omf_browse ".\build\device\json.crf" --depend ".\build\device\json.d")
@@ -173,7 +173,7 @@ I (Vector.h)(0x517AF888)
 I (C:\Keil\ARM\ARMCC\bin\..\include\stdlib.h)(0x4EB134F4)
 I (jsmntok_t.h)(0x507D7136)
 I (Json.h)(0x5172C885)
-I (Sensor.h)(0x517BEE74)
+I (Sensor.h)(0x518163C4)
 I (Alarm.h)(0x50E8478D)
 I (SmartPointer.h)(0x517A307E)
 I (C:\Keil\ARM\ARMCC\bin\..\include\stddef.h)(0x4EB134EE)
@@ -202,7 +202,7 @@ F (.\Sprinkler.cpp)(0x517BFBF2)(--cpp -c --cpu Cortex-M3 -g -O0 --apcs=interwork
 I (Sprinkler.h)(0x517A2941)
 I (Vector.h)(0x517AF888)
 I (C:\Keil\ARM\ARMCC\bin\..\include\stdlib.h)(0x4EB134F4)
-I (Sensor.h)(0x517BEE74)
+I (Sensor.h)(0x518163C4)
 I (Alarm.h)(0x50E8478D)
 I (SmartPointer.h)(0x517A307E)
 I (C:\Keil\ARM\ARMCC\bin\..\include\stddef.h)(0x4EB134EE)
@@ -265,7 +265,7 @@ I (SmartPointer.h)(0x517A307E)
 I (C:\Keil\ARM\ARMCC\bin\..\include\stddef.h)(0x4EB134EE)
 F (.\Alarm.h)(0x50E8478D)()
 F (.\Sensor.cpp)(0x517D965D)(--cpp -c --cpu Cortex-M3 -g -O0 --apcs=interwork -I.\STM32F10x_StdPeriph_Driver\inc -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER -D_TESTS_STORAGE -o ".\build\device\sensor.o" --omf_browse ".\build\device\sensor.crf" --depend ".\build\device\sensor.d")
-I (Sensor.h)(0x517BEE74)
+I (Sensor.h)(0x518163C4)
 I (Alarm.h)(0x50E8478D)
 I (SmartPointer.h)(0x517A307E)
 I (C:\Keil\ARM\ARMCC\bin\..\include\stddef.h)(0x4EB134EE)
@@ -285,11 +285,11 @@ I (StringBuffer.h)(0x51592A2A)
 I (Communication.h)(0x50E87E85)
 I (C:\Keil\ARM\ARMCC\bin\..\include\stdio.h)(0x4EB134F6)
 I (C:\Keil\ARM\ARMCC\bin\..\include\string.h)(0x4EB134F6)
-F (.\Sensor.h)(0x517BEE74)()
+F (.\Sensor.h)(0x518163C4)()
 F (.\SensorType.h)(0x50D8B859)()
 F (.\SensorFactory.cpp)(0x5172CBA4)(--cpp -c --cpu Cortex-M3 -g -O0 --apcs=interwork -I.\STM32F10x_StdPeriph_Driver\inc -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER -D_TESTS_STORAGE -o ".\build\device\sensorfactory.o" --omf_browse ".\build\device\sensorfactory.crf" --depend ".\build\device\sensorfactory.d")
 I (SensorFactory.h)(0x5172CBB6)
-I (Sensor.h)(0x517BEE74)
+I (Sensor.h)(0x518163C4)
 I (Alarm.h)(0x50E8478D)
 I (SmartPointer.h)(0x517A307E)
 I (C:\Keil\ARM\ARMCC\bin\..\include\stddef.h)(0x4EB134EE)
@@ -309,7 +309,7 @@ F (.\SensorFactory.h)(0x5172CBB6)()
 F (.\WaterSensor.h)(0x517BDC20)()
 F (.\WaterSensor.cpp)(0x517D8545)(--cpp -c --cpu Cortex-M3 -g -O0 --apcs=interwork -I.\STM32F10x_StdPeriph_Driver\inc -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER -D_TESTS_STORAGE -o ".\build\device\watersensor.o" --omf_browse ".\build\device\watersensor.crf" --depend ".\build\device\watersensor.d")
 I (WaterSensor.h)(0x517BDC20)
-I (Sensor.h)(0x517BEE74)
+I (Sensor.h)(0x518163C4)
 I (Alarm.h)(0x50E8478D)
 I (SmartPointer.h)(0x517A307E)
 I (C:\Keil\ARM\ARMCC\bin\..\include\stddef.h)(0x4EB134EE)
@@ -329,7 +329,7 @@ I (TimeManager.h)(0x51716507)
 I (TimeListenersList.h)(0x515EB9CD)
 F (.\MockSensor.cpp)(0x5172CC1F)(--cpp -c --cpu Cortex-M3 -g -O0 --apcs=interwork -I.\STM32F10x_StdPeriph_Driver\inc -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER -D_TESTS_STORAGE -o ".\build\device\mocksensor.o" --omf_browse ".\build\device\mocksensor.crf" --depend ".\build\device\mocksensor.d")
 I (MockSensor.h)(0x5172CBED)
-I (Sensor.h)(0x517BEE74)
+I (Sensor.h)(0x518163C4)
 I (Alarm.h)(0x50E8478D)
 I (SmartPointer.h)(0x517A307E)
 I (C:\Keil\ARM\ARMCC\bin\..\include\stddef.h)(0x4EB134EE)
@@ -343,7 +343,7 @@ I (ISensorListener.h)(0x517A27A2)
 F (.\MockSensor.h)(0x5172CBED)()
 F (.\BatterySensor.cpp)(0x5172CC1C)(--cpp -c --cpu Cortex-M3 -g -O0 --apcs=interwork -I.\STM32F10x_StdPeriph_Driver\inc -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER -D_TESTS_STORAGE -o ".\build\device\batterysensor.o" --omf_browse ".\build\device\batterysensor.crf" --depend ".\build\device\batterysensor.d")
 I (BatterySensor.h)(0x5172CBF5)
-I (Sensor.h)(0x517BEE74)
+I (Sensor.h)(0x518163C4)
 I (Alarm.h)(0x50E8478D)
 I (SmartPointer.h)(0x517A307E)
 I (C:\Keil\ARM\ARMCC\bin\..\include\stddef.h)(0x4EB134EE)
@@ -429,15 +429,31 @@ I (TestHelpers.h)(0x50EB2C9D)
 F (.\TestHelpers.h)(0x50EB2C9D)()
 F (.\TestSensors.cpp)(0x517A3C90)(--cpp -c --cpu Cortex-M3 -g -O0 --apcs=interwork -I.\STM32F10x_StdPeriph_Driver\inc -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER -D_TESTS_STORAGE -o ".\build\device\testsensors.o" --omf_browse ".\build\device\testsensors.crf" --depend ".\build\device\testsensors.d")
 F (.\TestValvesManager.cpp)(0x51716282)(--cpp -c --cpu Cortex-M3 -g -O0 --apcs=interwork -I.\STM32F10x_StdPeriph_Driver\inc -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER -D_TESTS_STORAGE -o ".\build\device\testvalvesmanager.o" --omf_browse ".\build\device\testvalvesmanager.crf" --depend ".\build\device\testvalvesmanager.d")
-F (.\Tests.h)(0x517ED617)()
+F (.\Tests.h)(0x518162CE)()
 F (.\TestHTTPParser.cpp)(0x51593561)(--cpp -c --cpu Cortex-M3 -g -O0 --apcs=interwork -I.\STM32F10x_StdPeriph_Driver\inc -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER -D_TESTS_STORAGE -o ".\build\device\testhttpparser.o" --omf_browse ".\build\device\testhttpparser.crf" --depend ".\build\device\testhttpparser.d")
 F (.\TestGsmModem.cpp)(0x51630BB3)(--cpp -c --cpu Cortex-M3 -g -O0 --apcs=interwork -I.\STM32F10x_StdPeriph_Driver\inc -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER -D_TESTS_STORAGE -o ".\build\device\testgsmmodem.o" --omf_browse ".\build\device\testgsmmodem.crf" --depend ".\build\device\testgsmmodem.d")
 F (.\TestGsmStatusParser.cpp)(0x515984DA)(--cpp -c --cpu Cortex-M3 -g -O0 --apcs=interwork -I.\STM32F10x_StdPeriph_Driver\inc -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER -D_TESTS_STORAGE -o ".\build\device\testgsmstatusparser.o" --omf_browse ".\build\device\testgsmstatusparser.crf" --depend ".\build\device\testgsmstatusparser.d")
 F (.\TestScheduler.cpp)(0x517161C5)(--cpp -c --cpu Cortex-M3 -g -O0 --apcs=interwork -I.\STM32F10x_StdPeriph_Driver\inc -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER -D_TESTS_STORAGE -o ".\build\device\testscheduler.o" --omf_browse ".\build\device\testscheduler.crf" --depend ".\build\device\testscheduler.d")
 F (.\TestStorage.cpp)(0x517EDD04)(--cpp -c --cpu Cortex-M3 -g -O0 --apcs=interwork -I.\STM32F10x_StdPeriph_Driver\inc -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER -D_TESTS_STORAGE -o ".\build\device\teststorage.o" --omf_browse ".\build\device\teststorage.crf" --depend ".\build\device\teststorage.d")
 I (TestHelpers.h)(0x50EB2C9D)
-I (Storage.h)(0x517ED72F)
+I (Storage.h)(0x5181687A)
 I (C:\Keil\ARM\ARMCC\bin\..\include\stddef.h)(0x4EB134EE)
+I (C:\Keil\ARM\ARMCC\bin\..\include\string.h)(0x4EB134F6)
+F (.\TestSerialization.cpp)(0x5181642D)(--cpp -c --cpu Cortex-M3 -g -O0 --apcs=interwork -I.\STM32F10x_StdPeriph_Driver\inc -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER -D_TESTS_STORAGE -o ".\build\device\testserialization.o" --omf_browse ".\build\device\testserialization.crf" --depend ".\build\device\testserialization.d")
+I (TestHelpers.h)(0x50EB2C9D)
+I (Serialization.h)(0x518161C1)
+I (Sensor.h)(0x518163C4)
+I (Alarm.h)(0x50E8478D)
+I (SmartPointer.h)(0x517A307E)
+I (C:\Keil\ARM\ARMCC\bin\..\include\stddef.h)(0x4EB134EE)
+I (Vector.h)(0x517AF888)
+I (C:\Keil\ARM\ARMCC\bin\..\include\stdlib.h)(0x4EB134F4)
+I (CVector.h)(0x517B739A)
+I (SensorType.h)(0x50D8B859)
+I (ReadingData.h)(0x517A62B3)
+I (ITimeListener.h)(0x515EC6FF)
+I (ISensorListener.h)(0x517A27A2)
+I (SensorFactory.h)(0x5172CBB6)
 I (C:\Keil\ARM\ARMCC\bin\..\include\string.h)(0x4EB134F6)
 F (.\TimeListenersList.cpp)(0x517AF532)(--cpp -c --cpu Cortex-M3 -g -O0 --apcs=interwork -I.\STM32F10x_StdPeriph_Driver\inc -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER -D_TESTS_STORAGE -o ".\build\device\timelistenerslist.o" --omf_browse ".\build\device\timelistenerslist.crf" --depend ".\build\device\timelistenerslist.d")
 I (TimeListenersList.h)(0x515EB9CD)
@@ -1393,9 +1409,9 @@ I (List.h)(0x517B7179)
 I (C:\Keil\ARM\ARMCC\bin\..\include\stddef.h)(0x4EB134EE)
 I (CriticalSectionHelper.h)(0x517AF4F1)
 F (.\ITask.h)(0x517159E7)()
-F (.\Storage.h)(0x517ED72F)()
-F (.\Storage.cpp)(0x517EDDEF)(--cpp -c --cpu Cortex-M3 -g -O0 --apcs=interwork -I.\STM32F10x_StdPeriph_Driver\inc -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER -D_TESTS_STORAGE -o ".\build\device\storage.o" --omf_browse ".\build\device\storage.crf" --depend ".\build\device\storage.d")
-I (Storage.h)(0x517ED72F)
+F (.\Storage.h)(0x5181687A)()
+F (.\Storage.cpp)(0x51816872)(--cpp -c --cpu Cortex-M3 -g -O0 --apcs=interwork -I.\STM32F10x_StdPeriph_Driver\inc -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER -D_TESTS_STORAGE -o ".\build\device\storage.o" --omf_browse ".\build\device\storage.crf" --depend ".\build\device\storage.d")
+I (Storage.h)(0x5181687A)
 I (C:\Keil\ARM\ARMCC\bin\..\include\stddef.h)(0x4EB134EE)
 I (.\STM32F10x_StdPeriph_Driver\inc\stm32f10x_flash.h)(0x4E01A04A)
 I (C:\Keil\ARM\Inc\ST\STM32F10x\stm32f10x.h)(0x5102B86F)
@@ -1427,4 +1443,21 @@ I (.\STM32F10x_StdPeriph_Driver\inc\stm32f10x_tim.h)(0x4E01A04C)
 I (.\STM32F10x_StdPeriph_Driver\inc\stm32f10x_usart.h)(0x4E01A04C)
 I (.\STM32F10x_StdPeriph_Driver\inc\stm32f10x_wwdg.h)(0x4E01A04C)
 I (.\STM32F10x_StdPeriph_Driver\inc\misc.h)(0x4E01A04A)
-F (.\Serialization.h)(0x517D9618)()
+F (.\Serialization.h)(0x518161C1)()
+F (.\Serialization.cpp)(0x51816A7C)(--cpp -c --cpu Cortex-M3 -g -O0 --apcs=interwork -I.\STM32F10x_StdPeriph_Driver\inc -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\ST\STM32F10x -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER -D_TESTS_STORAGE -o ".\build\device\serialization.o" --omf_browse ".\build\device\serialization.crf" --depend ".\build\device\serialization.d")
+I (Serialization.h)(0x518161C1)
+I (Sensor.h)(0x518163C4)
+I (Alarm.h)(0x50E8478D)
+I (SmartPointer.h)(0x517A307E)
+I (C:\Keil\ARM\ARMCC\bin\..\include\stddef.h)(0x4EB134EE)
+I (Vector.h)(0x517AF888)
+I (C:\Keil\ARM\ARMCC\bin\..\include\stdlib.h)(0x4EB134F4)
+I (CVector.h)(0x517B739A)
+I (SensorType.h)(0x50D8B859)
+I (ReadingData.h)(0x517A62B3)
+I (ITimeListener.h)(0x515EC6FF)
+I (ISensorListener.h)(0x517A27A2)
+I (Storage.h)(0x5181687A)
+I (StringBuffer.h)(0x51592A2A)
+I (SensorFactory.h)(0x5172CBB6)
+I (C:\Keil\ARM\ARMCC\bin\..\include\string.h)(0x4EB134F6)

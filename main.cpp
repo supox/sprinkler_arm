@@ -36,6 +36,7 @@ void DoTests()
 	
 	#ifdef _TESTS_STORAGE
 		TestStorage();
+		TestSerialization();
 	#endif
 }
 
